@@ -9,7 +9,9 @@ import ItemList from '../../components/itemlist.components';
 class App extends Component {
   constructor(){
     super();
-    this.state = [] // initial state
+    this.state = {
+      items: [] // initial state
+    }
   }
 
 
@@ -24,7 +26,6 @@ class App extends Component {
     return (
       <div className="App">
         Hello World!
-        <ItemList/>
       </div>
     );
   }
