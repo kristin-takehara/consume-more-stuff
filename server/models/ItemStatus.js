@@ -1,12 +1,18 @@
 module.exports = function(sequelize, DataType){
   const ItemStatus = sequelize.define('ItemStatus', {
-    sold: {type: DataType.STRING, allowNull: false}
+    sold : {
+      type : DataType.STRING,
+      allowNull : false
+    }
   }, {
-    tableName: 'status'
+    tableName : 'status'
   });
   ItemStatus.associate = function(models){
-    ItemStatus.hasOne(models.Item, {foreignKey:"is_sold", as: 'Status'});
-    };
+    ItemStatus.hasOne(models.Item, {
+      foreignKey : 'is_sold',
+      as : 'Status'
+    });
+  };
 
   return ItemStatus;
 };
