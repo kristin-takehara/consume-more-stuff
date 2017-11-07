@@ -19,11 +19,14 @@ export const loadItems = () => {
       });
     })
     .catch(err => {
-      type: ERROR,
-      error: err
+      dispatch({
+        type: ERROR,
+        error: err 
+      });
     });
-  }
-}
+  };
+};
+
 
 //CREATE(POST) new item
 export const addItem = (newItem) => {
@@ -36,11 +39,13 @@ export const addItem = (newItem) => {
       });
     })
     .catch(err => {
-      type: ERROR,
-      error: err
+      dispatch({
+        type: ERROR,
+        error: err        
+      });
     });
-  }
-}
+  };
+};
 
 //Switches flag to inform front end of change/edit
 export const makeItemEditable = (cardID) => {
@@ -49,8 +54,8 @@ export const makeItemEditable = (cardID) => {
       type: EDITING,
       cardID: cardID
     });
-  }
-}
+  };
+};
 
 //UPDATE(PUT) item
 export const editItem = (updatedItem) => {
@@ -59,12 +64,14 @@ export const editItem = (updatedItem) => {
     .then(updatedItemDetails => {
       dispatch({
         type: EDIT_ITEM,
-        item: updatedItemDetails.data
+        updatedItem: updatedItemDetails.data
       });
     })
     .catch(err => {
-      type: ERROR,
-      error: err
+      dispatch({
+        type: ERROR,
+        error: err        
+      });
     });
-  }
-}
+  };
+};
