@@ -1,4 +1,4 @@
-import { LOAD_ITEMS, ADD_ITEM, EDIT_ITEM, EDITING, ERROR } from './actions/items.actions';
+import { LOAD_ITEMS, ADD_ITEM, EDIT_ITEM, EDITING, ERROR } from '../actions/items.actions';
 
 const initialState = [];
 
@@ -12,7 +12,6 @@ const itemList = (state = initialState, action) => {
 
     case EDITING:
       return state.map(item => {
-        
         if (item.id === action.itemID) {
           return Object.assign({}, item, {
             isEditing : !item.isEditing
@@ -43,5 +42,7 @@ const itemList = (state = initialState, action) => {
 
     default:
       return state;
-  } 
+  }
 };
+
+export default itemList;
