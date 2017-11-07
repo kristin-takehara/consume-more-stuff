@@ -8,7 +8,7 @@ const user = db.User;
 router.get('/', (req,res)=> {
  return user.findAll().then((users) => {
     console.log(users, ' USERS ROUTER REPORTING IN');
-    return res.json({});
+    return res.json(users);
   });
 });
 
