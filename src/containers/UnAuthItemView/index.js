@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-
+import React, { Component } from 'react';
+import ItemList from '../../components/itemlist.components';
 
 class UnAuthItem extends Component {
   constructor(props){
@@ -10,8 +10,11 @@ class UnAuthItem extends Component {
 
   render(){
     return (
-      <div className="items">
-        smoke test
+      <div className="items-main">
+        <h3>Listing Items</h3>
+        <div className="items-list"> 
+          <ItemList />  {/*need to use items component*/}
+        </div>
       </div>
     );
   }

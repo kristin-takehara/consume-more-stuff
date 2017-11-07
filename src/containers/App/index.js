@@ -26,7 +26,7 @@ class App extends Component {
     return (
       <div>
         
-        <UnAuthItem />
+        <UnAuthItem /> {/*displats list for unAuth Users - connected but no data yet*/}
       </div>
     );
   }
