@@ -101,27 +101,27 @@ app.use(bodyParser.urlencoded({ "extended" : false }));
 
 //----------NAVIGATION MENU----------LOGIN/LOGOUT/REGISTER
 
-//LogIN an authenticated user
-app.post('/login', passport.authenticate('local', function(req, res) {
-  let user = req.user;
-  res.json(req.user);
-}));
+// //LogIN an authenticated user
+// app.post('/login', passport.authenticate('local', function(req, res) {
+//   let user = req.user;
+//   res.json(req.user);
+// }));
 
-//LogOUT a user
-app.get('/logout', (req, res) => {
-  let user = req.user;
-  req.logout(); //fire logout request
-  res.sendStatus(200); //fire status ok response
-  res.json(user);
-});
+// //LogOUT a user
+// app.get('/logout', (req, res) => {
+//   let user = req.user;
+//   req.logout(); //fire logout request
+//   res.sendStatus(200); //fire status ok response
+//   res.json(user);
+// });
 
-app.get('/register', (req, res) => {
-  res.render('./register');
-});
+// app.get('/register', (req, res) => {
+//   res.render('./register');
+// });
 
-app.get('/login', (req, res) => {
-  res.render('./login');
-});
+// app.get('/login', (req, res) => {
+//   res.render('./login');
+// });
 //-----------------------------------------------------------
 
 app.use('/api', routes);

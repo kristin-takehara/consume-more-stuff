@@ -1,12 +1,24 @@
 const express = require('express');
 const db = require('../models');
-const item = db.Item;
+const Item = db.Item;
+const User = db.User;
+const Category = db.Category;
+const Condition = db.Condition;
+const ItemStatus = db.ItemStatus;
+
 
 const router = express.Router();
 
 router.route('/')
 .get((req, res) => {
- return item.findAll()
+ return Item.findAll({
+  include: [
+      { model: User, as: 'User' },
+      { model: Category, as: 'Category' },
+      { model: Condition, as: 'Condition' },
+      { model: ItemStatus, as: 'Status'}
+    ]
+ })
  .then((items) => {
     console.log('list of items returned');
     return res.json(items);
@@ -19,18 +31,29 @@ router.route('/')
 
 .post((req, res) => {
   const details = req.body;
-
-  return item.create({
-    price : details.price,
+  return Item.create({
     name : details.name,
     description : details.description,
-    category : details.category,
-    user_id : details.user_id,
-    condition : details.condition,
-    is_sold : details.is_sold
+    manufacturer : details.manufacturer,
+    modelname : details.modelname,
+    price : details.price,
+    category_id : details.category_id,
+    condition_id : details.condition_id,
+    is_sold : details.is_sold,
+    user_id : details.user_id
   })
   .then((newItem) => {
-    console.log('new item created');
+    return newItem.reload({
+      include: [
+        { model: User, as: 'User' },
+        { model: Category, as: 'Category' },
+        { model: Condition, as: 'Condition' },
+        { model: ItemStatus, as: 'Status' }
+      ]
+    })
+    res.json(newItem);
+  })
+  .then(newItem => {
     return res.json(newItem);
   })
   .catch((err) => {
@@ -41,8 +64,8 @@ router.route('/')
 
 router.route('/:id')
 .get((req, res) => {
-  return item.findById(req.params.id)
-  .then((itemDetails) => { 
+  return Item.findById(req.params.id)
+  .then((itemDetails) => {
     console.log("Item found");
     return res.json(itemDetails);
   })
