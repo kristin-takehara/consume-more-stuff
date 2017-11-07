@@ -12,7 +12,6 @@ const itemList = (state = initialState, action) => {
 
     case EDITING:
       return state.map(item => {
-
         if (item.id === action.itemID) {
           return Object.assign({}, item, {
             isEditing : !item.isEditing
@@ -45,6 +44,5 @@ const itemList = (state = initialState, action) => {
       return state;
   }
 };
-
 
 export default itemList;
