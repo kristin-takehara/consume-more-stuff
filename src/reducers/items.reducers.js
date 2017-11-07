@@ -1,4 +1,4 @@
-import { LOAD_ITEMS, ADD_ITEM, EDIT_ITEM, EDITING, ERROR } from './actions/items.actions';
+import { LOAD_ITEMS, ADD_ITEM, EDIT_ITEM, EDITING, ERROR } from '../actions/items.actions';
 
 const initialState = [];
 
