@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { loadItems } from '../../actions/items.actions';
 
-import ItemList from '../../components/Item-Component-Container';
+import ItemList from '../../components/itemlist.components';
 
 
 class App extends Component {
@@ -24,7 +24,7 @@ class App extends Component {
     return (
       <div className="App">
         Hello World!
-        <ItemList}/>
+        <ItemList/>
       </div>
     );
   }

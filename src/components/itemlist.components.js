@@ -1,6 +1,6 @@
 // component-container, a redux style dummy container
 import React from 'react';
-import Item from'./Item';
+import Item from'./item.components';
 
 const ItemList = ({items}) => {
   return (
