@@ -23,23 +23,6 @@ module.exports = {
 },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('conditions', [
-      {
-      condition: 'New (Cherry)',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      condition: 'Like New',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      condition: 'Used',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      condition: 'Stay broke',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    }])
+  return queryInterface.bulkDelete('conditions', null, {});
   }
 };
