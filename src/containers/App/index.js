@@ -1,13 +1,55 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import { loadItems } from '../../actions/items.actions';
+
+import ItemList from '../../components/Item-Component-Container';
+
 
 class App extends Component {
+  constructor(){
+    super();
+    this.state = [] // initial state
+  }
+
+
+  componentDidMount(){
+    this.props.loadItems()
+  }
+
+
   render() {
+    console.log(this.props.loadItems);
+    console.log(this.props.items);
     return (
       <div className="App">
         Hello World!
+        <ItemList}/>
       </div>
     );
   }
 }
 
-export default App;
+
+const mapStateToProps = (state) => {
+  return {
+    items: state.itemList // makes it this.props.items
+  }
+}
+
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loadItems: () => {
+      console.log('Dispatch the action');
+      dispatch(loadItems());
+    }
+  }
+}
+
+const ConnectedApp = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App)
+
+export default ConnectedApp;

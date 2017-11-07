@@ -1,6 +1,6 @@
 import Axios from 'axios';
 
-const listOfItems = '/api/items';
+const listOfItems = '/api/items'; // URL to POST to
 
 export const LOAD_ITEMS = 'LOAD_ITEMS';
 export const ADD_ITEM = 'ADD_ITEM';
@@ -21,7 +21,7 @@ export const loadItems = () => {
     .catch(err => {
       dispatch({
         type: ERROR,
-        error: err 
+        error: err
       });
     });
   };
@@ -41,7 +41,7 @@ export const addItem = (newItem) => {
     .catch(err => {
       dispatch({
         type: ERROR,
-        error: err        
+        error: err
       });
     });
   };
@@ -70,7 +70,7 @@ export const editItem = (updatedItem) => {
     .catch(err => {
       dispatch({
         type: ERROR,
-        error: err        
+        error: err
       });
     });
   };
