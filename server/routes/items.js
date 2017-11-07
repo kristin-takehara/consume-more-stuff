@@ -2,48 +2,54 @@ const express = require('express');
 const db = require('../models');
 const item = db.Item;
 
-console.log(db.Item);
-
-// Express Router
 const router = express.Router();
 
-// fetching user routes 
 router.route('/')
-.get((req,res ) => {
- return item.findAll().then((items) => {
-    console.log(items, ' USERS ROUTER REPORTING IN');
+.get((req, res) => {
+ return item.findAll()
+ .then((items) => {
+    console.log('list of items returned');
     return res.json(items);
-  });
+  })
+ .catch((err) => {
+    console.log(err);
+    return res.json(err);
+ });
 })
 
 .post((req, res) => {
-  console.log(req.body, "THIS IS THE REQ BODY");
-  item.create({
-    price: req.body.price,
-    name: req.body.name,
-    description: req.body.description,
-    category: req.body.category,
-    user_id: req.body.user_id,
-    condition: req.body.condition,
-    is_sold: req.body.is_sold
+  const details = req.body;
+
+  return item.create({
+    price : details.price,
+    name : details.name,
+    description : details.description,
+    category : details.category,
+    user_id : details.user_id,
+    condition : details.condition,
+    is_sold : details.is_sold
   })
   .then((newItem) => {
-    console.log(newItem, ' NEW ITEM CL');
-    res.json(newItem);
+    console.log('new item created');
+    return res.json(newItem);
   })
   .catch((err) => {
-    console.log(err, "ROUTE ERROR FROM /NEW ROUTE ");
-    res.json(err);
+    console.log(err);
+    return res.json(err);
   });
 });
 
 router.route('/:id')
 .get((req, res) => {
   return item.findById(req.params.id)
-  .then((item) => { 
-    console.log("ITEM ON LINE 50 ", item);
-    return res.json(item);
-  });
+  .then((itemDetails) => { 
+    console.log("Item found");
+    return res.json(itemDetails);
+  })
+  .catch((err => {
+    console.log(err);
+    return res.json (err);
+  }));
 });
 
 module.exports = router;
