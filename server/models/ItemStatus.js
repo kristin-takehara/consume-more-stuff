@@ -5,7 +5,7 @@ module.exports = function(sequelize, DataType){
     tableName: 'status'
   });
   ItemStatus.associate = function(models){
-    ItemStatus.belongsTo(models.Item, {foerignKey:"is_sold", as: 'Status'});
+    ItemStatus.hasOne(models.Item, {foreignKey:"is_sold", as: 'Status'});
     };
 
   return ItemStatus;
