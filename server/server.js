@@ -21,7 +21,7 @@ const routes = require('./routes');
 const app = express();
 // enableing json body-parser and encoding 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ "extended" : true }));
+app.use(bodyParser.urlencoded({ "extended" : false }));
 
 // app.use(express.static('public'));
 

@@ -1,32 +1,38 @@
 const express = require('express');
-const router = express.Router();
 const db = require('../models');
 const item = db.Item;
 
+// Express Router
+const router = express.Router();
 
 // fetching user routes 
-router.get('/items', (req,res)=> {
+
+router.route('/')
+.get(( req,res )=> {
  return item.findAll().then((items) => {
     console.log(items, ' USERS ROUTER REPORTING IN');
     return res.json(items);
   });
-});
+})
 
 
-router.post('/new', (req, res) => {
+.post((req, res) => {
+
 console.log(req.body, "THIS IS THE REQ BODY");
 
 console.log(req.body, ' req body card route ZZXXXXXXXCXCXXX ! ! ! ! !! ! ! !! ');
-  db.items.create({
-    title: req.body.title,
+  db.item.create({
+    price: req.body.price,
+    name: req.body.name,
     description: req.body.description,
-    dueDate: req.body.dueDate,
-    priority: req.body.priority,
-    status: req.body.status
+    category: req.body.category,
+    user_id: req.body.user_id,
+    condition: req.body.condition,
+    is_sold: req.body.is_sold
   })
-  .then( (card) => {
-    console.log(items);
-    res.json(items);
+  .then( (newItem) => {
+    console.log(newItem, ' NEW ITEM CL');
+    res.json(newItem);
   })
   .catch( (err) => {
     console.log(err, "ROUTE ERROR FROM /NEW ROUTE ");
@@ -34,4 +40,22 @@ console.log(req.body, ' req body card route ZZXXXXXXXCXCXXX ! ! ! ! !! ! ! !! ')
   });
 });
 
+router.route('/:id')
+.get((req, res) =>{
+ return findById({
+    id: req.body.id
+ })
+  .then( (item) =>{
+    console.log("ITEM ON LINE 50 ", item);
+    return res.json(item);
+  });
+});
+
+
+
+
+
+
 module.exports = router;
+
+

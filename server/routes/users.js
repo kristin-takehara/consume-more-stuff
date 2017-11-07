@@ -12,4 +12,19 @@ router.get('/', (req,res)=> {
   });
 });
 
+
+router.post('/register', (req, res) => {
+  console.log(req.body, "THIS IS THE REQ BODY FOR REGISTER! ");
+  users.create({
+    username: req.body.username,
+    password: req.body.password
+  })
+  .then( (user) => {
+    res.json(user);
+  })
+  .catch( (err) => {
+    res.json(err);
+  });
+});
+
 module.exports = router;

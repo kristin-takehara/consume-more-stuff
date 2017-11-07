@@ -15,15 +15,6 @@ module.exports = {
 },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('status', [
-      {
-      sold: 'Yes',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      sold: 'No',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    }])
+  return queryInterface.bulkDelete('status', null, {});
   }
 };
