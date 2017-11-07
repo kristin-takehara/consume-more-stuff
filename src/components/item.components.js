@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Item = ({ id, name, description, manufacturer, modelname, price, category, condition, sold, createdBy }) => {
+  console.log(Item);
     return (
     <div className="Item">
       <div> ID: {id} </div>
