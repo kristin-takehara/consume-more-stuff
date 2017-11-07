@@ -5,12 +5,9 @@ const PORT = process.env.PORT || 8888;
 const routes = require('./routes');
 
 const app = express();
-<<<<<<< HEAD
 // enableing json body-parser and encoding
-=======
 
-// enabling json body-parser and encoding 
->>>>>>> development
+// enabling json body-parser and encoding
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ "extended" : false }));
 
