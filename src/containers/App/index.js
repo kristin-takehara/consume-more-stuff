@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { loadItems } from '../../actions/items.actions';
 
 import ItemList from '../../components/itemlist.components';
-
+import UnAuthItem from '../UnAuthItemView/';
 
 class App extends Component {
   constructor(){
@@ -24,8 +24,9 @@ class App extends Component {
     console.log(this.props.loadItems);
     console.log(this.props.items);
     return (
-      <div className="App">
-        Hello World!
+      <div>
+        
+        <UnAuthItem />
       </div>
     );
   }
