@@ -19,7 +19,7 @@ const routes = require('./routes');
 // });
 
 const app = express();
-// enableing json body-parser and encoding 
+// enableing json body-parser and encoding
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ "extended" : false }));
 
