@@ -3,11 +3,10 @@ import React from 'react';
 import Item from'./item.components';
 
 const ItemList = ({items}) => {
-  console.log(items);
+  console.log(items, "COMPONENTS");
   return (
     <div className="item-list"> {
       items.map((item) => { //renders X amount of items
-      console.log(item);
         return (
           <Item
           name={item.name}
