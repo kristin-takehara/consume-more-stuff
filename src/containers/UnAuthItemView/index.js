@@ -4,7 +4,6 @@ import ItemList from '../../components/itemlist.components';
 class UnAuthItem extends Component {
   constructor(props){
     super(props);
-
     this.state = { items: ''};
   }
 
@@ -12,8 +11,8 @@ class UnAuthItem extends Component {
     return (
       <div className="items-main">
         <h3>Listing Items</h3>
-        <div className="items-list"> 
-          <ItemList />  {/*need to use items component*/}
+        <div className="items-list">
+           {/*need to use items component*/}
         </div>
       </div>
     );

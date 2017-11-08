@@ -23,9 +23,9 @@ class App extends Component {
     console.log(this.props.loadItems, "props.loadItems");
     console.log(this.props.items, "props.items");
     return (
-        
+
       <div className="App">
-        <UnAuthItem /> 
+        <UnAuthItem />
         <ItemList items={this.props.items}/>
         Hello World!
       </div>
