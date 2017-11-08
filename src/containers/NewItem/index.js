@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadItems, addItem } from '../../actions/items.actions';
+import { loadConditions } from '../../actions/conditions.actions';
+import { loadUsers } from '../../actions/users.actions';
+import { loadStatuses } from '../../actions/statuses.actions';
+import { loadCategories } from '../../actions/categories.actions';
+
+import Select from '../../components/select.components';
 
 class NewItem extends Component {
   constructor(props) {
@@ -15,24 +21,14 @@ class NewItem extends Component {
       category_id: '',
       condition_id: '',
       is_sold: 2, // initial state defaults to NOT SOLD
-      created_by: ''
+      user_id: ''
     }
-
+    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleNameInput = this.handleNameInput.bind(this);
-    this.handleDescriptionInput = this.handleDescriptionInput.bind(this);
-    this.handleManufacturerInput = this.handleManufacturerInput.bind(this);
-    this.handleModelNameInput = this.handleModelNameInput.bind(this);
-    this.handlePriceInput = this.handlePriceInput.bind(this);
-    this.handleCategoryInput = this.handleCategoryInput.bind(this);
-    this.handleConditionInput = this.handleConditionInput.bind(this);
-    this.handleIsSoldInput = this.handleIsSoldInput.bind(this);
-    this.handleCreatorInput = this.handleCreatorInput.bind(this);
   }
 
   handleSubmit(event){
     event.preventDefault();
-
     let newItem = {
       name: this.state.name,    // sets state when client inserts/changes the name
       description: this.state.description,
@@ -42,12 +38,10 @@ class NewItem extends Component {
       category_id: this.state.category_id,
       condition_id: this.state.condition_id,
       is_sold: this.state.is_sold,
-      created_by: this.state.created_by
+      user_id: this.state.user_id
     }
-      console.log(newItem, "new item");
-
     this.props.addItem(newItem);
-
+    console.log(newItem, "new item");
     this.setState({ // this will pass up to the newItem that will be submitted on SUBMIT
       name: '',
       description: '',
@@ -57,15 +51,95 @@ class NewItem extends Component {
       category_id: '',  // these will be integers that DB will associate with category table
       condition_id: '',
       is_sold: 2, // defaults to NOT SOLD
-      created_by: ''
+      user_id: ''
     })
   }
 
+  handleChange(evt) {
+    console.log(evt.target);
+    const target = evt.target;
+    const name = target.name;
+    const value = target.value;
 
+    this.setState({
+      [name] : value
+    });
+  }
 
+  render() {
+    return (
+      <div className="new-item-form">
+        <form onSubmit={this.handleSubmit}>
 
+          <Select
+          list={this.props.categories}
+          label="Category: "
+          type="category"
+          handler={this.handleChange}/>
 
+          <Select
+          list={this.props.conditions}
+          label="Condition: "
+          type="condition"
+          handler={this.handleChange}/>
 
+          <Select
+          list={this.props.statuses}
+          label="Has Been Sold:  "
+          type="sold"
+          handler={this.handleChange}/>
 
+          <Select
+          list={this.props.users}
+          label="Username:  "
+          type="username"
+          handler={this.handleChange}/>
+
+          <div className="input-form">
+            <input value={this.state.item} type="text" placeholder="item name" onChange={this.handleChange}/>
+          </div>
+          <input type="submit" value="submit card"/>
+        </form>
+      </div>
+    );
+  }
 }
+
+
+const mapStateToProps = (state) => {
+  return {
+    items: state.itemList,
+    users: state.userList,
+    categories: state.categoryList,     // setting state
+    conditions: state.conditionList,
+    statuses: state.statusList
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addItem: (item) => {
+      dispatch(addItem(item))
+    },
+    loadCategories: (categories) => {
+      dispatch(loadCategories(categories));
+    },
+    loadConditions: (conditions) => {
+      dispatch(loadConditions(conditions));
+    },
+    loadStatuses: (statuses) => {
+      dispatch(loadStatuses(statuses));
+    },
+    loadUsers: (users) => {
+      dispatch(loadUsers(users));
+    }
+  }
+}
+
+const ConnectedNewItem = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NewItem)
+
+export default ConnectedNewItem;
 
