@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import ItemList from '../components/itemlist.components.js';
 // import { connect } from 'react-redux';
 // import { getCards } from '../../actions/cards';
 
@@ -19,6 +19,9 @@ render(){
         <p>Welcome</p>
       </div>
       <div className="container"></div>
+        <div className="list-view">
+          
+        </div>
     </div>
     );
 }
