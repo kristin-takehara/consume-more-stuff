@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Item from '../../components/Item';
+import Item from '../../components/item.components';
 
 
 class SingleItemView extends Component {
-  constructor(){
+  constructor(props){
     super();
 
-    this.state = this.props.items;
-
+    this.state = {
+      // id: this.props.id
+    }
   }
-console.log(this.props.items);
 
   render(){
+console.log(this.props.items);
+    console.log(this.props.id);
     return(
       <div className="single-item-view">
 
@@ -24,12 +26,11 @@ console.log(this.props.items);
 
 const mapStateToProps = state => {
   return {
-    items: state.itemsList
+    items: state.itemList
   }
 }
 
-const ConnectedSingleItemView = connect(
+export default connect(
   mapStateToProps
 )(SingleItemView);
 
-export default ConnectedSingleItemView;
