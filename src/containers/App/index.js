@@ -7,18 +7,11 @@ import { loadStatuses } from '../../actions/statuses.actions';
 import { loadCategories } from '../../actions/categories.actions';
 
 import ItemList from '../../components/itemlist.components';
-<<<<<<< HEAD
 
 
-import UnAuthItem from '../UnAuthItemView/'; /*view to display login and register*/
 
 // import SearchBar from '../SearchBar/index.js';
-
-=======
 import SingleItemView from '../SingleItemView';
-
-import UnAuthItem from '../UnAuthItemView/';
->>>>>>> development
 import NewItem from '../NewItem/';
 import Nav from '../../components/nav.components';
 
