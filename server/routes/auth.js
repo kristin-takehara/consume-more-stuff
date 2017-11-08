@@ -37,7 +37,7 @@ router.post('/register', (req,res) => {
         password: hash
       })
       .then((user) => {
-        // don't return ALL user details, especially password\
+        // don't return ALL user details, especially password
         // what details does the user object carry?
         return res.json({
           success : true
