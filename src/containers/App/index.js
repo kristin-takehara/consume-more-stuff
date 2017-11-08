@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { loadItems } from '../../actions/items.actions';
 
 import ItemList from '../../components/itemlist.components';
-import UnAuthItem from '../UnAuthItemView/';
+
+import UnAuthItem from '../UnAuthItemView/'; /*view to display login and register*/
 
 import SearchBar from '../SearchBar/index.js';
 
