@@ -11,8 +11,7 @@ module.exports = function(sequelize, DataType) {
 
   Condition.associate = function(models) {
     Condition.hasMany(models.Item, {
-      foreignKey : 'condition_id',
-      as : 'Condition'
+      foreignKey : 'condition_id'
      });
     };
 

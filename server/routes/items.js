@@ -11,11 +11,11 @@ const router = express.Router();
 router.route('/')
 .get((req, res) => {
  return Item.findAll({
-  include: [
-      { model: User, as: 'User' },
-      { model: Category, as: 'Category' },
-      { model: Condition, as: 'Condition' },
-      { model: ItemStatus, as: 'Status'}
+  include : [
+      { model : User, as : 'User' },
+      { model : Category, as : 'Category' },
+      { model : Condition, as : 'Condition' },
+      { model : ItemStatus, as : 'Status'}
     ]
  })
  .then((items) => {
@@ -44,11 +44,11 @@ router.route('/')
   })
   .then((newItem) => {
     return newItem.reload({
-      include: [
-        { model: User, as: 'User' },
-        { model: Category, as: 'Category' },
-        { model: Condition, as: 'Condition' },
-        { model: ItemStatus, as: 'Status' }
+      include : [
+        { model : User, as : 'User' },
+        { model : Category, as : 'Category' },
+        { model : Condition, as : 'Condition' },
+        { model : ItemStatus, as : 'Status' }
       ]
     });
   })

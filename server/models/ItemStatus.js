@@ -11,8 +11,7 @@ module.exports = function(sequelize, DataType) {
   
   ItemStatus.associate = function(models) {
     ItemStatus.hasOne(models.Item, {
-      foreignKey : 'is_sold',
-      as : 'Status'
+      foreignKey : 'is_sold'
     });
   };
 
