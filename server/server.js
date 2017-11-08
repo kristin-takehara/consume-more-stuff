@@ -17,7 +17,7 @@ const app = express();
 
 // enabling json body-parser and encoding
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ "extended" : false }));
+app.use(bodyParser.urlencoded({ "extended" : true }));
 
 //----------PASSPORT - AUTHENTICATION----
 // app.use(session({
