@@ -6,7 +6,7 @@ import ItemList from '../../components/itemlist.components';
 
 import UnAuthItem from '../UnAuthItemView/'; /*view to display login and register*/
 
-import SearchBar from '../SearchBar/index.js';
+// import SearchBar from '../SearchBar/index.js';
 
 
 class App extends Component {
