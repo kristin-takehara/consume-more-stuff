@@ -19,18 +19,17 @@ class App extends Component {
     super();
     this.state = {
       items: [] // initial state
-    }
+    };
   }
 
   componentDidMount(){
-    this.props.loadItems()
-    this.props.loadCategories()
-    this.props.loadConditions()
-    this.props.loadUsers()
-    this.props.loadStatuses()
+    this.props.loadItems();
+    this.props.loadCategories();
+    this.props.loadConditions();
+    this.props.loadUsers();
+    this.props.loadStatuses();
 
   }
-
 
   render() {
     return (
@@ -40,16 +39,19 @@ class App extends Component {
 =======
       <div className="App">
         <NewItem />
+        <ItemList
+           items={this.props.items}/>
         <UnAuthItem />
+<<<<<<< HEAD
         <ItemList items={this.props.items}/>
+>>>>>>> development
+=======
 >>>>>>> development
         Hello World!
       </div>
     );
   }
 }
-
-
 
 const mapStateToProps = (state) => {
   return {
@@ -60,7 +62,6 @@ const mapStateToProps = (state) => {
     users: state.userList
   }
 }
-
 
 const mapDispatchToProps = (dispatch) => {
   return {
