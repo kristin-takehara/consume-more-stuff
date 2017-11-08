@@ -3,6 +3,7 @@ const passport = require('passport');
 const bcrypt = require('bcrypt');
 const LocalStrategy = require('passport-local').Strategy;
 const db = require('../models');
+const User = db.User;
 
 /*AUTHENTICATION*/
 passport.serializeUser((user, done) => {
@@ -16,7 +17,7 @@ passport.serializeUser((user, done) => {
 
 passport.deserializeUser((user, done) => {
   console.log('deserializing', user);
-  db.user.findById(user.id)
+  User.findById(user.id)
     .then(user => {
       if (!user) return done(null, false);
       return done(null, {
@@ -28,16 +29,18 @@ passport.deserializeUser((user, done) => {
 });
 
 passport.use(new LocalStrategy(function(username, password, done) {
-  db.user.findOne({ where : { username : username }})
-    .then(user => {
+
+  User.findOne({ where : { username : username }})
+    .then(user => {      
       if (user === null) {
         return done(null, false, { message : 'bad username or password' });
       }
-      else {
+      else {        
         bcrypt.compare(password, user.password)
           .then(res => {
             // res 'basically' tells you TRUE or FALSE
-            if (res) { return done(null, user); }
+            if (res) {
+             return done(null, user); }
             else {
               return done(null, false, { message : 'bad username or password'});
             }

@@ -1,6 +1,6 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const passport = require('passport');
+const bodyParser = require('body-parser');
 const session = require('express-session');
 const redis = require('connect-redis')(session); 
 const authenticatePassport = require('./lib/passport');
@@ -12,14 +12,15 @@ const PORT = process.env.PORT || 8888;
 const app = express();
 
 // enabling json body-parser and encoding
-app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ "extended" : false }));
+app.use(bodyParser.json());
 app.use(session({
   store: new redis(),
   secret: "keyboard cat",
   resave: false,
   saveInitialized: false
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 

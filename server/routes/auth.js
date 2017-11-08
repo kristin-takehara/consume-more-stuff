@@ -1,32 +1,30 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
-
+const session = require('express-session');
 const db = require('../models');
 const User = db.User;
 const saltRounds = 12;
 
 const router = express.Router();
-
 //----------NAVIGATION MENU----------LOGIN/LOGOUT/REGISTER
 
 //LogIN an authenticated user
 router.post('/login',
-  passport.authenticate('local', (req, res) => {
+  passport.authenticate('local'), (req, res) => {
   // if authentication is successful this will be sent
   // front end should check if returned object has a success key with true
-  res.json({
+  return res.json({
     id : req.user.id,
     username : req.user.username,
     success : true
   });
-}));
+});
 
 //LogOUT a user
-router.get('/logout', (req, res) => {
+router.get('/logout', (req, res) => {  
   req.logout(); //fire logout request
-  res.sendStatus(200)
-     .json({ success : true }); //fire status ok response
+  res.sendStatus(200);
 });
 
 router.post('/register', (req, res) => {
