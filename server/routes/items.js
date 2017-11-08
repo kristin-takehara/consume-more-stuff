@@ -6,17 +6,16 @@ const Category = db.Category;
 const Condition = db.Condition;
 const ItemStatus = db.ItemStatus;
 
-
 const router = express.Router();
 
 router.route('/')
 .get((req, res) => {
  return Item.findAll({
-  include: [
-      { model: User, as: 'User' },
-      { model: Category, as: 'Category' },
-      { model: Condition, as: 'Condition' },
-      { model: ItemStatus, as: 'Status'}
+  include : [
+      { model : User, as : 'User' },
+      { model : Category, as : 'Category' },
+      { model : Condition, as : 'Condition' },
+      { model : ItemStatus, as : 'Status'}
     ]
  })
  .then((items) => {
@@ -31,6 +30,7 @@ router.route('/')
 
 .post((req, res) => {
   const details = req.body;
+
   return Item.create({
     name : details.name,
     description : details.description,
@@ -44,14 +44,13 @@ router.route('/')
   })
   .then((newItem) => {
     return newItem.reload({
-      include: [
-        { model: User, as: 'User' },
-        { model: Category, as: 'Category' },
-        { model: Condition, as: 'Condition' },
-        { model: ItemStatus, as: 'Status' }
+      include : [
+        { model : User, as : 'User' },
+        { model : Category, as : 'Category' },
+        { model : Condition, as : 'Condition' },
+        { model : ItemStatus, as : 'Status' }
       ]
-    })
-    res.json(newItem);
+    });
   })
   .then(newItem => {
     return res.json(newItem);
