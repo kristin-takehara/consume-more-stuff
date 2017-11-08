@@ -1,12 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadItems } from '../../actions/items.actions';
+import { loadConditions } from '../../actions/conditions.actions';
+import { loadUsers } from '../../actions/users.actions';
+import { loadStatuses } from '../../actions/statuses.actions';
+import { loadCategories } from '../../actions/categories.actions';
 
 import ItemList from '../../components/itemlist.components';
+
 
 import UnAuthItem from '../UnAuthItemView/'; /*view to display login and register*/
 
 // import SearchBar from '../SearchBar/index.js';
+
+import NewItem from '../NewItem/';
+import Nav from '../../components/nav.components';
 
 
 class App extends Component {
@@ -14,44 +22,60 @@ class App extends Component {
     super();
     this.state = {
       items: [] // initial state
-    }
+    };
   }
-
 
   componentDidMount(){
-    this.props.loadItems()
+    this.props.loadItems();
+    this.props.loadCategories();
+    this.props.loadConditions();
+    this.props.loadUsers();
+    this.props.loadStatuses();
+
   }
 
-
   render() {
-    console.log(this.props.loadItems, "props.loadItems");
-    console.log(this.props.items, "props.items");
     return (
-        
       <div className="App">
-        <UnAuthItem /> 
-        <SearchBar />
-        <ItemList items={this.props.items}/>
+
+        <Nav />
+        <NewItem />
+        <ItemList
+           items={this.props.items}/>
+        <UnAuthItem />
         Hello World!
       </div>
     );
   }
 }
 
-
-
 const mapStateToProps = (state) => {
   return {
-    items: state.itemList // makes it this.props.items
+    items: state.itemList, // makes it this.props.items
+    categories: state.categoryList,
+    conditions: state.conditionlist,
+    statuses: state.statusList,
+    users: state.userList
   }
 }
-
 
 const mapDispatchToProps = (dispatch) => {
   return {
     loadItems: () => {
       console.log('Dispatch the action');
       dispatch(loadItems());
+    },
+    loadCategories: () => {
+      dispatch(loadCategories());
+    },
+    loadConditions: () => {
+      dispatch(loadConditions());
+    },
+    loadStatuses: () => {
+      dispatch(loadStatuses());
+    },
+    loadUsers: () => {
+      dispatch(loadUsers());
     }
   }
 }

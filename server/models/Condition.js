@@ -1,17 +1,17 @@
-module.exports = function(sequelize, DataType){
+module.exports = function(sequelize, DataType) {
   const Condition = sequelize.define('Condition', {
     condition : {
-      type: DataType.STRING,
-      allowNull: false
+      type : DataType.STRING,
+      allowNull : false
     }
-  }, {
-    tableName: 'conditions'
+  }, 
+  {
+    tableName : 'conditions'
   });
 
-  Condition.associate = function(models){
+  Condition.associate = function(models) {
     Condition.hasMany(models.Item, {
-      foreignKey : 'condition_id',
-      as : 'Condition'
+      foreignKey : 'condition_id'
      });
     };
 

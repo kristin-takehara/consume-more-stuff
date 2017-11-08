@@ -1,47 +1,48 @@
-module.exports = function(sequelize, DataType){
+module.exports = function(sequelize, DataType) {
   const Item = sequelize.define('Item', {
     name : {
-      type: DataType.STRING,
-      allowNull: false
+      type : DataType.STRING,
+      allowNull : false
     },
     description : {
-      type: DataType.STRING,
-      allowNull: false
+      type : DataType.STRING,
+      allowNull : false
     },
     manufacturer : {
-      type: DataType.STRING,
-      allowNull: true
+      type : DataType.STRING,
+      allowNull : true
     },
     modelname : {
-      type: DataType.STRING,
-      allowNull: true
+      type : DataType.STRING,
+      allowNull : true
     },
     price : {
-      type: DataType.REAL,
-      allowNull: true
+      type : DataType.REAL,
+      allowNull : true
     },
-  }, {
-    tableName: 'items'
+  }, 
+  {
+    tableName : 'items'
   });
 
   Item.associate = function(models){
     Item.belongsTo(models.ItemStatus, {
-      foreignKey: "is_sold",
-      as: 'Status'
-    })
+      foreignKey : "is_sold",
+      as : 'Status'
+    });
     Item.belongsTo(models.User, {
-      foreignKey: "user_id",
-      as: 'User'
-    })
+      foreignKey : "user_id",
+      as : 'User'
+    });
     Item.belongsTo(models.Condition, {
-      foreignKey: "condition_id",
-      as: 'Condition'
-    })
+      foreignKey : "condition_id",
+      as : 'Condition'
+    });
     Item.belongsTo(models.Category, {
-      foreignKey: "category_id",
-      as: 'Category'
-    })
-  }
+      foreignKey : "category_id",
+      as : 'Category'
+    });
+  };
 
   return Item;
 };
