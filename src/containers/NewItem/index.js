@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loadItems, addItem } from '../../actions/items.actions';
-import { loadConditions } from '../../actions/conditions.actions';
-import { loadUsers } from '../../actions/users.actions';
-import { loadStatuses } from '../../actions/statuses.actions';
-import { loadCategories } from '../../actions/categories.actions';
+import { addItem } from '../../actions/items.actions';
+// import { loadItems, addItem } from '../../actions/items.actions';
+// import { loadConditions } from '../../actions/conditions.actions';
+// import { loadUsers } from '../../actions/users.actions';
+// import { loadStatuses } from '../../actions/statuses.actions';
+// import { loadCategories } from '../../actions/categories.actions';
 
 import Select from '../../components/select.components';
 
 class NewItem extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {  // sets intial empty state object
       name: '',
@@ -22,7 +23,8 @@ class NewItem extends Component {
       condition_id: '',
       is_sold: 2, // initial state defaults to NOT SOLD
       user_id: ''
-    }
+    };
+
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -39,7 +41,8 @@ class NewItem extends Component {
       condition_id: this.state.condition_id,
       is_sold: this.state.is_sold,
       user_id: this.state.user_id
-    }
+    };
+
     this.props.addItem(newItem);
     console.log(newItem, "new item");
     this.setState({ // this will pass up to the newItem that will be submitted on SUBMIT
@@ -52,7 +55,7 @@ class NewItem extends Component {
       condition_id: '',
       is_sold: 2, // defaults to NOT SOLD
       user_id: ''
-    })
+    });
   }
 
   handleChange(evt) {
@@ -105,7 +108,6 @@ class NewItem extends Component {
   }
 }
 
-
 const mapStateToProps = (state) => {
   return {
     items: state.itemList,
@@ -120,19 +122,20 @@ const mapDispatchToProps = (dispatch) => {
   return {
     addItem: (item) => {
       dispatch(addItem(item))
-    },
-    loadCategories: (categories) => {
-      dispatch(loadCategories(categories));
-    },
-    loadConditions: (conditions) => {
-      dispatch(loadConditions(conditions));
-    },
-    loadStatuses: (statuses) => {
-      dispatch(loadStatuses(statuses));
-    },
-    loadUsers: (users) => {
-      dispatch(loadUsers(users));
     }
+    // ,
+    // loadCategories: (categories) => {
+    //   dispatch(loadCategories(categories));
+    // },
+    // loadConditions: (conditions) => {
+    //   dispatch(loadConditions(conditions));
+    // },
+    // loadStatuses: (statuses) => {
+    //   dispatch(loadStatuses(statuses));
+    // },
+    // loadUsers: (users) => {
+    //   dispatch(loadUsers(users));
+    // }
   }
 }
 
