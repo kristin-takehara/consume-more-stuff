@@ -7,6 +7,8 @@ import { loadStatuses } from '../../actions/statuses.actions';
 import { loadCategories } from '../../actions/categories.actions';
 
 import ItemList from '../../components/itemlist.components';
+import SingleItemView from '../SingleItemView';
+
 import UnAuthItem from '../UnAuthItemView/';
 import NewItem from '../NewItem/';
 import Nav from '../../components/nav.components';
@@ -35,7 +37,8 @@ class App extends Component {
         <NewItem />
         <ItemList
            items={this.props.items}/>
-        <UnAuthItem />
+        <SingleItemView
+          id='1' />
         Hello World!
       </div>
     );
