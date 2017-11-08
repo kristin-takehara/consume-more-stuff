@@ -19,8 +19,7 @@ render(){
         <p>Welcome</p>
       </div>
       <div className="container"></div>
-        <div className="list-view">
-          
+        <div className="list-view"> 
         </div>
     </div>
     );
