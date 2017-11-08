@@ -29,18 +29,20 @@ router.get('/logout', (req, res) => {
      .json({ success : true }); //fire status ok response
 });
 
-router.post('/register', (req,res) => {
+router.post('/register', (req, res) => {
   bcrypt.genSalt(saltRounds, (err, salt) => {
     bcrypt.hash(req.body.password, salt, (err, hash) => {
       User.create({
         username: req.body.username,
         password: hash
       })
-      .then((user) => {
+      .then((newUserDetails) => {
         // don't return ALL user details, especially password
         // what details does the user object carry?
+        console.log('newUser', newUserDetails.data);
+        
         return res.json({
-          success : true
+          newUser : newUserDetails.data
         });
       })
       .catch((err) => {

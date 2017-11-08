@@ -8,6 +8,9 @@ const Item = db.Item;
 router.route('/')
 .get((req, res) => {
  return User.findAll({
+  attributes : { 
+    exclude : ['password'] 
+  },
   include : [
     { model : Item }
   ]
@@ -20,7 +23,14 @@ router.route('/')
 
 router.route('/:id')
 .get((req, res) => {
-  return User.findById(req.params.id)
+  return User.findById(req.params.id, {
+    attributes : { 
+      exclude : ['password'] 
+    },
+    include : [
+      { model : Item }
+    ]
+  })
   .then((userDetails) => {
     console.log('User found');
     return res.json(userDetails);
