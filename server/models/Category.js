@@ -1,15 +1,16 @@
-module.exports = function(sequelize, DataType){
+module.exports = function(sequelize, DataType) {
   const Category = sequelize.define('Category', {
     category : {
-      type: DataType.STRING, allowNull: false }
-  }, {
+      type : DataType.STRING, 
+      allowNull : false }
+  }, 
+  {
     tableName: 'categories'
   });
 
-  Category.associate = function(models){
+  Category.associate = function(models) {
     Category.hasMany(models.Item, {
-      foreignKey:"category_id",
-      as: 'Category'
+      foreignKey : "category_id"
     });
   };
 
