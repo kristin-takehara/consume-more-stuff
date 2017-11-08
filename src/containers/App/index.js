@@ -26,11 +26,7 @@ class App extends Component {
 
         <Nav />
         <NewItem />
-        <ItemList
-           items={this.props.items} />
-        <SingleItemView
-          id='1' />
-
+        <ItemList items={this.props.items} />
       </div>
     );
   }

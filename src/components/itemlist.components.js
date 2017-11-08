@@ -10,7 +10,6 @@ const ItemList = ({items}) => {
  //renders X amount of items
         return (
           <Item
-          id={item.id}
           name={item.name}
           description={item.description}
           price={item.price}

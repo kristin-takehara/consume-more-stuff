@@ -4,7 +4,6 @@ const Item = ({ id, name, description, manufacturer, modelname, price, category,
 
     return (
     <div className="Item">
-      <div> ID: {id} </div>
       <div> Name: {name} </div>
       <div> Description: {description} </div>
       <div> Manufacturer: {manufacturer} </div>
