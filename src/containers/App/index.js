@@ -7,12 +7,9 @@ import { loadStatuses } from '../../actions/statuses.actions';
 import { loadCategories } from '../../actions/categories.actions';
 
 import ItemList from '../../components/itemlist.components';
-<<<<<<< HEAD
-// import UnAuthItem from '../UnAuthItemView/';
-=======
+
 import UnAuthItem from '../UnAuthItemView/';
 import NewItem from '../NewItem/';
->>>>>>> development
 
 class App extends Component {
   constructor(){
@@ -33,20 +30,10 @@ class App extends Component {
 
   render() {
     return (
-<<<<<<< HEAD
-
-      <div className="App">
-=======
       <div className="App">
         <NewItem />
         <ItemList
            items={this.props.items}/>
-        <UnAuthItem />
-<<<<<<< HEAD
-        <ItemList items={this.props.items}/>
->>>>>>> development
-=======
->>>>>>> development
         Hello World!
       </div>
     );
