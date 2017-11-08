@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadItems } from '../../actions/items.actions';
+import { loadConditions } from '../../actions/conditions.actions';
+import { loadUsers } from '../../actions/users.actions';
+import { loadStatuses } from '../../actions/statuses.actions';
+import { loadCategories } from '../../actions/categories.actions';
 
 import ItemList from '../../components/itemlist.components';
+<<<<<<< HEAD
 // import UnAuthItem from '../UnAuthItemView/';
+=======
+import UnAuthItem from '../UnAuthItemView/';
+import NewItem from '../NewItem/';
+>>>>>>> development
 
 class App extends Component {
   constructor(){
@@ -13,18 +22,27 @@ class App extends Component {
     }
   }
 
-
   componentDidMount(){
     this.props.loadItems()
+    this.props.loadCategories()
+    this.props.loadConditions()
+    this.props.loadUsers()
+    this.props.loadStatuses()
+
   }
 
 
   render() {
-    console.log(this.props.loadItems, "props.loadItems");
-    console.log(this.props.items, "props.items");
     return (
+<<<<<<< HEAD
 
       <div className="App">
+=======
+      <div className="App">
+        <NewItem />
+        <UnAuthItem />
+        <ItemList items={this.props.items}/>
+>>>>>>> development
         Hello World!
       </div>
     );
@@ -35,7 +53,11 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    items: state.itemList // makes it this.props.items
+    items: state.itemList, // makes it this.props.items
+    categories: state.categoryList,
+    conditions: state.conditionlist,
+    statuses: state.statusList,
+    users: state.userList
   }
 }
 
@@ -45,6 +67,18 @@ const mapDispatchToProps = (dispatch) => {
     loadItems: () => {
       console.log('Dispatch the action');
       dispatch(loadItems());
+    },
+    loadCategories: () => {
+      dispatch(loadCategories());
+    },
+    loadConditions: () => {
+      dispatch(loadConditions());
+    },
+    loadStatuses: () => {
+      dispatch(loadStatuses());
+    },
+    loadUsers: () => {
+      dispatch(loadUsers());
     }
   }
 }
