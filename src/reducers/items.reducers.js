@@ -6,7 +6,6 @@ const itemList = (state = initialState, action) => {
   switch(action.type) {
     case LOAD_ITEMS:
       return [ ...action.items ];
-
     case ADD_ITEM:
       return [ ...state, action.newItem ];
 
@@ -17,7 +16,6 @@ const itemList = (state = initialState, action) => {
             isEditing : !item.isEditing
           });
         }
-
         return item;
       });
 

@@ -7,7 +7,7 @@ const ItemList = ({items}) => {
   return (
     <div className="item-list"> {
       items.map((item) => {
-      console.log(item); //renders X amount of items
+ //renders X amount of items
         return (
           <Item
           id={item.id}

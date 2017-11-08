@@ -41,7 +41,6 @@ class NewItem extends Component {
       user_id: this.state.user_id
     }
     this.props.addItem(newItem);
-    console.log(newItem, "new item");
     this.setState({ // this will pass up to the newItem that will be submitted on SUBMIT
       name: '',
       description: '',
