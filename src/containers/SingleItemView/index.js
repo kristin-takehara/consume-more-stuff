@@ -13,13 +13,12 @@ class SingleItemView extends Component {
   }
 
   render(){
-console.log(this.props.items);
+    console.log(this.props.items);
     console.log(this.props.id);
     return(
       <div className="single-item-view">
-
       </div>
-    )
+    );
   }
 
 }
@@ -34,3 +33,21 @@ export default connect(
   mapStateToProps
 )(SingleItemView);
 
+        // {
+        //   items.map((props, idx) => {
+        //     return(
+        //       <Item
+        //         id={props.id}
+        //         name={props.name}
+        //         description={props.description}
+        //         manufacturer={props.manufacturer}
+        //         modelname={props.modelname}
+        //         price={props.price}
+        //         category_id={props.category_id}
+        //         condition_id={props.condition_id}
+        //         is_sold={props.is_sold}
+        //         user_id={props.user_id}
+        //         />
+        //     );
+        //   })
+        // }
