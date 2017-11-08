@@ -1,49 +1,78 @@
 const express = require('express');
 const db = require('../models');
-const item = db.Item;
+const Item = db.Item;
+const User = db.User;
+const Category = db.Category;
+const Condition = db.Condition;
+const ItemStatus = db.ItemStatus;
 
-console.log(db.Item);
 
-// Express Router
 const router = express.Router();
 
-// fetching user routes 
 router.route('/')
-.get((req,res ) => {
- return item.findAll().then((items) => {
-    console.log(items, ' USERS ROUTER REPORTING IN');
+.get((req, res) => {
+ return Item.findAll({
+  include: [
+      { model: User, as: 'User' },
+      { model: Category, as: 'Category' },
+      { model: Condition, as: 'Condition' },
+      { model: ItemStatus, as: 'Status'}
+    ]
+ })
+ .then((items) => {
+    console.log('list of items returned');
     return res.json(items);
-  });
+  })
+ .catch((err) => {
+    console.log(err);
+    return res.json(err);
+ });
 })
 
 .post((req, res) => {
-  console.log(req.body, "THIS IS THE REQ BODY");
-  item.create({
-    price: req.body.price,
-    name: req.body.name,
-    description: req.body.description,
-    category: req.body.category,
-    user_id: req.body.user_id,
-    condition: req.body.condition,
-    is_sold: req.body.is_sold
+  const details = req.body;
+  return Item.create({
+    name : details.name,
+    description : details.description,
+    manufacturer : details.manufacturer,
+    modelname : details.modelname,
+    price : details.price,
+    category_id : details.category_id,
+    condition_id : details.condition_id,
+    is_sold : details.is_sold,
+    user_id : details.user_id
   })
   .then((newItem) => {
-    console.log(newItem, ' NEW ITEM CL');
+    return newItem.reload({
+      include: [
+        { model: User, as: 'User' },
+        { model: Category, as: 'Category' },
+        { model: Condition, as: 'Condition' },
+        { model: ItemStatus, as: 'Status' }
+      ]
+    })
     res.json(newItem);
   })
+  .then(newItem => {
+    return res.json(newItem);
+  })
   .catch((err) => {
-    console.log(err, "ROUTE ERROR FROM /NEW ROUTE ");
-    res.json(err);
+    console.log(err);
+    return res.json(err);
   });
 });
 
 router.route('/:id')
 .get((req, res) => {
-  return item.findById(req.params.id)
-  .then((item) => { 
-    console.log("ITEM ON LINE 50 ", item);
-    return res.json(item);
-  });
+  return Item.findById(req.params.id)
+  .then((itemDetails) => {
+    console.log("Item found");
+    return res.json(itemDetails);
+  })
+  .catch((err => {
+    console.log(err);
+    return res.json (err);
+  }));
 });
 
 module.exports = router;

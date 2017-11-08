@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import { loadItems } from '../../actions/items.actions';
 
 import ItemList from '../../components/itemlist.components';
@@ -21,16 +20,19 @@ class App extends Component {
 
 
   render() {
-    console.log(this.props.loadItems);
-    console.log(this.props.items);
+    console.log(this.props.loadItems, "props.loadItems");
+    console.log(this.props.items, "props.items");
     return (
-      <div>
         
-        <UnAuthItem /> {/*displats list for unAuth Users - connected but no data yet*/}
+      <div className="App">
+        <UnAuthItem /> 
+        <ItemList items={this.props.items}/>
+        Hello World!
       </div>
     );
   }
 }
+
 
 
 const mapStateToProps = (state) => {
