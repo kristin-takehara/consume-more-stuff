@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../models');
-const user = db.User;
+const User = db.User;
 
-// fetching user routes 
+// fetching user routes
 router.route('/')
 .get((req, res) => {
- return user.findAll()
+ return User.findAll()
  .then((users) => {
     console.log('list of users returned');
     return res.json(users);
@@ -15,7 +15,7 @@ router.route('/')
 
 router.route('/:id')
 .get((req, res) => {
-  return user.findById(req.params.id)
+  return User.findById(req.params.id)
   .then((userDetails) => {
     console.log('User found');
     return res.json(userDetails);
@@ -25,13 +25,13 @@ router.route('/:id')
 router.post('/register', (req, res) => {
   const details = req.body;
 
-  user.create({
+  User.create({
     username : details.username,
     password : details.password
   })
-  .then((user) => {
+  .then((userDetails) => {
     console.log('user created');
-    res.json(user);
+    res.json(userDetails);
   })
   .catch( (err) => {
     console.log(err);
