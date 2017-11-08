@@ -6,15 +6,18 @@ const ItemList = ({items}) => {
 
   return (
     <div className="item-list"> {
-      items.map((item) => { //renders X amount of items
+      items.map((item) => {
+      console.log(item); //renders X amount of items
         return (
           <Item
+          id={item.id}
           name={item.name}
           description={item.description}
           price={item.price}
-          category={item.category}
-          condition={item.condition}
-          owner={item.createdBy}
+          category={item.Category.category}
+          condition={item.Condition.condition}
+          owner={item.User.username}
+          sold={item.Status.sold}
           key={item.id}/>
         );
       })

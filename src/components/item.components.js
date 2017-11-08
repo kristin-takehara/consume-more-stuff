@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Item = ({ id, name, description, manufacturer, modelname, price, category, condition, sold, createdBy }) => {
+const Item = ({ id, name, description, manufacturer, modelname, price, category, condition, sold, owner }) => {
 
     return (
     <div className="Item">
@@ -9,11 +9,11 @@ const Item = ({ id, name, description, manufacturer, modelname, price, category,
       <div> Description: {description} </div>
       <div> Manufacturer: {manufacturer} </div>
       <div> Model Name: {modelname} </div>
-      <div> Price: {price} </div>
+      <div> Price: ${price} </div>
       <div> Category: {category} </div>
       <div> Condition: {condition} </div>
       <div> Sold: {sold} </div>
-      <div> Owner: {createdBy} </div>
+      <div> Owner: {owner} </div>
     </div>
     );
   }

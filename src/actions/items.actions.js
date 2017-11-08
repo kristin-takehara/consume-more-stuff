@@ -13,7 +13,6 @@ export const loadItems = () => {
   return (dispatch) => {
     return Axios.get(listOfItems)
     .then(items => {
-      console.log(items, "actions Items");
       dispatch({
         type: LOAD_ITEMS,
         items: items.data
