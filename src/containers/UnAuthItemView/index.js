@@ -12,8 +12,11 @@ class UnAuthItem extends Component {
     return (
       <div className="items-main">
         <h3>Listing Items</h3>
-        <div className="items-list"> 
-          <ItemList />  {/*need to use items component*/}
+          <h5>To List Your Own Items, Make An Account Or Login!</h5>
+        {/*make a button that goes to register */}
+        <div className="register"> 
+        <button> Register an Account </button>
+        <button> Click Here to Login </button>
         </div>
       </div>
     );

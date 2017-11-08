@@ -5,6 +5,9 @@ import { loadItems } from '../../actions/items.actions';
 import ItemList from '../../components/itemlist.components';
 import UnAuthItem from '../UnAuthItemView/';
 
+import SearchBar from '../SearchBar/index.js';
+
+
 class App extends Component {
   constructor(){
     super();
@@ -26,6 +29,7 @@ class App extends Component {
         
       <div className="App">
         <UnAuthItem /> 
+        <SearchBar />
         <ItemList items={this.props.items}/>
         Hello World!
       </div>
