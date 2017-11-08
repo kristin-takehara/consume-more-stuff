@@ -23,17 +23,8 @@ class NewItem extends Component {
       is_sold: 2, // initial state defaults to NOT SOLD
       user_id: ''
     }
-
+    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleNameInput = this.handleNameInput.bind(this);
-    this.handleDescriptionInput = this.handleDescriptionInput.bind(this);
-    this.handleManufacturerInput = this.handleManufacturerInput.bind(this);
-    this.handleModelNameInput = this.handleModelNameInput.bind(this);
-    this.handlePriceInput = this.handlePriceInput.bind(this);
-    this.handleCategoryInput = this.handleCategoryInput.bind(this);
-    this.handleConditionInput = this.handleConditionInput.bind(this);
-    this.handleIsSoldInput = this.handleIsSoldInput.bind(this);
-    this.handleUserInput = this.handleUserInput.bind(this);
   }
 
   handleSubmit(event){
@@ -64,74 +55,48 @@ class NewItem extends Component {
     })
   }
 
-  handleNameInput(evt) {
-    this.setState({             // setting the state of the name to be the value input from below
-      name: (evt.target.value)
+  handleChange(evt) {
+    console.log(evt.target);
+    const target = evt.target;
+    const name = target.name;
+    const value = target.value;
+
+    this.setState({
+      [name] : value
     });
-  }
-
-  handleDescriptionInput(evt) {
-    this.setState({
-      description: (evt.target.value)
-    })
-  }
-
-  handleManufacturerInput(evt) {
-    this.setState({
-      manufacturer: (evt.target.value)
-    });
-  }
-
-  handleModelNameInput(evt) {
-    this.setState({
-      modelname: (evt.target.value)
-    })
-  }
-
-  handlePriceInput(evt) {
-    this.setState({
-      price: (evt.target.value)
-    })
-  }
-  handleCategoryInput(evt) {
-    this.setState({
-      category_id: parseInt(evt.target.value)
-    })
-  }
-  handleConditionInput(evt) {
-    this.setState({
-      condition_id: parseInt(evt.target.value)
-    })
-  }
-  handleIsSoldInput(evt) {
-    this.setState({
-      is_sold: parseInt(evt.target.value)
-    })
-  }
-  handleUserInput(evt) {
-    this.setState({
-      user_id: parseInt(evt.target.value)
-    })
   }
 
   render() {
     return (
       <div className="new-item-form">
         <form onSubmit={this.handleSubmit}>
+
           <Select
           list={this.props.categories}
-          label="Category"
+          label="Category: "
           type="category"
-          handler={this.handleCreatorInput.bind(this)}/>
+          handler={this.handleChange}/>
 
           <Select
-          list={this.props.priorities}
-          label="Priority Level:  "
-          type="kind"
-          handler={this.handlePriorityInput.bind(this)}/>
+          list={this.props.conditions}
+          label="Condition: "
+          type="condition"
+          handler={this.handleChange}/>
+
+          <Select
+          list={this.props.statuses}
+          label="Has Been Sold:  "
+          type="sold"
+          handler={this.handleChange}/>
+
+          <Select
+          list={this.props.users}
+          label="Username:  "
+          type="username"
+          handler={this.handleChange}/>
 
           <div className="input-form">
-            <input value={this.state.name} type="text" placeholder="item name" onChange={this.handleTitleInput}/>
+            <input value={this.state.item} type="text" placeholder="item name" onChange={this.handleChange}/>
           </div>
           <input type="submit" value="submit card"/>
         </form>
@@ -156,13 +121,13 @@ const mapDispatchToProps = (dispatch) => {
     addItem: (item) => {
       dispatch(addItem(item))
     },
-    loadPriorities: (priorities) => {
-      dispatch(loadPriorities(priorities));
+    loadCategories: (categories) => {
+      dispatch(loadCategories(categories));
     },
     loadConditions: (conditions) => {
       dispatch(loadConditions(conditions));
     },
-    loadPriorities: (statuses) => {
+    loadStatuses: (statuses) => {
       dispatch(loadStatuses(statuses));
     },
     loadUsers: (users) => {
