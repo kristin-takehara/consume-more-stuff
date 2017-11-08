@@ -6,7 +6,6 @@ const Category = db.Category;
 const Condition = db.Condition;
 const ItemStatus = db.ItemStatus;
 
-
 const router = express.Router();
 
 router.route('/')
@@ -31,6 +30,7 @@ router.route('/')
 
 .post((req, res) => {
   const details = req.body;
+
   return Item.create({
     name : details.name,
     description : details.description,
@@ -50,8 +50,7 @@ router.route('/')
         { model: Condition, as: 'Condition' },
         { model: ItemStatus, as: 'Status' }
       ]
-    })
-    res.json(newItem);
+    });
   })
   .then(newItem => {
     return res.json(newItem);
