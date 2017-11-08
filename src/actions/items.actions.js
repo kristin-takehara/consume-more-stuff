@@ -13,7 +13,6 @@ export const loadItems = () => {
   return (dispatch) => {
     return Axios.get(listOfItems)
     .then(items => {
-      console.log(items, "actions Items");
       dispatch({
         type: LOAD_ITEMS,
         items: items.data
@@ -31,13 +30,12 @@ export const loadItems = () => {
 
 //CREATE(POST) new item
 export const addItem = (newItem) => {
-  console.log(newItem, "ACTIONS, new Item");
   return (dispatch) => {
     return Axios.post(listOfItems, newItem)
     .then(newItemDetails => {
       dispatch({
         type: ADD_ITEM,
-        item: newItemDetails.data
+        newItem: newItemDetails.data
       });
     })
     .catch(err => {
