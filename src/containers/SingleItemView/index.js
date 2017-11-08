@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Item from '../../components/Item';
 
 
-class SigleItemView extends Component {
-  constructor(props){
-    super(props);
+class SingleItemView extends Component {
+  constructor(){
+    super();
+
+    this.state = this.props.items;
 
   }
+console.log(this.props.items);
 
   render(){
     return(
@@ -18,5 +22,14 @@ class SigleItemView extends Component {
 
 }
 
+const mapStateToProps = state => {
+  return {
+    items: state.itemsList
+  }
+}
 
-export default SigleItemView;
+const ConnectedSingleItemView = connect(
+  mapStateToProps
+)(SingleItemView);
+
+export default ConnectedSingleItemView;

@@ -8,17 +8,11 @@ const statuses = require('./statuses');
 
 const router = express.Router();
 
-<<<<<<< HEAD
-router.use('/users', users);
-router.use('/items', items);
-// router.use('/auth', auth);
-=======
 router.use('/auth', auth);
 router.use('/categories', categories);
 router.use('/conditions', conditions);
 router.use('/items', items);
 router.use('/users', users);
 router.use('/statuses', statuses);
->>>>>>> development
 
 module.exports = router;
