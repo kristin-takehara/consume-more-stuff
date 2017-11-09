@@ -1,20 +1,23 @@
 import React from 'react';
 
-const Item = ({ id, name, description, manufacturer, modelname, price, category, condition, sold, owner }) => {
+// const Item = ({ id, name, description, manufacturer, modelname, price, category, condition, sold, owner }) => {
 
-    return (
+const Item = ({ singleItem }) => {
+  console.log(singleItem);
+
+  return (
     <div className="Item">
-      <div> Name: {name} </div>
-      <div> Description: {description} </div>
-      <div> Manufacturer: {manufacturer} </div>
-      <div> Model Name: {modelname} </div>
-      <div> Price: ${price} </div>
-      <div> Category: {category} </div>
-      <div> Condition: {condition} </div>
-      <div> Sold: {sold} </div>
-      <div> Owner: {owner} </div>
+      <div> Name: { singleItem.name } </div>
+      <div> Description: { singleItem.description } </div>
+      <div> Manufacturer: { singleItem.manufacturer } </div>
+      <div> Model Name: { singleItem.modelname } </div>
+      <div> Price: ${ singleItem.price } </div>
+      <div> Category: { singleItem.Category.category } </div>
+      <div> Condition: { singleItem.Condition.condition } </div>
+      <div> Sold: { singleItem.Status.sold } </div>     
+      <div> Owner: { singleItem.User.username } </div>
     </div>
-    );
-  }
+  );
+}
 
 export default Item;

@@ -12,11 +12,16 @@ router.route('/')
 .get((req, res) => {
  return Item.findAll({
   include : [
-      { model : User, as : 'User' },
-      { model : Category, as : 'Category' },
-      { model : Condition, as : 'Condition' },
-      { model : ItemStatus, as : 'Status'}
-    ]
+    { model : Category, as : 'Category' },
+    { model : Condition, as : 'Condition' },
+    { model : ItemStatus, as : 'Status'},
+    { model : User,
+      as : 'User',
+      attributes : { 
+          exclude : ['password'] 
+      }
+    }
+  ]
  })
  .then((items) => {
     console.log('list of items returned');
@@ -44,10 +49,15 @@ router.route('/')
   .then((newItem) => {
     return newItem.reload({
       include : [
-        { model : User, as : 'User' },
         { model : Category, as : 'Category' },
         { model : Condition, as : 'Condition' },
-        { model : ItemStatus, as : 'Status' }
+        { model : ItemStatus, as : 'Status'},
+        { model : User,
+          as : 'User',
+          attributes : { 
+              exclude : ['password'] 
+          }
+        }
       ]
     });
   })
@@ -62,7 +72,19 @@ router.route('/')
 
 router.route('/:id')
 .get((req, res) => {
-  return Item.findById(req.params.id)
+  return Item.findById(req.params.id, {
+    include : [
+      { model : Category, as : 'Category' },
+      { model : Condition, as : 'Condition' },
+      { model : ItemStatus, as : 'Status'},
+      { model : User,
+        as : 'User',
+        attributes : { 
+            exclude : ['password'] 
+        }
+      }
+    ]
+  })
   .then((itemDetails) => {
     return res.json(itemDetails);
   })

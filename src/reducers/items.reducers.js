@@ -1,4 +1,4 @@
-import { LOAD_ITEMS, ADD_ITEM, EDIT_ITEM, EDITING, ERROR } from '../actions/items.actions';
+import { LOAD_ITEMS, ADD_ITEM, EDIT_ITEM, EDITING } from '../actions/items.actions';
 
 const initialState = [];
 
@@ -37,6 +37,8 @@ const itemList = (state = initialState, action) => {
             created_by : updatedItem.created_by
           });
         }
+
+        return item;
       });
 
     default:
