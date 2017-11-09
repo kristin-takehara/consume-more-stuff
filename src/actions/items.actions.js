@@ -2,11 +2,25 @@ import Axios from 'axios';
 
 const listOfItems = '/api/items'; // URL to POST to
 
+export const LOAD_SINGLE_ITEM = 'LOAD_SINGLE_ITEM';
 export const LOAD_ITEMS = 'LOAD_ITEMS';
 export const ADD_ITEM = 'ADD_ITEM';
 export const EDIT_ITEM = 'EDIT_ITEM';
 export const EDITING ='EDITING';
 export const ERROR = 'ERROR';
+
+//GET single item
+export const loadSingleItem = (id) => {
+  return(dispatch) => {
+    return Axios.get(listOfItems + `/` + id)
+    .then(item => {
+      dispatch({
+        type: LOAD_SINGLE_ITEM,
+        item: item.data
+      });
+    })
+  }
+}
 
 //GET all items
 export const loadItems = () => {

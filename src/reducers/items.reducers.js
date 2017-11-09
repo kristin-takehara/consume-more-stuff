@@ -6,6 +6,7 @@ const itemList = (state = initialState, action) => {
   switch(action.type) {
     case LOAD_ITEMS:
       return [ ...action.items ];
+
     case ADD_ITEM:
       return [ ...state, action.newItem ];
 

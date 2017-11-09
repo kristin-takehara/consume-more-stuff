@@ -26,11 +26,7 @@ class App extends Component {
 
         <Nav />
         <NewItem />
-        <ItemList
-           items={this.props.items} />
-        <SingleItemView
-          id='1' />
-
+        <ItemList items={this.props.items} />
       </div>
     );
   }
@@ -49,7 +45,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     loadItems: () => {
-      console.log('Dispatch the action');
+
       dispatch(loadItems());
     },
     loadCategories: () => {
