@@ -7,7 +7,7 @@ import { loadUsers } from '../../actions/users.actions';
 class Register extends Component {
   constructor(props) {
     super(props);
-    console.log(props, "PROPS")
+
     this.state = {
       username : '',
       password : ''
@@ -33,14 +33,14 @@ class Register extends Component {
       username : this.state.username,
       password : this.state.password
     }
-    console.log(registerCreds);
+    // console.log(registerCreds);
     this.props.registerUser(registerCreds);
 
-    this.setState({
+    this.setState(
+    {
       username : '',
       password : ''
-    }
-    );
+    });
   }
 
   handleUsernameChange(event) {
@@ -65,13 +65,17 @@ class Register extends Component {
     return(
       <div>
         <form onSubmit={this.handleSubmit.bind(this)}>
+
           <div>
           <input type="text" placeholder="username" defaultValue={this.state.username} onChange={this.handleUsernameChange}/>
           </div>
+
           <div>
           <input type="password" placeholder="password" defaultValue={this.state.password} onChange={this.handlePasswordChange}/>
           </div>
+
           <input type="submit" value="Submit"/>
+
         </form>
       </div>
     );
