@@ -33,7 +33,7 @@ router.route('/')
     return res.json(err);
  });
 })
-.post((req, res) => {
+.post(isAuthenticated, (req, res) => {
   const details = req.body;
 
   return Item.create({
