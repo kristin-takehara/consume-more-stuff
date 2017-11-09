@@ -1,13 +1,12 @@
-import { LOAD_SINGLE_ITEM, LOAD_ITEMS, ADD_ITEM, EDIT_ITEM, EDITING, ERROR } from '../actions/items.actions';
+import { LOAD_ITEMS, ADD_ITEM, EDIT_ITEM, EDITING, ERROR } from '../actions/items.actions';
 
 const initialState = [];
 
 const itemList = (state = initialState, action) => {
   switch(action.type) {
-    case LOAD_SINGLE_ITEM:
-      return [ ...action.item ];
     case LOAD_ITEMS:
       return [ ...action.items ];
+
     case ADD_ITEM:
       return [ ...state, action.newItem ];
 

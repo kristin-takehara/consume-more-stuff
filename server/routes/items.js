@@ -27,7 +27,6 @@ router.route('/')
     return res.json(err);
  });
 })
-
 .post((req, res) => {
   const details = req.body;
 
@@ -65,7 +64,6 @@ router.route('/:id')
 .get((req, res) => {
   return Item.findById(req.params.id)
   .then((itemDetails) => {
-    console.log("Item found");
     return res.json(itemDetails);
   })
   .catch((err => {
