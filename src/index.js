@@ -4,7 +4,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import {
   BrowserRouter as Router,
-  // Link,
+  Link,
   Route
 } from 'react-router-dom';
 import reducers from './reducers';
@@ -26,7 +26,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router>
       <div>
-
+        <Link to="/">Home</Link><br/>
         <Route exact path="/" component={App} />
         <Route path="/register" component={Auth} />
         <Route path="/items/:id" component={SingleItemView}/>
