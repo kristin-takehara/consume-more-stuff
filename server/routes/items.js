@@ -7,10 +7,8 @@ const Category = db.Category;
 const Condition = db.Condition;
 const ItemStatus = db.ItemStatus;
 const router = express.Router();
-// *******************************
 
-
-// npm package to handel reading image files 
+// npm package to handel reading image files  middleware
 const multer = require('multer');
 const storage = multer.diskStorage({
   destination: './uploads',
@@ -20,19 +18,12 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-
-
-
+// route that handles a submit picture
 router.route('/')
 .post(upload.single('file'), (req, res) => {
   let file = req.file;
   console.log(file);
 });
-
-
-
-
-
 
 router.route('/')
 .get((req, res) => {
