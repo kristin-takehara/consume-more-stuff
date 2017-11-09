@@ -8,13 +8,13 @@ const Condition = db.Condition;
 const ItemStatus = db.ItemStatus;
 const router = express.Router();
 const multer = require('multer');
-const upload = multer({ storage });
 const storage = multer.diskStorage({
   destination: './uploads',
   filename(req, file, cb){
     cb(null, `${file.originalname}`);
   }
 });
+const upload = multer({ storage });
 
 router.route('/')
 .get((req, res) => {
