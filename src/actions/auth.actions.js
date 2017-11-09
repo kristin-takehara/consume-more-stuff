@@ -40,7 +40,7 @@ export const loginUser = (userCreds) => {
       }
     })
     .catch((err) => {
-      console.log(err);
+      console.log('Login Failed. Please re-enter your username and password.', err);
       return false;
     });
   };
