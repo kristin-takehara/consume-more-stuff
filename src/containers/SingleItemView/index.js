@@ -15,12 +15,10 @@ class SingleItemView extends Component {
   render(){
 
     return(
-      <div className="single-item-view">
-        <h3>RENDERiNG</h3>
-
-        {<h3>
-          <Item
-            singleItem={ this.props.singleItem }  /></h3>
+      <div id="single-item-view">
+        {
+            <Item
+            singleItem={ this.props.singleItem }  />
         }
       </div>
     )

@@ -25,11 +25,12 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <div>
+      <div id="source">
+      
         <Link to="/">Home</Link><br/>
         <Route exact path="/" component={App} />
         <Route path="/register" component={Auth} />
-        <Route path="/items/:id" component={SingleItemView}/>
+        <Route path="/items/:id" component={SingleItemView} />
 
       </div>
     </Router>
