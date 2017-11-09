@@ -11,11 +11,14 @@ import {
 import reducers from './reducers';
 import thunk from 'redux-thunk';
 
+//---------------------------------------
 import App from './containers/App';
 import SingleItemView from './containers/SingleItemView';
-import Auth from './containers/Auth';
+import Register from './containers/Register';
+//---------------------------------------
 
 import registerServiceWorker from './lib/registerServiceWorker';
+
 
 const store = createStore(
   reducers,
@@ -26,14 +29,15 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
     <IntlProvider>
-      <Router>
-        <div id="source">
-        
-          <Link to="/">Home</Link><br/>
-          <Route exact path="/" component={App} />
-          <Route path="/register" component={Auth} />
-          <Route path="/items/:id" component={SingleItemView} />
+    <Router>
+      <div id="source">
 
+        <Link to="/">Home</Link><br/>
+
+
+        <Route exact path="/" component={App} />
+        <Route path="/register" component={Register} />
+        <Route path="/items/:id" component={SingleItemView} />
         </div>
       </Router>
     </IntlProvider>
