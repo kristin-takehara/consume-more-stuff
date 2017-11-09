@@ -1,6 +1,6 @@
 import React from 'react';
-import { FormattedRelative } from 'react-intl';
-import { Link } from 'react-router-dom';
+// import { FormattedRelative } from 'react-intl';
+// import { Link } from 'react-router-dom';
 import Select from './select.components.js';
 
 const EditItem = ({ singleItem, categories, conditions, statuses, handleSubmit, handleChange }) => {
