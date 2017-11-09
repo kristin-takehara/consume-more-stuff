@@ -31,7 +31,6 @@ class App extends Component {
     return (
       <div id="app">
 
-        <Nav />
         <NewItem />
         <ImageUpload />
         <ItemList items={this.props.items} />
