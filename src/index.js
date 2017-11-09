@@ -9,10 +9,11 @@ import {
 } from 'react-router-dom';
 import reducers from './reducers';
 import thunk from 'redux-thunk';
-import App from './containers/App';
-import registerServiceWorker from './lib/registerServiceWorker';
 
+import App from './containers/App';
 import SingleItemView from './containers/SingleItemView';
+
+import registerServiceWorker from './lib/registerServiceWorker';
 
 const store = createStore(
   reducers,
@@ -26,7 +27,7 @@ ReactDOM.render(
       <div>
 
         <Route exact path="/" component={App} />
-        <Route path="/items/:id" component={SingleItemView} />
+        <Route path="/items/:id" component={SingleItemView}/>
 
       </div>
     </Router>

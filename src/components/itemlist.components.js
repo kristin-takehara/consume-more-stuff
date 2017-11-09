@@ -3,7 +3,7 @@ import React from 'react';
 import Item from'./item.components';
 
 const ItemList = ({items}) => {
-
+  console.log(items, "COMPONENTS");
   return (
     <div className="item-list"> {
       items.map((item) => {
