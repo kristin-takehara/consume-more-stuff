@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 
 const Item = ({ singleItem }) => {
   return (
-    <div className="item">
+    <div className="single-item">    
       <Link to={`/items/${singleItem.id}`}>
-        <div>Name: { singleItem.name }</div>
+        <div>{ singleItem.name }</div>
       </Link>
 
       <div>Description: { singleItem.description }</div>
