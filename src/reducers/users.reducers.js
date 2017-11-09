@@ -28,6 +28,8 @@ const userList = (state = initialState, action) => {
             isLoggedIn : false
           });
         }
+
+        return user;
       });
 
     default:

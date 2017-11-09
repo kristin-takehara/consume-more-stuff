@@ -7,7 +7,6 @@ import { loadStatuses } from '../../actions/statuses.actions';
 import { loadCategories } from '../../actions/categories.actions';
 
 import ItemList from '../../components/itemlist.components';
-import SingleItemView from '../SingleItemView';
 import NewItem from '../NewItem/';
 import Nav from '../../components/nav.components';
 

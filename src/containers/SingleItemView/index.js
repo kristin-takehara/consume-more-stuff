@@ -3,20 +3,17 @@ import { connect } from 'react-redux';
 
 import { loadSingleItem } from '../../actions/items.actions';
 
-import ItemList from '../../components/itemlist.components';
-
-
 class SingleItemView extends Component {
   constructor(props){
     super(props);
     this.state = {
       item: {}
-    }
+    };
   }
 
   componentDidMount(){
     let id = this.props.match.params.id;
-    this.props.loadSingleItem(parseInt(id))
+    this.props.loadSingleItem(parseInt(id, 0));
 }
 
   render(){
