@@ -65,7 +65,7 @@ class Login extends Component {
           </div>
 
           <div>
-          <input type="text" placeholder="password" defaultValue={this.state.password} onChange={this.handlePasswordInput} />
+          <input type="password" placeholder="password" defaultValue={this.state.password} onChange={this.handlePasswordInput} />
           </div>
 
           <button
