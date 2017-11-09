@@ -3,37 +3,34 @@ import { connect } from 'react-redux';
 
 import { loadSingleItem } from '../../actions/items.actions';
 
+import Item from '../../components/item.components';
+
 class SingleItemView extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      item: {}
-    };
-  }
 
   componentDidMount(){
     let id = this.props.match.params.id;
-    this.props.loadSingleItem(parseInt(id, 0));
+    this.props.loadSingleItem(parseInt(id, 10));
 }
 
   render(){
-    console.log(this.state, "STATE");
+
     return(
       <div className="single-item-view">
-
-          <div>
-          RENDERiNG
-          { this.state.item[0] }
-          </div>
-
+        RENDERiNG
+        {
+          <Item
+            singleItem={ this.props.singleItem }  />
+        }
       </div>
     )
   }
 }
 
+// sets store state on local props
 const mapStateToProps = state => {
+  
   return {
-    item: { TEST : state.singleItem }
+    singleItem : state.singleItem 
   }
 }
 
@@ -49,15 +46,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(SingleItemView);
-
-
-          // <Item
-          //   name={item.name}
-          //   description={item.description}
-          //   manufacturer={item.manufacturer}
-          //   modelname={item.modelname}
-          //   price={item.price}
-          //   category_id={item.category_id}
-          //   condition_id={item.condition_id}
-          //   is_sold={item.is_sold}
-          //   user_id={item.user_id} />
