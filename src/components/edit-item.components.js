@@ -4,11 +4,15 @@ import { Link } from 'react-router-dom';
 import Select from './select.components.js';
 
 const EditItem = ({ singleItem, categories, conditions, statuses, handleSubmit, handleChange }) => {
+
+  let Category = singleItem.Category || '';
+  let Conditon = singleItem.Conditon || '';
+  let Status = singleItem.Status || '';
+  
   return (
     <div className="single-item" id="edit-single-item">
 
-      <form onSubmit={ (e) => handleSubmit(card.id, e) }>
-        
+      <form onSubmit={ (e) => handleSubmit(singleItem.id, e) }>
         <div>
           <input
             name="name"
@@ -16,6 +20,17 @@ const EditItem = ({ singleItem, categories, conditions, statuses, handleSubmit, 
             defaultValue={singleItem.name} />
         </div>
         <div>
+          <input
+            name="description"
+            onChange={handleChange}
+            defaultValue={singleItem.description} />
+        </div>
+        <div>
+          <input
+            name="price"
+            onChange={handleChange}
+            defaultValue={singleItem.price} />
+        </div>
         <div>
           <Select
             list={categories}
@@ -23,7 +38,7 @@ const EditItem = ({ singleItem, categories, conditions, statuses, handleSubmit, 
             label="Category: "
             type="category"
             handler={this.handleChange}
-            defaultValue={singleItem.Category.category} />
+            defaultValue={Category.category} />
         </div>
         <div>
           <Select
@@ -32,7 +47,7 @@ const EditItem = ({ singleItem, categories, conditions, statuses, handleSubmit, 
             label="Conditon: "
             type="condition"
             handler={this.handleChange}
-            defaultValue={singleItem.Conditon.condition} />
+            defaultValue={Conditon.condition} />
         </div>
         <div>
           <Select
@@ -41,7 +56,7 @@ const EditItem = ({ singleItem, categories, conditions, statuses, handleSubmit, 
             label="Sold: "
             type="sold"
             handler={this.handleChange}
-            defaultValue={singleItem.Status.sold} />
+            defaultValue={Status.sold} />
         </div>
       </form>
 
