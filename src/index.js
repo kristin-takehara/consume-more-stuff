@@ -13,8 +13,9 @@ import thunk from 'redux-thunk';
 
 //---------------------------------------
 import App from './containers/App';
-import SingleItemView from './containers/SingleItemView';
 import Register from './containers/Register';
+import LogIN from './containers/LogIN';
+import SingleItemView from './containers/SingleItemView';
 //---------------------------------------
 
 import registerServiceWorker from './lib/registerServiceWorker';
@@ -33,11 +34,15 @@ ReactDOM.render(
       <div id="source">
 
         <Link to="/">Home</Link><br/>
+        <Link to="/register">Register</Link><br/>
+        <Link to="/login">Login</Link><br/>
 
 
         <Route exact path="/" component={App} />
         <Route path="/register" component={Register} />
+        <Route path="/login" component={LogIN} />
         <Route path="/items/:id" component={SingleItemView} />
+
         </div>
       </Router>
     </IntlProvider>

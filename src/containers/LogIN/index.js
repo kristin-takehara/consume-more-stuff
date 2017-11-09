@@ -15,6 +15,8 @@ class Login extends Component {
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleUsernameInput = this.handleUsernameInput.bind(this);
+    this.handlePasswordInput = this.handlePasswordInput.bind(this);
   }
 
 
@@ -26,6 +28,7 @@ class Login extends Component {
       password : this.state.password
     }
     console.log("loginCreds", loginCreds);
+    this.props.loginUser(loginCreds);
 
     this.setState(
     {
@@ -34,7 +37,21 @@ class Login extends Component {
       redirect : true
     });
 
-  }.bind(this))
+  }
+
+  handleUsernameInput(evt) {
+    this.setState(
+    {
+      username : evt.target.value
+    })
+  }
+
+  handlePasswordInput(evt) {
+    this.setState(
+    {
+      password : evt.target.value
+    })
+  }
 
   render(){
     if (this.state.redirect) {
@@ -42,14 +59,14 @@ class Login extends Component {
     }
     return(
       <div>
-        <form onSubmit={this.handleSubmit}>
+        <form onSubmit={this.handleSubmit.bind(this)}>
 
           <div>
-          <input type="text" placeholder="username" defaultValue={this.state.username} />
+          <input type="text" placeholder="username" defaultValue={this.state.username} onChange={this.handleUsernameInput} />
           </div>
 
           <div>
-          <input type="text" placeholder]"password" defaultValue={this.state.password} />
+          <input type="text" placeholder="password" defaultValue={this.state.password} onChange={this.handlePasswordInput} />
           </div>
 
           <button

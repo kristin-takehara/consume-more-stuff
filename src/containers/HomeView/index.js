@@ -15,12 +15,15 @@ class Home extends Component{
 render(){
   return(
     <div className="home">
+
       <div className="welcome-message">
         <p>Welcome</p>
       </div>
+
       <div className="container"></div>
-        <div className="list-view"> 
-        </div>
+        <div className="list-view">
+      </div>
+
     </div>
     );
 }
