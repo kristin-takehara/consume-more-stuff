@@ -10,7 +10,6 @@ const initialState = {
 const singleItem = (state = initialState, action) => {
   switch(action.type) {
     case LOAD_SINGLE_ITEM:
-      console.log("reducer", action.item);
       return Object.assign({}, state, action.item);
       
   default:

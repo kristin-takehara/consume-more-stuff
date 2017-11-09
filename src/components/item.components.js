@@ -3,8 +3,6 @@ import React from 'react';
 // const Item = ({ id, name, description, manufacturer, modelname, price, category, condition, sold, owner }) => {
 
 const Item = ({ singleItem }) => {
-  console.log(singleItem);
-
   return (
     <div className="Item">
       <div> Name: { singleItem.name } </div>

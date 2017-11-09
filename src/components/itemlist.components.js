@@ -3,21 +3,14 @@ import React from 'react';
 import Item from'./item.components';
 
 const ItemList = ({items}) => {
-  console.log(items, "COMPONENTS");
   return (
     <div className="item-list"> {
-      items.map((item) => {
+      items.map((item, idx) => {
  //renders X amount of items
         return (
           <Item
-          name={item.name}
-          description={item.description}
-          price={item.price}
-          category={item.Category.category}
-          condition={item.Condition.condition}
-          owner={item.User.username}
-          sold={item.Status.sold}
-          key={item.id}/>
+          singleItem={ item }
+          key={ idx } />
         );
       })
     }
