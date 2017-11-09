@@ -8,6 +8,7 @@ const ItemStatus = db.ItemStatus;
 
 const router = express.Router();
 
+
 router.route('/')
 .get((req, res) => {
  return Item.findAll({
@@ -17,8 +18,8 @@ router.route('/')
     { model : ItemStatus, as : 'Status'},
     { model : User,
       as : 'User',
-      attributes : { 
-          exclude : ['password'] 
+      attributes : {
+          exclude : ['password']
       }
     }
   ]
@@ -54,8 +55,8 @@ router.route('/')
         { model : ItemStatus, as : 'Status'},
         { model : User,
           as : 'User',
-          attributes : { 
-              exclude : ['password'] 
+          attributes : {
+              exclude : ['password']
           }
         }
       ]
@@ -79,8 +80,8 @@ router.route('/:id')
       { model : ItemStatus, as : 'Status'},
       { model : User,
         as : 'User',
-        attributes : { 
-            exclude : ['password'] 
+        attributes : {
+            exclude : ['password']
         }
       }
     ]
@@ -93,5 +94,13 @@ router.route('/:id')
     return res.json (err);
   }));
 });
+
+
+function isAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) { next(); }
+  else { res.json({ error : 'Bad Request' }); }
+};
+
+
 
 module.exports = router;
