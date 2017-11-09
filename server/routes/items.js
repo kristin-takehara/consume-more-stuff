@@ -1,3 +1,4 @@
+
 const express = require('express');
 const db = require('../models');
 const Item = db.Item;
@@ -7,6 +8,8 @@ const Condition = db.Condition;
 const ItemStatus = db.ItemStatus;
 const router = express.Router();
 // *******************************
+
+
 // npm package to handel reading image files 
 const multer = require('multer');
 const storage = multer.diskStorage({
@@ -16,6 +19,20 @@ const storage = multer.diskStorage({
   }
 });
 const upload = multer({ storage });
+
+
+
+
+router.route('/')
+.post(upload.single('file'), (req, res) => {
+  let file = req.file;
+  console.log(file);
+});
+
+
+
+
+
 
 router.route('/')
 .get((req, res) => {
@@ -41,11 +58,12 @@ router.route('/')
     return res.json(err);
  });
 })
-.post(upload.single('file'),(req, res) => {
+.post((req, res) => {
   const details = req.body;
   let file = req.file;
 
   return Item.create({
+    file: details.file,
     name : details.name,
     description : details.description,
     manufacturer : details.manufacturer,
