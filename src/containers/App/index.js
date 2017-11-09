@@ -7,9 +7,10 @@ import { loadStatuses } from '../../actions/statuses.actions';
 import { loadCategories } from '../../actions/categories.actions';
 
 import ItemList from '../../components/itemlist.components';
-import SingleItemView from '../SingleItemView';
 import NewItem from '../NewItem/';
 import Nav from '../../components/nav.components';
+import ImageUpload from '../../containers/ImageUpload/';
+
 
 class App extends Component {
   componentDidMount(){
@@ -26,6 +27,7 @@ class App extends Component {
 
         <Nav />
         <NewItem />
+        <ImageUpload />
         <ItemList items={this.props.items} />
       </div>
     );

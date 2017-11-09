@@ -18,9 +18,9 @@ export const loadSingleItem = (id) => {
         type: LOAD_SINGLE_ITEM,
         item: item.data
       });
-    })
-  }
-}
+    });
+  };
+};
 
 //GET all items
 export const loadItems = () => {

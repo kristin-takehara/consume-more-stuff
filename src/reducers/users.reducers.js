@@ -9,7 +9,6 @@ const userList = (state = initialState, action) => {
       return [...action.users];
 
     case REGISTER_USER:
-    console.log(action.newUser, "reducer");
       return [...state, action.newUser];
 
     case LOGIN_USER:
@@ -29,6 +28,7 @@ const userList = (state = initialState, action) => {
             isLoggedIn : false
           });
         }
+
         return user;
       });
 

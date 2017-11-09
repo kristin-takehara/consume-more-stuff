@@ -4,8 +4,8 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import {
   BrowserRouter as Router,
-  Route,
-  Link
+  // Link,
+  Route
 } from 'react-router-dom';
 import reducers from './reducers';
 import thunk from 'redux-thunk';
