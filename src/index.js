@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { IntlProvider } from 'react-intl';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import {
@@ -27,6 +28,7 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
+    <IntlProvider>
     <Router>
       <div id="source">
 
@@ -36,9 +38,9 @@ ReactDOM.render(
         <Route exact path="/" component={App} />
         <Route path="/register" component={Register} />
         <Route path="/items/:id" component={SingleItemView} />
-
-      </div>
-    </Router>
+        </div>
+      </Router>
+    </IntlProvider>
   </Provider>,
   document.getElementById('root')
 );
