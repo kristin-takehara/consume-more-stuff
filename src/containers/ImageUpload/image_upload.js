@@ -23,5 +23,38 @@ class ImageUpload extends React.Component {
         imagePreviewUrl: reader.result
       });
     };
+    reader.readAsDataURL(file);
+  }
+
+  render(){
+    let {imagePreviewUrl} = this.state;
+    let $imagePreview = null;
+
+    if(imagePreviewUrl){
+      $imagePreview = (<img src={imagePreviewUrl} />);
+    }
+    else{
+      $imagePreview = (<div className="previewText">Select A Photo </div>);
+    }
+
+    return(
+      
+      <div
+      )
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
