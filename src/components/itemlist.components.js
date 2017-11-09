@@ -2,7 +2,7 @@
 import React from 'react';
 import Item from'./item.components';
 
-const ItemList = ({items}) => {
+const ItemList = ({ items }) => {
   return (
     <div id="item-list"> {
       items.map((item, idx) => {
