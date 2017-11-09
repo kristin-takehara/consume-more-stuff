@@ -1,17 +1,18 @@
 import React from 'react';
 
+
 class ImageUpload extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {file: '', imagePreviewUrl: ''};
-  }
+  } 
 
-  handleSubmit(event) {
+   handleSubmit(event) {
     event.preventDefault();
-    console.log('Upload Files Here -->', this.state.file);
+    console.log('handle uploading--->', this.state.file);
   }
 
-  handleImageChange(event){
+   handleImageChange(event) {
     event.preventDefault();
 
     let reader = new FileReader();
@@ -23,38 +24,42 @@ class ImageUpload extends React.Component {
         imagePreviewUrl: reader.result
       });
     };
+
     reader.readAsDataURL(file);
   }
 
-  render(){
+  render() {
+
     let {imagePreviewUrl} = this.state;
     let $imagePreview = null;
 
-    if(imagePreviewUrl){
-      $imagePreview = (<img src={imagePreviewUrl} />);
-    }
-    else{
-      $imagePreview = (<div className="previewText">Select A Photo </div>);
+    if (imagePreviewUrl) {
+       $imagePreview = (<img src={imagePreviewUrl} />);
+    } 
+    else {
+      $imagePreview = (<div className="previewText">Please select an Image for Preview</div>);
     }
 
-    return(
-      
-      <div
-      )
+    return (
+
+      <div className="upload-form">
+        <form onSubmit={(event)=>this.handleSubmit(event)}>
+          <input className="file-input" 
+            type="file" 
+            accept="image/x-png,image/gif,image/jpeg"
+            onChange={(event)=>this.handleImageChange(event)} />
+          <button className="submitButton" 
+            type="submit" 
+            onClick={(event)=>this.handleSubmit(event)}>Upload Image</button>
+        </form>
+
+        <div className="imgPreview">
+          {$imagePreview}
+        </div>
+      </div>
+    )
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+export default ImageUpload;
+  
