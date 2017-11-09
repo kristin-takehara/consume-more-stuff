@@ -16,7 +16,7 @@ class NewItem extends Component {
       price: '',
       category_id: '',
       condition_id: '',
-      is_sold: 2, // initial state defaults to NOT SOLD
+      is_sold: 1, // initial state defaults to NOT SOLD
       user_id: ''
     };
 
@@ -32,10 +32,10 @@ class NewItem extends Component {
       manufacturer: this.state.manufacturer,
       modelname: this.state.modelname,
       price: this.state.price,
-      category_id: this.state.category_id,
-      condition_id: this.state.condition_id,
-      is_sold: this.state.is_sold,
-      user_id: this.state.user_id
+      category_id: this.state.category_id || 1,
+      condition_id: this.state.condition_id || 1,
+      is_sold: this.state.is_sold || 1,
+      user_id: this.state.user_id || 1
     };
 
     this.props.addItem(newItem);

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link, Redirect } from 'react-router-dom';
 import { registerUser } from '../../actions/auth.actions';
 import { loadUsers } from '../../actions/users.actions';
 
@@ -24,7 +25,6 @@ class Auth extends Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
-
     let registerCreds = {
       username : this.state.username,
       password : this.state.password
