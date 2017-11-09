@@ -83,7 +83,7 @@ class NewItem extends Component {
           <Select
           list={this.props.statuses}
           name="is_sold"
-          label="Has Been Sold:  "
+          label="Sold:  "
           type="sold"
           handler={this.handleChange} />
 
