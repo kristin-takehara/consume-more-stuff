@@ -22,12 +22,13 @@ router.post('/login',
 });
 
 //LogOUT a user
-router.get('/logout', (req, res) => {  
+router.get('/logout', (req, res) => {
   req.logout(); //fire logout request
   res.sendStatus(200);
 });
 
 router.post('/register', (req, res) => {
+  console.log(req.body);
   bcrypt.genSalt(saltRounds, (err, salt) => {
     bcrypt.hash(req.body.password, salt, (err, hash) => {
       User.create({
@@ -38,7 +39,7 @@ router.post('/register', (req, res) => {
         // don't return ALL user details, especially password
         // what details does the user object carry?
         console.log('newUser', newUserDetails);
-        
+
         // returning newUserDetails will return all userinfo
         return res.json({
           id : newUserDetails.id,

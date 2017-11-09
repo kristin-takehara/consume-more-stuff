@@ -1,26 +1,32 @@
 import Axios from 'axios';
 
-const register = '/api/register';
-const login = '/api/login';
-const logout = '/api/logout';
+const register = '/api/auth/register';
+const login = '/api/auth/login';
+const logout = '/api/auth/logout';
 
 export const REGISTER_USER = 'REGISTER_USER';
 export const LOGIN_USER = 'LOGIN_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
+export const ERROR = 'ERROR';
 
 export const registerUser = (registerCreds) => {
   return (dispatch) => {
     return Axios.post(register, registerCreds)
-    .then((response) => {
-      if (response.data.success) {
+    .then(response => {
         dispatch({
           type: REGISTER_USER,
-          success: response.data.success
-        });
-      }
+          newUser: response.data
+       });
+    })
+    .catch(err => {
+      dispatch({
+        type: ERROR,
+        error: err
+      });
     });
   };
 };
+
 
 export const loginUser = (userCreds) => {
   return (dispatch) => {
