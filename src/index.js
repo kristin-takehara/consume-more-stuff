@@ -12,6 +12,7 @@ import thunk from 'redux-thunk';
 
 import App from './containers/App';
 import SingleItemView from './containers/SingleItemView';
+import Auth from './containers/Auth';
 
 import registerServiceWorker from './lib/registerServiceWorker';
 
@@ -27,6 +28,7 @@ ReactDOM.render(
       <div>
 
         <Route exact path="/" component={App} />
+        <Route path="/register" component={Auth} />
         <Route path="/items/:id" component={SingleItemView}/>
 
       </div>
