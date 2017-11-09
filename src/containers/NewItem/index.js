@@ -63,7 +63,7 @@ class NewItem extends Component {
 
   render() {
     return (
-      <div className="new-item-form">
+      <div id="new-item-form">
         <form onSubmit={this.handleSubmit}>
 
           <Select
