@@ -43,7 +43,7 @@ router.route('/')
 .post(isAuthenticated, upload.single('file'), (req, res) => {
   const details = req.body;
   let file = req.file;
-
+  
   return Item.create({
     file: details.file,
     name : details.name,
