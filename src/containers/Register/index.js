@@ -4,7 +4,7 @@ import { Link, Redirect } from 'react-router-dom';
 import { registerUser } from '../../actions/auth.actions';
 import { loadUsers } from '../../actions/users.actions';
 
-class Auth extends Component {
+class Register extends Component {
   constructor(props) {
     super(props);
     console.log(props, "PROPS")
@@ -17,11 +17,15 @@ class Auth extends Component {
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
   }
 
-  verifyUsername(newUsername) {
-    return newUsername.some(user => {
-      return user.username === newUsername;
-    });
-  }
+//-------------------------------------
+//NEED TO COMPLETE CODE TO VERIFY IF USERNAME ALREADY EXISTS IN THE DATABASE
+
+  // verifyUsername(newUsername) {
+  //   return newUsername.some(user => {
+  //     return user.username === newUsername;
+  //   });
+  // }
+//-------------------------------------
 
   handleSubmit(evt) {
     evt.preventDefault();
@@ -55,7 +59,6 @@ class Auth extends Component {
 
   componentDidMount() {
     this.props.loadUsers();
-    //this.state.users
   }
 
   render() {
@@ -98,4 +101,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Auth);
+)(Register);
