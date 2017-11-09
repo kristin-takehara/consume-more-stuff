@@ -37,10 +37,12 @@ router.post('/register', (req, res) => {
       .then((newUserDetails) => {
         // don't return ALL user details, especially password
         // what details does the user object carry?
-        console.log('newUser', newUserDetails.data);
+        console.log('newUser', newUserDetails);
         
+        // returning newUserDetails will return all userinfo
         return res.json({
-          newUser : newUserDetails.data
+          id : newUserDetails.id,
+          username : newUserDetails.username
         });
       })
       .catch((err) => {
