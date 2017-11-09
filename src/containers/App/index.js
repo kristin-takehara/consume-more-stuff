@@ -1,5 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {
+  BrowserRouter as Router,
+  Link,
+  Route
+} from 'react-router-dom';
+
 import { loadItems } from '../../actions/items.actions';
 import { loadConditions } from '../../actions/conditions.actions';
 import { loadUsers } from '../../actions/users.actions';
@@ -23,12 +29,13 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div id="app">
 
         <Nav />
         <NewItem />
         <ImageUpload />
         <ItemList items={this.props.items} />
+
       </div>
     );
   }

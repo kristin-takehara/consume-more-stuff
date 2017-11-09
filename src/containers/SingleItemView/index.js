@@ -15,10 +15,9 @@ class SingleItemView extends Component {
   render(){
 
     return(
-      <div className="single-item-view">
-        RENDERiNG
+      <div id="single-item-view">
         {
-          <Item
+            <Item
             singleItem={ this.props.singleItem }  />
         }
       </div>
@@ -28,9 +27,9 @@ class SingleItemView extends Component {
 
 // sets store state on local props
 const mapStateToProps = state => {
-  
+
   return {
-    singleItem : state.singleItem 
+    singleItem : state.singleItem
   }
 }
 

@@ -2,7 +2,7 @@ import React from 'react';
 
 const Select = ({list, name, label, type, handler}) => {
   return (
-    <div>
+    <div className="select-options">
       <span>{label}</span>
       <select name={name} onChange={handler}>
         {

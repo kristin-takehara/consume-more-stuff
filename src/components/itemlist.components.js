@@ -4,9 +4,9 @@ import Item from'./item.components';
 
 const ItemList = ({items}) => {
   return (
-    <div className="item-list"> {
+    <div id="item-list"> {
       items.map((item, idx) => {
- //renders X amount of items
+        //renders X amount of items
         return (
           <Item
           singleItem={ item }
