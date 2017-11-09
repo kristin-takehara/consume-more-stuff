@@ -45,7 +45,7 @@ const mapStateToProps = (state) => {
   return {
     items : state.itemList, // makes it this.props.items
     categories : state.categoryList,
-    conditions : state.conditionlist,
+    conditions : state.conditionList,
     statuses : state.statusList,
     users : state.userList
   }
