@@ -45,7 +45,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     loadItems: () => {
-      console.log('Dispatch the action');
+
       dispatch(loadItems());
     },
     loadCategories: () => {

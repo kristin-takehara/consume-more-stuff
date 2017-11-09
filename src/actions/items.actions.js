@@ -1,7 +1,6 @@
 import Axios from 'axios';
 
 const listOfItems = '/api/items'; // URL to POST to
-const singleItem = '/api/items/:id'; //URL to get single item
 
 export const LOAD_SINGLE_ITEM = 'LOAD_SINGLE_ITEM';
 export const LOAD_ITEMS = 'LOAD_ITEMS';
@@ -11,7 +10,7 @@ export const EDITING ='EDITING';
 export const ERROR = 'ERROR';
 
 //GET single item
-export const loadSingleItem = (id) => new Promise ((resolve, reject) => {
+export const loadSingleItem = (id) => {
   return(dispatch) => {
     return Axios.get(listOfItems + `/` + id)
     .then(item => {
