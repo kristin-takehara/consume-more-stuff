@@ -5,8 +5,17 @@ const User = db.User;
 const Category = db.Category;
 const Condition = db.Condition;
 const ItemStatus = db.ItemStatus;
-
 const router = express.Router();
+// *******************************
+// npm package to handel reading image files 
+const multer = require('multer');
+const storage = multer.diskStorage({
+  destination: './uploads',
+  filename(req, file, cb){
+    cb(null, `${file.originalname}`);
+  }
+});
+const upload = multer({ storage });
 
 router.route('/')
 .get((req, res) => {
@@ -32,8 +41,9 @@ router.route('/')
     return res.json(err);
  });
 })
-.post((req, res) => {
+.post(upload.single('file'),(req, res) => {
   const details = req.body;
+  let file = req.file;
 
   return Item.create({
     name : details.name,

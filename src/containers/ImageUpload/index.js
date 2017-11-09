@@ -47,6 +47,9 @@ class ImageUpload extends React.Component {
           <input className="file-input" 
             type="file" 
             accept="image/x-png,image/gif,image/jpeg"
+            enctype="multipart/form-data"
+            action="api/upload/"
+             method="post"
             onChange={(event)=>this.handleImageChange(event)} />
           <button className="submitButton" 
             type="submit" 
