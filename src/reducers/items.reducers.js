@@ -1,5 +1,4 @@
-import { LOAD_ITEMS, ADD_ITEM } from '../actions/items.actions';
-
+import { LOAD_ITEMS, ADD_ITEM, ADD_FILE } from '../actions/items.actions';
 const initialState = [];
 
 const itemList = (state = initialState, action) => {
@@ -10,6 +9,9 @@ const itemList = (state = initialState, action) => {
     case ADD_ITEM:
       return [ ...state, action.newItem ];
 
+    case ADD_FILE:  // reducer for accepting the file load
+      return [...state, action.newFile];
+ 
     default:
       return state;
   }
