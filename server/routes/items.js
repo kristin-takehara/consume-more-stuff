@@ -55,7 +55,7 @@ router.route('/')
     price : details.price,
     category_id : details.category_id,
     condition_id : details.condition_id,
-    is_sold : details.is_sold,
+    is_sold : 2,
     user_id : details.user_id
   })
   .then((newItem) => {

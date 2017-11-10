@@ -4,8 +4,8 @@ import { addItem } from '../../actions/items.actions';
 import Select from '../../components/select.components';
 
 class NewItem extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       userPhoto: '',
@@ -13,11 +13,9 @@ class NewItem extends Component {
       description: '',
       manufacturer: '',
       modelname: '',
-      price: '',
+      price: 0,
       category_id: 1,
-      condition_id: 1,
-      is_sold: 2,
-      user_id: 1
+      condition_id: 1
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -25,28 +23,12 @@ class NewItem extends Component {
     this.handleChangeImage = this.handleChangeImage.bind(this);
   }
 
-  handleChangeImage(event){
-    event.preventDefault();
-
-    let reader = new FileReader();
-    let file = event.target.files[0];
-
-    reader.onloadend = () => {
-      this.setState({
-        file: file,
-        imageUrl: reader.result
-      });
-    };
-
-    reader.readAsDataURL(file);
-  }
-
-  handleSubmit(event){
-    event.preventDefault();
+  handleSubmit(userId, evt){
+    evt.preventDefault();
 
     let formData = new FormData();
 
-    formData.append('userPhoto', this.state.file);
+    formData.append('userPhoto', this.state.userPhoto);
     formData.append('name', this.state.name);
     formData.append('description', this.state.description);
     formData.append('manufacturer', this.state.manufacturer);
@@ -54,8 +36,7 @@ class NewItem extends Component {
     formData.append('price', this.state.price);
     formData.append('category_id', this.state.category_id);
     formData.append('condition_id', this.state.condition_id);
-    formData.append('is_sold', this.state.is_sold);
-    formData.append('user_id', this.state.user_id);
+    formData.append('user_id', userId);
 
     this.props.addItem(formData);
 
@@ -66,12 +47,26 @@ class NewItem extends Component {
       description: '',
       manufacturer: '',
       modelname: '',
-      price: '',
+      price: 0,
       category_id: 1,
-      condition_id: 1,
-      is_sold: 2,
-      user_id: 1
+      condition_id: 1
     });
+  }
+
+  handleChangeImage(evt){
+    evt.preventDefault();
+
+    let reader = new FileReader();
+    let file = evt.target.files[0];
+
+    reader.onloadend = () => {
+      this.setState({
+        file: file,
+        imageUrl: reader.result
+      });
+    };
+
+    reader.readAsDataURL(file);
   }
 
   handleChange(evt) {
@@ -84,6 +79,7 @@ class NewItem extends Component {
   }
 
   render() {
+<<<<<<< HEAD
     if(localStorage.username !== undefined){
     return (
       <div id="new-item-form">
@@ -150,6 +146,80 @@ class NewItem extends Component {
      );
     }
     else {
+=======
+    if(localStorage.username) {
+      return (
+        <div id="new-item-form">
+          <form onSubmit={
+            (e) => this.handleSubmit(localStorage.userId, e)
+          }>
+    
+            <Select
+              defaultValue={this.state.category_id} 
+              handler={this.handleChange}
+              label="Category: "
+              list={this.props.categories}
+              name="category_id"
+              type="category"
+            />
+
+            <Select
+              defaultValue={this.state.condition_id} 
+              handler={this.handleChange}
+              label="Condition: "
+              list={this.props.conditions}
+              name="condition_id"
+              type="condition"
+            />
+
+            <div className="name-form">
+              <input 
+                name="name" 
+                onChange={this.handleChange}
+                placeholder="item name" 
+                type="text" 
+                value={this.state.item} 
+              />
+            </div>
+
+            <div className="description-form">
+              <textarea 
+                name="description" 
+                onChange={this.handleChange} cols="30" rows="10" 
+                placeholder="description" 
+                type="text"
+                value={this.state.description} 
+              />
+            </div>
+
+            <div className="price-form">
+              <input
+                max="100000" 
+                min="0" 
+                name="price" 
+                onChange={this.handleChange}
+                placeholder="price" 
+                type="decimal" 
+                value={this.state.price} 
+              />
+            </div>
+
+            <div>
+              <input 
+                accept="image/x-png,image/gif,image/jpeg" 
+                name="userPhoto"
+                onChange={this.handleChangeImage}  
+                type="file" 
+              />
+            </div>
+            
+            <input type="submit" value="submit card" />
+          </form>
+        </div>
+      );
+
+    } else {
+>>>>>>> development
       return null;
     }
   }
@@ -157,7 +227,6 @@ class NewItem extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    file: state.file,
     items : state.itemList,
     users : state.userList,
     categories : state.categoryList,     // setting state
