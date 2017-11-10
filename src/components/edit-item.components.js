@@ -5,18 +5,14 @@ import Select from './select.components.js';
 
 const EditItem = ({ singleItem, categories, conditions, statuses, handleSubmit, handleChange }) => {
 
-  let Category = singleItem.Category || '';
-  let Condition = singleItem.Condition || '';
-  let Status = singleItem.Status || '';  
-
   return (
     <div className="single-item" id="edit-single-item">
 
-      <form onSubmit={ (e) => this.handleSubmit(singleItem.id, e) }>
+      <form onSubmit={ (e) => handleSubmit(singleItem.id, e) }>
         <div>
           <input
             name="name"
-            onChange={handleChange}
+            onChange={handleChange.bind(this)}
             defaultValue={singleItem.name} />
         </div>
         <div>
