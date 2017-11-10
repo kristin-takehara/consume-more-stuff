@@ -88,7 +88,7 @@ class NewItem extends Component {
     return (
       <div id="new-item-form">
         <form onSubmit={this.handleSubmit}>
-  
+
           <Select
           list={this.props.categories}
           name="category_id"
@@ -107,43 +107,43 @@ class NewItem extends Component {
 
           <Select
           list={this.props.users}
-          name="user_id"
+          name={this.state.username}
           label="Username:  "
           type="username"
           handler={this.handleChange}
           defaultValue={this.state.user_id} />
 
-          <div className="name-form">
-            <input 
-              name="name" 
-              value={this.state.item} 
-              type="text" 
-              placeholder="item name" 
+          <div className="item-name-form">
+            <input
+              name="name"
+              value={this.state.item}
+              type="text"
+              placeholder="item name"
               onChange={this.handleChange}/>
           </div>
 
-          <div className="description-form">
-            <textarea 
-              name="description" 
-              value={this.state.description} 
+          <div className="item-description-form">
+            <textarea
+              name="description"
+              value={this.state.description}
               type="text"
-              placeholder="description" 
+              placeholder="description"
               onChange={this.handleChange} cols="30" rows="10" />
           </div>
 
-          <div className="price-form">
-            <input name="price" value={this.state.price} type="number" min="0" max="100000" placeholder="price" onChange={this.handleChange}/>
+          <div className="item-price-form">
+            <input name="price" value={this.state.price} type="decimal" min="0" max="100000" placeholder="price" onChange={this.handleChange}/>
           </div>
 
           <div>
-            <input 
+            <input
               name="userPhoto"
-              type="file" 
-              accept="image/x-png,image/gif,image/jpeg" 
-              onChange={this.handleChangeImage}  
+              type="file"
+              accept="image/x-png,image/gif,image/jpeg"
+              onChange={this.handleChangeImage}
             />
           </div>
-          
+
           <input type="submit" value="submit card" />
         </form>
       </div>

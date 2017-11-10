@@ -37,18 +37,20 @@ ReactDOM.render(
         <div id="logo">
           <img src="/assets/jnkr-logo.jpg" />
         </div>
-          <div className="nav-links">
-            <Link to="/">Home</Link>
-            <Link to="/register">Register</Link>
-            <Link to="/login">Login</Link>
-            <Link to="/logout">Logout</Link>
-
-            <Route path="/register" component={Register} />
-            <Route path="/login" component={LogIN} />
-            <Route path="/items/:id" component={SingleItemView} />
-            <Route path="/logout" component={LogOUT} />
-          </div>
         </header>
+
+        <div className="nav-links">
+          <Link to="/">Home</Link>
+          <Link to="/register">Register</Link>
+          <Link to="/login">Login</Link>
+          <Link to="/logout">Logout</Link>
+
+          <Route path="/register" component={Register} />
+          <Route path="/login" component={LogIN} />
+          <Route path="/items/:id" component={SingleItemView} />
+          <Route path="/logout" component={LogOUT} />
+        </div>
+
         <br/>
         <br/>
             <Route exact path="/" component={App} />
