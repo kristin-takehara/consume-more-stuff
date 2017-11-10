@@ -81,11 +81,10 @@ export const addFile = (newFile) => {
 };
 
 //Switches flag to inform front end of change/edit
-export const makeItemEditable = (cardID) => {
+export const makeItemEditable = (id) => {  
   return (dispatch) => {
     return dispatch({
-      type: EDITING,
-      cardID: cardID
+      type: EDITING
     });
   };
 };

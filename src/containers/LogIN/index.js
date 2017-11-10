@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { loginUser } from '../../actions/auth.actions';
 import { loadUsers } from '../../actions/users.actions';
 
@@ -23,7 +23,7 @@ class Login extends Component {
   handleSubmit(evt) {
     //on success do this:
     evt.preventDefault();
-    let loginCreds ={
+    let loginCreds = {
       username : this.state.username,
       password : this.state.password
     }
@@ -58,6 +58,7 @@ class Login extends Component {
     }
     return(
       <div>
+        <h4>Login</h4>
         <form onSubmit={this.handleSubmit.bind(this)}>
 
           <div>
@@ -75,6 +76,7 @@ class Login extends Component {
           </button>
 
         </form>
+
       </div>
     );
   }

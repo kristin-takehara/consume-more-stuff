@@ -1,5 +1,5 @@
-import { LOAD_ITEMS, ADD_ITEM, ADD_FILE, EDIT_ITEM, EDITING } from '../actions/items.actions';
 
+import { LOAD_ITEMS, ADD_ITEM, ADD_FILE, EDIT_ITEM, EDITING } from '../actions/items.actions';
 const initialState = [];
 
 const itemList = (state = initialState, action) => {
@@ -22,6 +22,17 @@ const itemList = (state = initialState, action) => {
         }
         return item;
       });
+
+    // case EDITING:
+    //   return state.map(item => {
+    //     if (item.id === action.itemID) {
+    //       return Object.assign({}, item, {
+    //         isEditing : !item.isEditing
+    //       });
+    //     }
+    //     return item;
+    //   });
+
 
     case EDIT_ITEM:
       const updatedItem = action.updatedItem;

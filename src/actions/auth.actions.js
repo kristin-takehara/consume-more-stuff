@@ -32,7 +32,7 @@ export const loginUser = (userCreds) => {
   return (dispatch) => {
     return Axios.post(login, userCreds)
     .then((response) => {
-      console.log(response, "RESPONSE DATA");
+      // console.log(response, "RESPONSE DATA");
       if (response.data.success) {
         dispatch({
           type: LOGIN_USER,
@@ -41,7 +41,7 @@ export const loginUser = (userCreds) => {
       }
     })
     .catch((err) => {
-      console.log(err);
+      console.log('Login Failed. Please re-enter your username and password.', err);
       return false;
     });
   };
@@ -49,14 +49,20 @@ export const loginUser = (userCreds) => {
 
 export const logoutUser = () => {
   return (dispatch) => {
+    // console.log(dispatch, "logout");
     return Axios.get(logout)
     .then((response) => {
+      console.log("AXIOS LOGOUT RESPONSE", response);
       if (response.data.success) {
         dispatch({
           type: LOGOUT_USER,
           success: response.data.success
         });
       }
+    })
+    .catch((err) => {
+      console.log('Logout Failed. Please try again', err);
+      return false;
     });
   };
 };

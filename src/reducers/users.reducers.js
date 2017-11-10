@@ -14,25 +14,28 @@ const userList = (state = initialState, action) => {
     case LOGIN_USER:
       return state.map(user => {
         if (user.id === action.userDetails.id) {
-        // do local storage in here
-        localStorage.setItem('loggedin', true);
-        localStorage.setItem('userId', user.id);
-        localStorage.setItem('username', user.username);
-          return Object.assign({}, user, {
-            isLoggedIn : true
-          });
+          localStorage.setItem('loggedin', true);
+          localStorage.setItem('userId', user.id);
+          localStorage.setItem('username', user.username);
+            return Object.assign({}, user, {
+              isLoggedIn : true
+            });
         }
-          return user;
+        return user;
       });
 
     case LOGOUT_USER:
       return state.map(user => {
+        console.log(user, "USER REDUCER");
         if (user.id === action.userDetails.id) {
-          return Object.assign({}, user, {
-            isLoggedIn : false
-          });
+          // localStorage.setItem('loggedin', false);
+          // localStorage.setItem('userId', 12);
+          // localStorage.setItem('username', null);
+          localStorage.clear();
+            return Object.assign({}, user, {
+              isLoggedIn : false
+            });
         }
-
         return user;
       });
 
