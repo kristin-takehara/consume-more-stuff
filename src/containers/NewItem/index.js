@@ -7,8 +7,8 @@ class NewItem extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {  // sets intial empty state object
-      file: '',
+    this.state = {
+      userPhoto: '',
       name: '',
       description: '',
       manufacturer: '',
@@ -16,7 +16,7 @@ class NewItem extends Component {
       price: '',
       category_id: 1,
       condition_id: 1,
-      is_sold: 2, // initial state defaults to NOT SOLD
+      is_sold: 2,
       user_id: 1
     };
 
@@ -29,7 +29,6 @@ class NewItem extends Component {
     event.preventDefault();
 
     let reader = new FileReader();
-
     let file = event.target.files[0];
 
     reader.onloadend = () => {
@@ -47,7 +46,7 @@ class NewItem extends Component {
 
     let formData = new FormData();
 
-    formData.append('file', this.state.file);
+    formData.append('userPhoto', this.state.file);
     formData.append('name', this.state.name);
     formData.append('description', this.state.description);
     formData.append('manufacturer', this.state.manufacturer);
@@ -58,32 +57,19 @@ class NewItem extends Component {
     formData.append('is_sold', this.state.is_sold);
     formData.append('user_id', this.state.user_id);
 
-
     this.props.addItem(formData);
 
-    // let newItem = {
-    //   file: this.state.file,
-    //   name: this.state.name,    // sets state when client inserts/changes the name
-    //   description: this.state.description,
-    //   manufacturer: this.state.manufacturer,
-    //   modelname: this.state.modelname,
-    //   price: this.state.price,
-    //   category_id: this.state.category_id,
-    //   condition_id: this.state.condition_id,
-    //   is_sold: this.state.is_sold,
-    //   user_id: this.state.user_id
-    // };
-
-    // this.props.addItem(newItem);
-
-    this.setState({ // this will pass up to the newItem that will be submitted on SUBMIT
+    this.setState({
+     // this will pass up to the newItem that will be submitted on SUBMIT
+      userPhoto: '',
       name: '',
       description: '',
       manufacturer: '',
       modelname: '',
       price: '',
-      category_id: 1,  // these will be integers that DB will associate with category table
+      category_id: 1,
       condition_id: 1,
+      is_sold: 2,
       user_id: 1
     });
   }
@@ -103,44 +89,46 @@ class NewItem extends Component {
       <div id="new-item-form">
         <form onSubmit={this.handleSubmit}>
   
-
           <Select
           list={this.props.categories}
           name="category_id"
           label="Category: "
           type="category"
-          handler={this.handleChange} />
+          handler={this.handleChange}
+          defaultValue={this.state.category_id} />
 
           <Select
           list={this.props.conditions}
           name="condition_id"
           label="Condition: "
           type="condition"
-          handler={this.handleChange} />
-
-          <Select
-          list={this.props.statuses}
-          name="is_sold"
-          label="Sold:  "
-          type="sold"
-          handler={this.handleChange} />
+          handler={this.handleChange}
+          defaultValue={this.state.condition_id} />
 
           <Select
           list={this.props.users}
           name="user_id"
           label="Username:  "
           type="username"
-          handler={this.handleChange} />
+          handler={this.handleChange}
+          defaultValue={this.state.user_id} />
 
-
-          
           <div className="name-form">
-            <input name="name" value={this.state.item} type="text" placeholder="item name" onChange={this.handleChange}/>
+            <input 
+              name="name" 
+              value={this.state.item} 
+              type="text" 
+              placeholder="item name" 
+              onChange={this.handleChange}/>
           </div>
 
           <div className="description-form">
-            <textarea name="description" value={this.state.description} type="text"
-              placeholder="description" onChange={this.handleChange} cols="30" rows="10" />
+            <textarea 
+              name="description" 
+              value={this.state.description} 
+              type="text"
+              placeholder="description" 
+              onChange={this.handleChange} cols="30" rows="10" />
           </div>
 
           <div className="price-form">
@@ -148,7 +136,8 @@ class NewItem extends Component {
           </div>
 
           <div>
-            <input name="upload photo" 
+            <input 
+              name="userPhoto"
               type="file" 
               accept="image/x-png,image/gif,image/jpeg" 
               onChange={this.handleChangeImage}  
@@ -165,7 +154,6 @@ class NewItem extends Component {
     }
   }
 }
-
 
 const mapStateToProps = (state) => {
   return {
