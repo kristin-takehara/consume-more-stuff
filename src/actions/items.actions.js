@@ -4,6 +4,7 @@ const listOfItems = '/api/items'; // URL to POST to
 
 export const LOAD_SINGLE_ITEM = 'LOAD_SINGLE_ITEM';
 export const LOAD_ITEMS = 'LOAD_ITEMS';
+export const ADD_FILE = "ADD_FILE"; //action for file 
 export const ADD_ITEM = 'ADD_ITEM';
 export const EDIT_ITEM = 'EDIT_ITEM';
 export const EDITING ='EDITING';
@@ -42,14 +43,15 @@ export const loadItems = () => {
 };
 
 
-//CREATE(POST) new item
-export const addItem = (newItem) => {
+//CREATE(POST) new item  --- Justin adding extra to take photo from front end
+export const addItem = (newItem, newFile) => {
   return (dispatch) => {
-    return Axios.post(listOfItems, newItem)
+    return Axios.post(listOfItems, newItem, newFile)
     .then(newItemDetails => {
       dispatch({
-        type: ADD_ITEM,
-        newItem: newItemDetails.data
+        type: ADD_ITEM, ADD_FILE,
+        newItem: newItemDetails.data,
+        newFile: newFile.file
       });
     })
     .catch(err => {

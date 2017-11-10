@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { addItem } from '../../actions/items.actions.js';
+import { addFile } from '../../actions/items.actions.js';
 
-
-class ImageUpload extends React.Component {
+class ImageUpload extends Component {
   constructor(props) {
     super(props);
     this.state = {file: '', imagePreviewUrl: ''};
@@ -12,7 +12,7 @@ class ImageUpload extends React.Component {
   } 
 
    handleSubmit(event) {
-    console.log('handle uploading--->', this.state.file);
+    console.log('handle upload--->', this.state.file);
 
     let formData = new FormData();
    
@@ -83,21 +83,23 @@ class ImageUpload extends React.Component {
 
   
 const mapStateToProps = (state) => {
-  return {
+  return{
     file: state.file
-  };
-};
+  }
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addItem: addItem
-  };
-};
+    addItem: (file) => {
+      dispatch(addFile(file))
+    }
+  }
+}
 
-export default connect(mapStateToProps)(ImageUpload);
-
-
-
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ImageUpload);
 
 
 
