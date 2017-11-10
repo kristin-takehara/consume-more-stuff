@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loadSingleItem, makeItemEditable } from '../../actions/items.actions';
+import { loadSingleItem, makeItemEditable, editItem } from '../../actions/items.actions';
 import { loadCategories } from '../../actions/categories.actions';
 import { loadConditions } from '../../actions/conditions.actions';
 import { loadStatuses } from '../../actions/statuses.actions';
@@ -21,6 +21,9 @@ class SingleItemView extends Component {
       is_sold: '',
       user_id: ''
     };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   toggleEdit(item) {
@@ -39,7 +42,7 @@ class SingleItemView extends Component {
     });
   }
 
-  handleSubmit(id, evt) {
+  handleSubmit(id, evt) {    
     evt.preventDefault();
     this.props.editItem({
       id : id,
@@ -54,6 +57,7 @@ class SingleItemView extends Component {
       user_id: this.state.user_id
     });
 
+    this.props.makeItemEditable(id);
     this.setState = {
       name : '',
       description: '',
@@ -65,7 +69,7 @@ class SingleItemView extends Component {
     };
   }
 
-  handleChange(evt) {
+  handleChange(evt) {    
     const target = evt.target;
     const name = target.name;
     const value = target.value;
@@ -149,6 +153,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     makeItemEditable: (id) => {
       dispatch(makeItemEditable(id))
+    },
+    editItem: (updatedItem) => {
+      dispatch(editItem(updatedItem))
     },
     loadCategories: () => {
       dispatch(loadCategories());

@@ -8,11 +8,11 @@ const EditItem = ({ singleItem, categories, conditions, statuses, handleSubmit, 
   return (
     <div className="single-item" id="edit-single-item">
 
-      <form onSubmit={ (e) => this.handleSubmit(singleItem.id, e) }>
+      <form onSubmit={ (e) => handleSubmit(singleItem.id, e) }>
         <div>
           <input
             name="name"
-            onChange={handleChange}
+            onChange={handleChange.bind(this)}
             defaultValue={singleItem.name} />
         </div>
         <div>

@@ -75,7 +75,7 @@ export const editItem = (updatedItem) => {
   console.log('actions');
   
   return (dispatch) => {
-    return Axios.put(`${listOfItems/updatedItem.id}`)
+    return Axios.put(`${listOfItems}/${updatedItem.id}`, updatedItem)
     .then(updatedItemDetails => {
       dispatch({
         type: EDIT_ITEM,
