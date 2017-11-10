@@ -70,6 +70,8 @@ const EditItem = ({ singleItem, categories, conditions, statuses, handleSubmit, 
             handler={this.handleChange}
             defaultValue={singleItem.is_sold} />
         </div>
+
+        <input type="submit" value="CONFIRM" />
       </form>
 
     </div>
