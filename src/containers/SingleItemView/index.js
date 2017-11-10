@@ -72,19 +72,14 @@ class SingleItemView extends Component {
   }
 
   render() {
+    if(localStorage.username !== undefined){
     return(
       <div id="single-item-view">
         {
           !this.props.singleItem.isEditing &&
           <div>
-            <Item
-              singleItem={ this.props.singleItem }  />
-
-            <button 
-              type="submit"
-              onClick={this.toggleEdit.bind(
-                this, 
-                this.props.singleItem)} >
+            <Item singleItem={ this.props.singleItem } />
+            <button type="submit" onClick={this.toggleEdit.bind(this, this.props.singleItem)}>
               EDIT
             </button>
           </div>
@@ -99,20 +94,20 @@ class SingleItemView extends Component {
               statuses={ this.props.statuses }
               handleChange={ this.handleChange }
               handleSubmit={ this.handleSubmit } />
-
-            <button 
-              type="submit"
-              onClick={this.toggleEdit.bind(
-                this, 
-                this.props.singleItem)} >
+            <button type="submit" onClick={this.toggleEdit.bind(this, this.props.singleItem)}>
               UNDO
             </button>
           </div>
         }
-
-
       </div>
-    )
+    );
+  } else {
+      return(
+        <div>
+          <Item singleItem={ this.props.singleItem }/>
+        </div>
+      )
+    }
   }
 }
 
