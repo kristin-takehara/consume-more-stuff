@@ -12,20 +12,15 @@ class ImageUpload extends Component {
   } 
 
    handleSubmit(event) {
+    event.preventDefault();
+
     console.log('handle upload--->', this.state.file);
 
-    let formData = new FormData();
+    // let formData = new FormData();
    
-    console.log(formData);
-    formData.append('file', this.state.file);
-    // formData.append('name', this.state.name);
-    // formData.append('description', this.state.description);
-    // formData.append('manufacturer', this.state.manufacturer);
-    // formData.append('modelname', this.state.modelname);
-    // formData.append('price', this.state.price);
-    // formData.append('category_id', this.state.category_id);
-    // formData.append('is_sold', this.state.is_sold);
-    // formData.append('user_id', this.state.user_id);
+    // console.log(formData);
+    // formData.append('file', this.state.file);
+
   }
 
 
@@ -60,17 +55,19 @@ class ImageUpload extends Component {
     return (
 
       <div className="upload-form">
-        <form onSubmit={(event)=>this.handleSubmit(event)}>
+        <form onSubmit={ this.handleSubmit }>
           <input className="file-input" 
             type="file" 
             accept="image/x-png,image/gif,image/jpeg"
             encType="multipart/form-data"
-            action="/addFile"
-            method="post"
+            action="addFile"
+            method="POST"
             onChange={(event)=>this.handleImageChange(event)} />
-          <button className="submitButton" 
-            type="submit" 
-            onClick={(event)=>this.handleSubmit(this.formData)}>Upload Image</button>
+          <button
+            className="submitButton" 
+            type="submit"
+          >
+          Upload Image</button>
         </form>
 
         <div className="imgPreview">
@@ -81,7 +78,6 @@ class ImageUpload extends Component {
   }
 }
 
-  
 const mapStateToProps = (state) => {
   return{
     file: state.file
