@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {
-  BrowserRouter as Router,
-  Link,
-  Route
-} from 'react-router-dom';
+// import {
+//   BrowserRouter as Router,
+//   Link,
+//   Route
+// } from 'react-router-dom';
 
 import { loadItems } from '../../actions/items.actions';
 import { loadConditions } from '../../actions/conditions.actions';
@@ -14,7 +14,6 @@ import { loadCategories } from '../../actions/categories.actions';
 
 import ItemList from '../../components/itemlist.components';
 import NewItem from '../NewItem/';
-import Nav from '../../components/nav.components';
 import ImageUpload from '../../containers/ImageUpload/';
 
 
