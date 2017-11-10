@@ -14,6 +14,8 @@ class SingleItemView extends Component {
       name : '',
       description: '',
       price: '',
+      manufacturer: '',
+      modelname: '',
       category_id: '',
       condition_id: '',
       is_sold: '',
@@ -21,13 +23,15 @@ class SingleItemView extends Component {
     };
   }
 
-  toggleEdit(id) {
-    const item = this.props.singleItem;
+  toggleEdit(item) {
+    this.props.makeItemEditable(item.id);
 
     this.setState({
       name : item.name,
       description: item.description,
       price: item.price,
+      manufacturer: item.manufacturer,
+      modelname: item.modelname,
       category_id: item.category_id,
       condition_id: item.condition_id,
       is_sold: item.is_sold,
@@ -71,20 +75,42 @@ class SingleItemView extends Component {
     return(
       <div id="single-item-view">
         {
-          this.props.singleItem.isEditing &&
-          <Item
-            singleItem={ this.props.singleItem }  />
+          !this.props.singleItem.isEditing &&
+          <div>
+            <Item
+              singleItem={ this.props.singleItem }  />
+
+            <button 
+              type="submit"
+              onClick={this.toggleEdit.bind(
+                this, 
+                this.props.singleItem)} >
+              EDIT
+            </button>
+          </div>
         }
         {
-          !this.props.singleItem.isEditing &&
-          <EditItem
-            singleItem={ this.props.singleItem }
-            categories={ this.props.categories }
-            conditions={ this.props.conditions }
-            statuses={ this.props.statuses }
-            handleChange={ this.handleChange }
-            handleSubmit={ this.handleSubmit } />
+          this.props.singleItem.isEditing &&
+          <div>
+            <EditItem
+              singleItem={ this.props.singleItem }
+              categories={ this.props.categories }
+              conditions={ this.props.conditions }
+              statuses={ this.props.statuses }
+              handleChange={ this.handleChange }
+              handleSubmit={ this.handleSubmit } />
+
+            <button 
+              type="submit"
+              onClick={this.toggleEdit.bind(
+                this, 
+                this.props.singleItem)} >
+              UNDO
+            </button>
+          </div>
         }
+
+
       </div>
     )
   }
