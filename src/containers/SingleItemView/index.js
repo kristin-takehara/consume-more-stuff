@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loadSingleItem, makeItemEditable, editItem } from '../../actions/items.actions';
+import { loadSingleItem, makeItemEditable, editItem, deleteItem } from '../../actions/items.actions';
 import { loadCategories } from '../../actions/categories.actions';
 import { loadConditions } from '../../actions/conditions.actions';
 import { loadStatuses } from '../../actions/statuses.actions';
@@ -40,6 +40,11 @@ class SingleItemView extends Component {
       is_sold: item.is_sold,
       user_id: item.user_id
     });
+  }
+
+  removeItem(id) {
+    this.props.deleteItem(id);
+    this.props.makeItemEditable(id);
   }
 
   handleSubmit(id, evt) {    
@@ -133,6 +138,12 @@ class SingleItemView extends Component {
 
             <button 
               type="submit"
+              onClick={this.removeItem.bind(
+                this, 
+                this.props.singleItem.id)} >
+              DELETE
+            </button>            <button 
+              type="submit"
               onClick={this.toggleEdit.bind(
                 this, 
                 this.props.singleItem)} >
@@ -167,6 +178,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     editItem: (updatedItem) => {
       dispatch(editItem(updatedItem))
+    },
+    deleteItem: (id) => {
+      dispatch(deleteItem(id))
     },
     loadCategories: () => {
       dispatch(loadCategories());

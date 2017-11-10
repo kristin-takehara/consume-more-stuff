@@ -1,4 +1,4 @@
-import { LOAD_SINGLE_ITEM, EDITING, EDIT_ITEM } from '../actions/items.actions';
+import { LOAD_SINGLE_ITEM, EDITING, EDIT_ITEM, DEL_ITEM } from '../actions/items.actions';
 
 const initialState = {
   Category : '',
@@ -32,6 +32,20 @@ const singleItem = (state = initialState, action) => {
       created_by : updatedItem.created_by,
       updatedAt : updatedItem.updatedAt
     });
+
+    case DEL_ITEM:
+      return Object.assign({}, state, {
+        name : '',
+        price : '',
+        description : '',
+        manufacturer : '',
+        modelname : '',
+        category_id : '',
+        condition_id : '',
+        is_sold : '',
+        created_by : '',
+        updatedAt : ''
+      });
 
     default:
         return state;

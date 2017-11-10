@@ -7,6 +7,7 @@ export const LOAD_ITEMS = 'LOAD_ITEMS';
 export const ADD_ITEM = 'ADD_ITEM';
 export const EDIT_ITEM = 'EDIT_ITEM';
 export const EDITING ='EDITING';
+export const DEL_ITEM ='DEL_ITEM';
 export const ERROR = 'ERROR';
 
 //GET single item
@@ -83,6 +84,24 @@ export const editItem = (updatedItem) => {
     .catch(err => {
       dispatch({
         type: ERROR,
+        error: err
+      });
+    });
+  };
+};
+
+export const deleteItem = (id) => {
+  return dispatch => {
+    return Axios.delete(`${listOfItems}/${id}`)
+    .then(response => {
+      dispatch({
+        type : DEL_ITEM,
+        id : id
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type : ERROR,
         error: err
       });
     });

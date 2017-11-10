@@ -147,8 +147,24 @@ router.route('/:id')
     res.json(err);
   });
 })
-;
 
+.delete((req, res) => {
+  let id = req.params.id;
+  
+  return Item.destroy({
+    where : { id : id }
+  })
+  .then(response => {
+    console.log('deleted item');
+    res.json({
+      success: true
+    });
+  })
+  .catch(err => {
+    console.log(err);
+    res.json(err);
+  });
+});
 
 function isAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { next(); }
