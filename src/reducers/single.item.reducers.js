@@ -18,7 +18,6 @@ const singleItem = (state = initialState, action) => {
       });
 
     case EDIT_ITEM:
-    console.log('reducer');
     const updatedItem = action.updatedItem;
 
     return Object.assign({}, state, {
@@ -30,7 +29,8 @@ const singleItem = (state = initialState, action) => {
       category_id : updatedItem.category_id,
       condition_id : updatedItem.condition_id,
       is_sold : updatedItem.is_sold,
-      created_by : updatedItem.created_by
+      created_by : updatedItem.created_by,
+      updatedAt : updatedItem.updatedAt
     });
 
     default:

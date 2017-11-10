@@ -58,7 +58,7 @@ class SingleItemView extends Component {
     });
 
     this.props.makeItemEditable(id);
-    this.setState = {
+    this.setState({
       name : '',
       description: '',
       price: '',
@@ -66,7 +66,7 @@ class SingleItemView extends Component {
       condition_id: '',
       is_sold: '',
       user_id: ''
-    };
+    });
   }
 
   handleChange(evt) {    
@@ -89,6 +89,17 @@ class SingleItemView extends Component {
 
   componentWillUnmount() {
     this.toggleEdit(this.props.singleItem);
+    this.state = {
+      name : '',
+      description: '',
+      price: '',
+      manufacturer: '',
+      modelname: '',
+      category_id: '',
+      condition_id: '',
+      is_sold: '',
+      user_id: ''
+    };
   }
 
   render() {
