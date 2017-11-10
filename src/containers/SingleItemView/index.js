@@ -47,7 +47,7 @@ class SingleItemView extends Component {
     this.props.makeItemEditable(id);
   }
 
-  handleSubmit(id, evt) {    
+  handleSubmit(id, evt) {
     evt.preventDefault();
     this.props.editItem({
       id : id,
@@ -74,7 +74,7 @@ class SingleItemView extends Component {
     });
   }
 
-  handleChange(evt) {    
+  handleChange(evt) {
     const target = evt.target;
     const name = target.name;
     const value = target.value;
@@ -108,19 +108,14 @@ class SingleItemView extends Component {
   }
 
   render() {
+    if(localStorage.username !== undefined){
     return(
       <div id="single-item-view">
         {
           !this.props.singleItem.isEditing &&
           <div>
-            <Item
-              singleItem={ this.props.singleItem }  />
-
-            <button 
-              type="submit"
-              onClick={this.toggleEdit.bind(
-                this, 
-                this.props.singleItem)} >
+            <Item singleItem={ this.props.singleItem } />
+            <button type="submit" onClick={this.toggleEdit.bind(this, this.props.singleItem)}>
               EDIT
             </button>
           </div>
@@ -136,25 +131,31 @@ class SingleItemView extends Component {
               handleChange={ this.handleChange }
               handleSubmit={ this.handleSubmit } />
 
-            <button 
+
+            <button
               type="submit"
               onClick={this.removeItem.bind(
-                this, 
+                this,
                 this.props.singleItem.id)} >
               DELETE
-            </button>            <button 
+            </button>            <button
               type="submit"
               onClick={this.toggleEdit.bind(
-                this, 
+                this,
                 this.props.singleItem)} >
               UNDO
             </button>
           </div>
         }
-
-
       </div>
-    )
+    );
+  } else {
+      return(
+        <div>
+          <Item singleItem={ this.props.singleItem }/>
+        </div>
+      )
+    }
   }
 }
 

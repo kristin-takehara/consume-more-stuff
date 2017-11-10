@@ -158,12 +158,12 @@ class NewItem extends Component {
           <input type="submit" value="submit card" />
         </form>
       </div>
-    );
+     );
+    }
+    else {
+      return null;
+    }
   }
-  else {
-    return null;
-  }
-}
 }
 
 
