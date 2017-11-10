@@ -23,6 +23,7 @@ router.post('/login',
 
 //LogOUT a user
 router.get('/logout', (req, res) => {
+  console.log("Serverside hitting Logout");
   req.logout(); //fire logout request
   res.sendStatus(200);
 });

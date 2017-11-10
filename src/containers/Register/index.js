@@ -69,6 +69,7 @@ class Register extends Component {
     }
     return(
       <div>
+        <h4> Register a new User </h4>
         <form onSubmit={this.handleSubmit.bind(this)}>
 
           <div>
