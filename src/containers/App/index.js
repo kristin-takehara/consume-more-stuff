@@ -14,7 +14,6 @@ import { loadCategories } from '../../actions/categories.actions';
 
 import ItemList from '../../components/itemlist.components';
 import NewItem from '../NewItem/';
-import ImageUpload from '../../containers/ImageUpload/';
 
 class App extends Component {
   componentDidMount(){

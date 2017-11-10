@@ -94,7 +94,7 @@ class SingleItemView extends Component {
 
   componentWillUnmount() {
     this.toggleEdit(this.props.singleItem);
-    this.state = {
+    this.setState = {
       name : '',
       description: '',
       price: '',

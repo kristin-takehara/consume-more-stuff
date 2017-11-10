@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addItem } from '../../actions/items.actions';
-import { addFile } from '../../actions/items.actions'; //action for add img
 import Select from '../../components/select.components';
 
 class NewItem extends Component {
