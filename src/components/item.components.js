@@ -3,6 +3,7 @@ import { FormattedRelative } from 'react-intl';
 import { Link } from 'react-router-dom';
 
 const Item = ({ singleItem }) => {
+  
   return (
     <div className="single-item">    
       <Link to={`/items/${singleItem.id}`}>
