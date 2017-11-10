@@ -85,9 +85,9 @@ class NewItem extends Component {
           <form onSubmit={
             (e) => this.handleSubmit(localStorage.userId, e)
           }>
-    
+
             <Select
-              defaultValue={this.state.category_id} 
+              defaultValue={this.state.category_id}
               handler={this.handleChange}
               label="Category: "
               list={this.props.categories}
@@ -96,7 +96,7 @@ class NewItem extends Component {
             />
 
             <Select
-              defaultValue={this.state.condition_id} 
+              defaultValue={this.state.condition_id}
               handler={this.handleChange}
               label="Condition: "
               list={this.props.conditions}
@@ -105,46 +105,46 @@ class NewItem extends Component {
             />
 
             <div className="name-form">
-              <input 
-                name="name" 
+              <input
+                name="name"
                 onChange={this.handleChange}
-                placeholder="item name" 
-                type="text" 
-                value={this.state.item} 
+                placeholder="item name"
+                type="text"
+                value={this.state.item}
               />
             </div>
 
             <div className="description-form">
-              <textarea 
-                name="description" 
-                onChange={this.handleChange} cols="30" rows="10" 
-                placeholder="description" 
+              <textarea
+                name="description"
+                onChange={this.handleChange} cols="30" rows="10"
+                placeholder="description"
                 type="text"
-                value={this.state.description} 
+                value={this.state.description}
               />
             </div>
 
             <div className="price-form">
               <input
-                max="100000" 
-                min="0" 
-                name="price" 
+                max="100000"
+                min="0"
+                name="price"
                 onChange={this.handleChange}
-                placeholder="price" 
-                type="decimal" 
-                value={this.state.price} 
+                placeholder="price"
+                type="decimal"
+                value={this.state.price}
               />
             </div>
 
             <div>
-              <input 
-                accept="image/x-png,image/gif,image/jpeg" 
+              <input
+                accept="image/x-png,image/gif,image/jpeg"
                 name="userPhoto"
-                onChange={this.handleChangeImage}  
-                type="file" 
+                onChange={this.handleChangeImage}
+                type="file"
               />
             </div>
-            
+
             <input type="submit" value="submit card" />
           </form>
         </div>
