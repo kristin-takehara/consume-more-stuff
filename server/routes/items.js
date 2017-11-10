@@ -1,19 +1,22 @@
 const express = require('express');
 const db = require('../models');
+const multer = require('multer');
+
 const Item = db.Item;
 const User = db.User;
 const Category = db.Category;
 const Condition = db.Condition;
 const ItemStatus = db.ItemStatus;
-const router = express.Router();
-const multer = require('multer');
+
 const storage = multer.diskStorage({
   destination: './uploads',
-  filename(req, file, cb){
-    cb(null, `${file.originalname}`);
+  filename(req, photo, cb){
+    cb(null, `${photo.originalname}`);
   }
 });
 const upload = multer({ storage });
+
+const router = express.Router();
 
 router.route('/')
 .get((req, res) => {
@@ -39,12 +42,12 @@ router.route('/')
     return res.json(err);
  });
 })
-.post(isAuthenticated, upload.single('file'), (req, res) => {
+.post(isAuthenticated, upload.single('userPhoto'), (req, res) => {
   const details = req.body;
   let file = req.file;
   
   return Item.create({
-    file: details.file,
+    userPhoto: details.userPhoto,
     name : details.name,
     description : details.description,
     manufacturer : details.manufacturer,
@@ -147,7 +150,6 @@ router.route('/:id')
     res.json(err);
   });
 })
-
 .delete((req, res) => {
   let id = req.params.id;
   
@@ -170,7 +172,5 @@ function isAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { next(); }
   else { res.json({ error : 'Bad Request' }); }
 }
-
-
 
 module.exports = router;

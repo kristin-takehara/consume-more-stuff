@@ -4,7 +4,6 @@ const listOfItems = '/api/items'; // URL to POST to
 
 export const LOAD_SINGLE_ITEM = 'LOAD_SINGLE_ITEM';
 export const LOAD_ITEMS = 'LOAD_ITEMS';
-export const ADD_FILE = "ADD_FILE"; //action for file 
 export const ADD_ITEM = 'ADD_ITEM';
 export const EDIT_ITEM = 'EDIT_ITEM';
 export const EDITING ='EDITING';
@@ -51,25 +50,6 @@ export const addItem = (newItem) => {
       dispatch({
         type: ADD_ITEM,
         newItem: newItemDetails.data
-      });
-    })
-    .catch(err => {
-      dispatch({
-        type: ERROR,
-        error: err
-      });
-    });
-  };
-};
-
-// for image upload
-export const addFile = (newFile) => {
-  return (dispatch) => {
-    return Axios.post(newFile)
-    .then(newFile => {
-      dispatch({
-        type: ADD_FILE,
-        newFile: newFile.data
       });
     })
     .catch(err => {
