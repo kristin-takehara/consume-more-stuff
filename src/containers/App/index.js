@@ -32,8 +32,8 @@ class App extends Component {
       <div id="app">
 
         <NewItem />
-{/*        <ImageUpload />
-*/}     <ItemList items={this.props.items} />
+
+     <ItemList items={this.props.items} />
 
       </div>
     );
