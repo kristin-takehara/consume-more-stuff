@@ -47,7 +47,6 @@ router.route('/')
     name : details.name,
     description : details.description,
     manufacturer : details.manufacturer,
-    modelname : details.modelname,
     price : details.price,
     category_id : details.category_id,
     condition_id : details.condition_id,
@@ -101,7 +100,6 @@ router.route('/:id')
     description: change.description,
     price: change.price,
     manufacturer: change.manufacturer,
-    modelname: change.modelname,
     category_id: change.category_id,
     condition_id: change.condition_id,
     is_sold: change.is_sold,
@@ -131,7 +129,6 @@ router.route('/:id')
 })
 .delete((req, res) => {
   let id = req.params.id;
-
   return Item.findById(id)
   .then(foundItem => {
     return foundItem.update({
