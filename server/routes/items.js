@@ -1,6 +1,7 @@
 const express = require('express');
 const db = require('../models');
 const multer = require('multer');
+const path = require('path');
 
 const Item = db.Item;
 const User = db.User;
@@ -10,8 +11,11 @@ const ItemStatus = db.ItemStatus;
 
 const storage = multer.diskStorage({
   destination: './uploads',
-  filename(req, photo, cb){
-    cb(null, `${photo.originalname}`);
+  filename: (req, photo, cb) => {
+    crypto.pseudoRandomBytes(16, (err,raw) => {
+    cb(null, raw.toString('hex') + Date.now() + '.' + mime.extention(file.mimetype));
+    });
+    console.log(file.mimetype, " MIME TYPE");
   }
 });
 const upload = multer({ storage });
@@ -45,6 +49,7 @@ router.route('/')
 .post(isAuthenticated, upload.single('userPhoto'), (req, res) => {
   const details = req.body;
   let file = req.file;
+  console.log(file.path, "File Path");
   
   return Item.create({
     userPhoto: details.userPhoto,
