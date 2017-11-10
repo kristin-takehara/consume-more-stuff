@@ -104,7 +104,7 @@ router.route('/:id')
 })
 .put((req, res) => {
   let change = req.body;
-
+  
   return Item
   .update({
     name: change.name,
@@ -121,7 +121,7 @@ router.route('/:id')
     where: { id: change.id },
     returning: true
   })
-  .then(updatedItem => {
+  .then(updatedItem => {    
     updatedItem[1][0].reload({
       include: [
         { model : Category, as : 'Category' },
@@ -134,11 +134,13 @@ router.route('/:id')
           }
         }
       ]
+    })
+    .then(updatedItemDetails => {
+      console.log(updatedItemDetails);
+      
+      console.log('edited an item');
+      res.json(updatedItemDetails);
     });
-  })
-  .then(updatedItemDetails => {
-    console.log('edited an item');
-    res.json(updatedItemDetails);
   })
   .catch(err => {
     console.log(err);
