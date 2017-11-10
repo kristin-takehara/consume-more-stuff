@@ -65,7 +65,7 @@ class ImageUpload extends Component {
             type="file" 
             accept="image/x-png,image/gif,image/jpeg"
             encType="multipart/form-data"
-            action="/addItem"
+            action="/addFile"
             method="post"
             onChange={(event)=>this.handleImageChange(event)} />
           <button className="submitButton" 
@@ -90,7 +90,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addItem: (file) => {
+    addFile: (file) => {
       dispatch(addFile(file))
     }
   }
