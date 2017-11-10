@@ -49,8 +49,10 @@ export const loginUser = (userCreds) => {
 
 export const logoutUser = () => {
   return (dispatch) => {
+    console.log(dispatch, "logout");
     return Axios.get(logout)
     .then((response) => {
+      console.log(response, "RES DISPATCH");
       if (response.data.success) {
         dispatch({
           type: LOGOUT_USER,
