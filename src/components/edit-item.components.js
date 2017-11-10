@@ -1,18 +1,18 @@
 import React from 'react';
-import { FormattedRelative } from 'react-intl';
-import { Link } from 'react-router-dom';
+// import { FormattedRelative } from 'react-intl';
+// import { Link } from 'react-router-dom';
 import Select from './select.components.js';
 
 const EditItem = ({ singleItem, categories, conditions, statuses, handleSubmit, handleChange }) => {
 
   let Category = singleItem.Category || '';
-  let Conditon = singleItem.Conditon || '';
-  let Status = singleItem.Status || '';
-  
+  let Condition = singleItem.Condition || '';
+  let Status = singleItem.Status || '';  
+
   return (
     <div className="single-item" id="edit-single-item">
 
-      <form onSubmit={ (e) => handleSubmit(singleItem.id, e) }>
+      <form onSubmit={ (e) => this.handleSubmit(singleItem.id, e) }>
         <div>
           <input
             name="name"
@@ -32,13 +32,25 @@ const EditItem = ({ singleItem, categories, conditions, statuses, handleSubmit, 
             defaultValue={singleItem.price} />
         </div>
         <div>
+          <input
+            name="manufacturer"
+            onChange={handleChange}
+            defaultValue={singleItem.manufacturer} />
+        </div>
+        <div>
+          <input
+            name="modelname"
+            onChange={handleChange}
+            defaultValue={singleItem.modelname} />
+        </div>
+        <div>
           <Select
             list={categories}
             name="category_id"
             label="Category: "
             type="category"
-            handler={this.handleChange}
-            defaultValue={Category.category} />
+            handler={handleChange}
+            defaultValue={singleItem.category_id} />
         </div>
         <div>
           <Select
@@ -46,8 +58,8 @@ const EditItem = ({ singleItem, categories, conditions, statuses, handleSubmit, 
             name="condition_id"
             label="Conditon: "
             type="condition"
-            handler={this.handleChange}
-            defaultValue={Conditon.condition} />
+            handler={handleChange}
+            defaultValue={singleItem.condition_id} />
         </div>
         <div>
           <Select
@@ -56,8 +68,10 @@ const EditItem = ({ singleItem, categories, conditions, statuses, handleSubmit, 
             label="Sold: "
             type="sold"
             handler={this.handleChange}
-            defaultValue={Status.sold} />
+            defaultValue={singleItem.is_sold} />
         </div>
+
+        <input type="submit" value="CONFIRM" />
       </form>
 
     </div>
