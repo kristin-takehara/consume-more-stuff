@@ -1,4 +1,3 @@
-
 const express = require('express');
 const db = require('../models');
 const Item = db.Item;
@@ -102,13 +101,57 @@ router.route('/:id')
     console.log(err);
     return res.json (err);
   }));
-});
+})
+.put((req, res) => {
+  let change = req.body;
+
+  return Item
+  .update({
+    name: change.name,
+    description: change.description,
+    price: change.price,
+    manufacturer: change.manufacturer,
+    modelname: change.modelname,
+    category_id: change.category_id,
+    condition_id: change.condition_id,
+    is_sold: change.is_sold,
+    user_id: change.user_id
+  },
+  {
+    where: { id: change.id },
+    returning: true
+  })
+  .then(updatedItem => {
+    updatedItem[1][0].reload({
+      include: [
+        { model : Category, as : 'Category' },
+        { model : Condition, as : 'Condition' },
+        { model : ItemStatus, as : 'Status'},
+        { model : User,
+          as : 'User',
+          attributes : {
+              exclude : ['password']
+          }
+        }
+      ]
+    });
+  })
+  .then(updatedItemDetails => {
+    console.log('edited an item');
+    res.json(updatedItemDetails);
+  })
+  .catch(err => {
+    console.log(err);
+    res.json(err);
+  });
+})
+;
 
 
 function isAuthenticated(req, res, next) {
   if (req.isAuthenticated()) { next(); }
   else { res.json({ error : 'Bad Request' }); }
-};
+}
 
 
 

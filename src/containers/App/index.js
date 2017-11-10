@@ -17,7 +17,6 @@ import NewItem from '../NewItem/';
 import Nav from '../../components/nav.components';
 import ImageUpload from '../../containers/ImageUpload/';
 
-
 class App extends Component {
   componentDidMount(){
     this.props.loadItems();

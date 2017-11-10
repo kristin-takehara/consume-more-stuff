@@ -5,10 +5,6 @@ import Select from './select.components.js';
 
 const EditItem = ({ singleItem, categories, conditions, statuses, handleSubmit, handleChange }) => {
 
-  let Category = singleItem.Category || '';
-  let Condition = singleItem.Condition || '';
-  let Status = singleItem.Status || '';  
-
   return (
     <div className="single-item" id="edit-single-item">
 

@@ -71,6 +71,10 @@ class SingleItemView extends Component {
     this.props.loadStatuses();
   }
 
+  componentWillUnmount() {
+    this.toggleEdit(this.props.singleItem);
+  }
+
   render() {
     return(
       <div id="single-item-view">
