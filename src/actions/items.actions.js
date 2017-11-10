@@ -4,9 +4,11 @@ const listOfItems = '/api/items'; // URL to POST to
 
 export const LOAD_SINGLE_ITEM = 'LOAD_SINGLE_ITEM';
 export const LOAD_ITEMS = 'LOAD_ITEMS';
+export const ADD_FILE = "ADD_FILE"; //action for file 
 export const ADD_ITEM = 'ADD_ITEM';
 export const EDIT_ITEM = 'EDIT_ITEM';
 export const EDITING ='EDITING';
+export const DEL_ITEM ='DEL_ITEM';
 export const ERROR = 'ERROR';
 
 //GET single item
@@ -41,8 +43,7 @@ export const loadItems = () => {
   };
 };
 
-
-//CREATE(POST) new item
+//CREATE(POST) new item  
 export const addItem = (newItem) => {
   return (dispatch) => {
     return Axios.post(listOfItems, newItem)
@@ -61,8 +62,27 @@ export const addItem = (newItem) => {
   };
 };
 
+// for image upload
+export const addFile = (newFile) => {
+  return (dispatch) => {
+    return Axios.post(newFile)
+    .then(newFile => {
+      dispatch({
+        type: ADD_FILE,
+        newFile: newFile.data
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: ERROR,
+        error: err
+      });
+    });
+  };
+};
+
 //Switches flag to inform front end of change/edit
-export const makeItemEditable = (id) => {  
+export const makeItemEditable = (id) => { 
   return (dispatch) => {
     return dispatch({
       type: EDITING
@@ -71,9 +91,9 @@ export const makeItemEditable = (id) => {
 };
 
 //UPDATE(PUT) item
-export const editItem = (updatedItem) => {
+export const editItem = (updatedItem) => {  
   return (dispatch) => {
-    return Axios.put(`${listOfItems/updatedItem.id}`)
+    return Axios.put(`${listOfItems}/${updatedItem.id}`, updatedItem)
     .then(updatedItemDetails => {
       dispatch({
         type: EDIT_ITEM,
@@ -83,6 +103,24 @@ export const editItem = (updatedItem) => {
     .catch(err => {
       dispatch({
         type: ERROR,
+        error: err
+      });
+    });
+  };
+};
+
+export const deleteItem = (id) => {
+  return dispatch => {
+    return Axios.delete(`${listOfItems}/${id}`)
+    .then(response => {
+      dispatch({
+        type : DEL_ITEM,
+        id : id
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type : ERROR,
         error: err
       });
     });

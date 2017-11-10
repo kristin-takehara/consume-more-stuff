@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addItem } from '../../actions/items.actions';
-
 import Select from '../../components/select.components';
 
 class NewItem extends Component {
@@ -9,6 +8,7 @@ class NewItem extends Component {
     super(props);
 
     this.state = {  // sets intial empty state object
+      file: '',
       name: '',
       description: '',
       manufacturer: '',
@@ -22,23 +22,60 @@ class NewItem extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChangeImage = this.handleChangeImage.bind(this);
+  }
+
+  handleChangeImage(event){
+    event.preventDefault();
+
+    let reader = new FileReader();
+
+    let file = event.target.files[0];
+
+    reader.onloadend = () => {
+      this.setState({
+        file: file,
+        imageUrl: reader.result
+      });
+    };
+
+    reader.readAsDataURL(file);
   }
 
   handleSubmit(event){
     event.preventDefault();
-    let newItem = {
-      name: this.state.name,    // sets state when client inserts/changes the name
-      description: this.state.description,
-      manufacturer: this.state.manufacturer,
-      modelname: this.state.modelname,
-      price: this.state.price,
-      category_id: this.state.category_id,
-      condition_id: this.state.condition_id,
-      is_sold: this.state.is_sold,
-      user_id: this.state.user_id
-    };
 
-    this.props.addItem(newItem);
+    let formData = new FormData();
+
+    formData.append('file', this.state.file);
+    formData.append('name', this.state.name);
+    formData.append('description', this.state.description);
+    formData.append('manufacturer', this.state.manufacturer);
+    formData.append('modelname', this.state.modelname);
+    formData.append('price', this.state.price);
+    formData.append('category_id', this.state.category_id);
+    formData.append('condition_id', this.state.condition_id);
+    formData.append('is_sold', this.state.is_sold);
+    formData.append('user_id', this.state.user_id);
+
+
+    this.props.addItem(formData);
+
+    // let newItem = {
+    //   file: this.state.file,
+    //   name: this.state.name,    // sets state when client inserts/changes the name
+    //   description: this.state.description,
+    //   manufacturer: this.state.manufacturer,
+    //   modelname: this.state.modelname,
+    //   price: this.state.price,
+    //   category_id: this.state.category_id,
+    //   condition_id: this.state.condition_id,
+    //   is_sold: this.state.is_sold,
+    //   user_id: this.state.user_id
+    // };
+
+    // this.props.addItem(newItem);
+
     this.setState({ // this will pass up to the newItem that will be submitted on SUBMIT
       name: '',
       description: '',
@@ -65,6 +102,7 @@ class NewItem extends Component {
     return (
       <div id="new-item-form">
         <form onSubmit={this.handleSubmit}>
+  
 
           <Select
           list={this.props.categories}
@@ -94,30 +132,44 @@ class NewItem extends Component {
           type="username"
           handler={this.handleChange} />
 
+
+          
           <div className="name-form">
             <input name="name" value={this.state.item} type="text" placeholder="item name" onChange={this.handleChange}/>
           </div>
+
           <div className="description-form">
             <textarea name="description" value={this.state.description} type="text"
               placeholder="description" onChange={this.handleChange} cols="30" rows="10" />
           </div>
+
           <div className="price-form">
             <input name="price" value={this.state.price} type="number" min="0" max="100000" placeholder="price" onChange={this.handleChange}/>
           </div>
+
+          <div>
+            <input name="upload photo" 
+              type="file" 
+              accept="image/x-png,image/gif,image/jpeg" 
+              onChange={this.handleChangeImage}  
+            />
+          </div>
+          
           <input type="submit" value="submit card" />
         </form>
       </div>
-    );
+     );
+    }
+    else {
+      return null;
+    }
   }
-  else {
-    return null;
-  }
-}
 }
 
 
 const mapStateToProps = (state) => {
   return {
+    file: state.file,
     items : state.itemList,
     users : state.userList,
     categories : state.categoryList,     // setting state

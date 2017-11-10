@@ -8,7 +8,7 @@ const Item = ({ singleItem }) => {
       <Link to={`/items/${singleItem.id}`}>
         <div>{ singleItem.name }</div>
       </Link>
-
+      
       <div>Description: { singleItem.description }</div>
       <div>Price: ${ singleItem.price }</div>
       <div>Manufacturer: { singleItem.manufacturer }</div>
