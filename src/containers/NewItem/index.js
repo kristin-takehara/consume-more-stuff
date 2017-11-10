@@ -13,7 +13,7 @@ class NewItem extends Component {
       description: '',
       manufacturer: '',
       modelname: '',
-      price: '',
+      price: 0,
       category_id: 1,
       condition_id: 1,
       is_sold: 2,
@@ -66,7 +66,7 @@ class NewItem extends Component {
       description: '',
       manufacturer: '',
       modelname: '',
-      price: '',
+      price: 0,
       category_id: 1,
       condition_id: 1,
       is_sold: 2,
@@ -84,72 +84,85 @@ class NewItem extends Component {
   }
 
   render() {
-    if(localStorage.username !== undefined){
-    return (
-      <div id="new-item-form">
-        <form onSubmit={this.handleSubmit}>
-  
-          <Select
-          list={this.props.categories}
-          name="category_id"
-          label="Category: "
-          type="category"
-          handler={this.handleChange}
-          defaultValue={this.state.category_id} />
-
-          <Select
-          list={this.props.conditions}
-          name="condition_id"
-          label="Condition: "
-          type="condition"
-          handler={this.handleChange}
-          defaultValue={this.state.condition_id} />
-
-          <Select
-          list={this.props.users}
-          name="user_id"
-          label="Username:  "
-          type="username"
-          handler={this.handleChange}
-          defaultValue={this.state.user_id} />
-
-          <div className="name-form">
-            <input 
-              name="name" 
-              value={this.state.item} 
-              type="text" 
-              placeholder="item name" 
-              onChange={this.handleChange}/>
-          </div>
-
-          <div className="description-form">
-            <textarea 
-              name="description" 
-              value={this.state.description} 
-              type="text"
-              placeholder="description" 
-              onChange={this.handleChange} cols="30" rows="10" />
-          </div>
-
-          <div className="price-form">
-            <input name="price" value={this.state.price} type="number" min="0" max="100000" placeholder="price" onChange={this.handleChange}/>
-          </div>
-
-          <div>
-            <input 
-              name="userPhoto"
-              type="file" 
-              accept="image/x-png,image/gif,image/jpeg" 
-              onChange={this.handleChangeImage}  
+    if(localStorage.username) {
+      return (
+        <div id="new-item-form">
+          <form onSubmit={this.handleSubmit}>
+    
+            <Select
+              defaultValue={this.state.category_id} 
+              handler={this.handleChange}
+              label="Category: "
+              list={this.props.categories}
+              name="category_id"
+              type="category"
             />
-          </div>
-          
-          <input type="submit" value="submit card" />
-        </form>
-      </div>
-     );
-    }
-    else {
+
+            <Select
+              defaultValue={this.state.condition_id} 
+              handler={this.handleChange}
+              label="Condition: "
+              list={this.props.conditions}
+              name="condition_id"
+              type="condition"
+            />
+
+            <Select
+              defaultValue={this.state.user_id} 
+              handler={this.handleChange}
+              label="Username:  "
+              list={this.props.users}
+              name="user_id"
+              type="username"
+            />
+
+            <div className="name-form">
+              <input 
+                name="name" 
+                onChange={this.handleChange}
+                placeholder="item name" 
+                type="text" 
+                value={this.state.item} 
+              />
+            </div>
+
+            <div className="description-form">
+              <textarea 
+                name="description" 
+                onChange={this.handleChange} cols="30" rows="10" 
+                placeholder="description" 
+                type="text"
+                value={this.state.description} 
+              />
+            </div>
+
+            <div className="price-form">
+              <input
+                max="100000" 
+                min="0" 
+                name="price" 
+                onChange={this.handleChange}
+                placeholder="price" 
+                type="number" 
+                value={this.state.price} 
+              />
+            </div>
+
+            <div>
+              <input 
+                accept="image/x-png,image/gif,image/jpeg" 
+                name="userPhoto"
+                onChange={this.handleChangeImage}  
+                type="file" 
+              />
+            </div>
+            
+            <input type="submit" value="submit card" />
+          </form>
+        </div>
+      );
+
+    } else {
       return null;
     }
   }
