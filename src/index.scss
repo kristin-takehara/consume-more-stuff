@@ -1,0 +1,15 @@
+html {
+  background-image: url("/assets/doodles.png");
+  background-repeat: repeat;
+  background-position: center;
+  background-attachment: center fixed;
+  font-family: 'Muli', sans-serif;
+  font-family: 'Libre Baskerville', serif;
+}
+
+.nav-links{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 7vw;
+}

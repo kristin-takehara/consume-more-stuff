@@ -30,7 +30,7 @@ class App extends Component {
 
         <NewItem />
 
-     <ItemList items={this.props.items} />
+        <ItemList items={this.props.items} />
 
       </div>
     );

@@ -10,7 +10,7 @@ import {
 } from 'react-router-dom';
 import reducers from './reducers';
 import thunk from 'redux-thunk';
-
+import './index.scss';
 //---------------------------------------
 import App from './containers/App';
 import Register from './containers/Register';
@@ -33,20 +33,24 @@ ReactDOM.render(
     <IntlProvider>
     <Router>
       <div id="source">
+        <header id="global-nav-header">
+          <div className="nav-links">
+            <Link to="/">Home</Link>
+            <Link to="/register">Register</Link>
+            <Link to="/login">Login</Link>
+            <Link to="/logout">Logout</Link>
 
-        <Link to="/">Home</Link><br/>
-        <Link to="/register">Register</Link><br/>
-        <Link to="/login">Login</Link><br/>
-        <Link to="/logout">Logout</Link>
-
-        <Route exact path="/" component={App} />
-        <Route path="/register" component={Register} />
-        <Route path="/login" component={LogIN} />
-        <Route path="/items/:id" component={SingleItemView} />
-        <Route path="/logout" component={LogOUT} />
-
-        </div>
-      </Router>
+            <Route path="/register" component={Register} />
+            <Route path="/login" component={LogIN} />
+            <Route path="/items/:id" component={SingleItemView} />
+            <Route path="/logout" component={LogOUT} />
+          </div>
+        </header>
+        <br/>
+        <br/>
+            <Route exact path="/" component={App} />
+      </div>
+    </Router>
     </IntlProvider>
   </Provider>,
   document.getElementById('root')
