@@ -1,20 +1,27 @@
 const express = require('express');
 const db = require('../models');
 const multer = require('multer');
+const crypto = require('crypto');
+const mime = require('mime');
 
 const Item = db.Item;
 const User = db.User;
 const Category = db.Category;
 const Condition = db.Condition;
 const ItemStatus = db.ItemStatus;
-
 const storage = multer.diskStorage({
-  destination: './uploads',
-  filename(req, photo, cb){
-    cb(null, `${photo.originalname}`);
+  destination: function(req, file, cb) {
+      cb(null, 'uploads/');
+  },
+  filename: function(req, file, cb) {
+    crypto.pseudoRandomBytes(16, function(err, raw) {
+      cb(null, raw.toString('hex') + Date.now() + '.' + mime.ex);
+    });
   }
 });
-const upload = multer({ storage });
+const upload = multer({
+  storage: storage
+});
 
 const router = express.Router();
 
@@ -63,6 +70,9 @@ router.route('/')
       ]
     });
   })
+  // .then((newItem) =>{
+  //   res.send('<img src="/uploads/' + req.file.filename + '" />');  
+  // })
   .then(newItem => {
     return res.json(newItem);
   })
