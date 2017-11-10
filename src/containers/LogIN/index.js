@@ -7,7 +7,7 @@ import { loadUsers } from '../../actions/users.actions';
 class Login extends Component {
   constructor(props){
     super(props);
-
+    console.log(props);
     this.state = {
       username : '',
       password : '',
@@ -29,7 +29,6 @@ class Login extends Component {
     }
     console.log("loginCreds", loginCreds);
     this.props.loginUser(loginCreds);
-
     this.setState(
     {
       username : '',
@@ -66,7 +65,7 @@ class Login extends Component {
           </div>
 
           <div>
-          <input type="text" placeholder="password" defaultValue={this.state.password} onChange={this.handlePasswordInput} />
+          <input type="password" placeholder="password" defaultValue={this.state.password} onChange={this.handlePasswordInput} />
           </div>
 
           <button

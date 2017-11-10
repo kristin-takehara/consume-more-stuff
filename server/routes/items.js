@@ -7,8 +7,6 @@ const Category = db.Category;
 const Condition = db.Condition;
 const ItemStatus = db.ItemStatus;
 const router = express.Router();
-
-// npm package to handel reading image files  middleware
 const multer = require('multer');
 const storage = multer.diskStorage({
   destination: './uploads',
@@ -17,13 +15,6 @@ const storage = multer.diskStorage({
   }
 });
 const upload = multer({ storage });
-
-// route that handles a submit picture
-router.route('/')
-.post(upload.single('file'), (req, res) => {
-  let file = req.file;
-  console.log(file);
-});
 
 router.route('/')
 .get((req, res) => {
@@ -34,8 +25,8 @@ router.route('/')
     { model : ItemStatus, as : 'Status'},
     { model : User,
       as : 'User',
-      attributes : { 
-          exclude : ['password'] 
+      attributes : {
+          exclude : ['password']
       }
     }
   ]
@@ -49,7 +40,7 @@ router.route('/')
     return res.json(err);
  });
 })
-.post((req, res) => {
+.post(isAuthenticated, upload.single('file'), (req, res) => {
   const details = req.body;
   let file = req.file;
 
@@ -73,8 +64,8 @@ router.route('/')
         { model : ItemStatus, as : 'Status'},
         { model : User,
           as : 'User',
-          attributes : { 
-              exclude : ['password'] 
+          attributes : {
+              exclude : ['password']
           }
         }
       ]
@@ -98,8 +89,8 @@ router.route('/:id')
       { model : ItemStatus, as : 'Status'},
       { model : User,
         as : 'User',
-        attributes : { 
-            exclude : ['password'] 
+        attributes : {
+            exclude : ['password']
         }
       }
     ]
@@ -112,5 +103,13 @@ router.route('/:id')
     return res.json (err);
   }));
 });
+
+
+function isAuthenticated(req, res, next) {
+  if (req.isAuthenticated()) { next(); }
+  else { res.json({ error : 'Bad Request' }); }
+};
+
+
 
 module.exports = router;
