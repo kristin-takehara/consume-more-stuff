@@ -26,8 +26,8 @@ class SingleItemView extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  toggleEdit(item) {
-    this.props.makeItemEditable(item.id);
+  toggleEdit(item, edit) {
+    this.props.makeItemEditable(item.id, edit);
 
     this.setState({
       name : item.name,
@@ -62,16 +62,19 @@ class SingleItemView extends Component {
       user_id: this.state.user_id
     });
 
-    this.props.makeItemEditable(id);
     this.setState({
       name : '',
       description: '',
       price: '',
+      manufacturer: '',
+      modelname: '',
       category_id: '',
       condition_id: '',
       is_sold: '',
       user_id: ''
     });
+
+    this.props.makeItemEditable(id);
   }
 
   handleChange(evt) {
@@ -93,18 +96,10 @@ class SingleItemView extends Component {
   }
 
   componentWillUnmount() {
-    this.toggleEdit(this.props.singleItem);
-    this.setState = {
-      name : '',
-      description: '',
-      price: '',
-      manufacturer: '',
-      modelname: '',
-      category_id: '',
-      condition_id: '',
-      is_sold: '',
-      user_id: ''
-    };
+    this.props.makeItemEditable(
+      this.props.match.params.id,
+      false
+    );
   }
 
   render() {
@@ -115,7 +110,7 @@ class SingleItemView extends Component {
           !this.props.singleItem.isEditing &&
           <div>
             <Item singleItem={ this.props.singleItem } />
-            <button type="submit" onClick={this.toggleEdit.bind(this, this.props.singleItem)}>
+            <button type="submit" onClick={this.toggleEdit.bind(this, this.props.singleItem, true)}>
               EDIT
             </button>
           </div>
@@ -131,18 +126,19 @@ class SingleItemView extends Component {
               handleChange={ this.handleChange }
               handleSubmit={ this.handleSubmit } />
 
-
             <button
               type="submit"
               onClick={this.removeItem.bind(
                 this,
                 this.props.singleItem.id)} >
               DELETE
-            </button>            <button
+            </button>            
+
+            <button
               type="submit"
               onClick={this.toggleEdit.bind(
                 this,
-                this.props.singleItem)} >
+                this.props.singleItem, false)} >
               UNDO
             </button>
           </div>
@@ -174,8 +170,8 @@ const mapDispatchToProps = (dispatch) => {
     loadSingleItem: (id) => {
       dispatch(loadSingleItem(id))
     },
-    makeItemEditable: (id) => {
-      dispatch(makeItemEditable(id))
+    makeItemEditable: (id, edit) => {
+      dispatch(makeItemEditable(id, edit))
     },
     editItem: (updatedItem) => {
       dispatch(editItem(updatedItem))
