@@ -58,6 +58,7 @@ class Login extends Component {
     }
     return(
       <div>
+        <h4> Login </h4>
         <form onSubmit={this.handleSubmit.bind(this)}>
 
           <div>
