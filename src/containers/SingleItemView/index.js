@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loadSingleItem, makeItemEditable } from '../../actions/items.actions';
+import { loadSingleItem, makeItemEditable, editItem, deleteItem } from '../../actions/items.actions';
 import { loadCategories } from '../../actions/categories.actions';
 import { loadConditions } from '../../actions/conditions.actions';
 import { loadStatuses } from '../../actions/statuses.actions';
@@ -21,6 +21,9 @@ class SingleItemView extends Component {
       is_sold: '',
       user_id: ''
     };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   toggleEdit(item) {
@@ -39,10 +42,28 @@ class SingleItemView extends Component {
     });
   }
 
-  handleSubmit(evt) {
-    evt.preventDefault();
+  removeItem(id) {
+    this.props.deleteItem(id);
+    this.props.makeItemEditable(id);
+  }
 
-    this.setState = {
+  handleSubmit(id, evt) {
+    evt.preventDefault();
+    this.props.editItem({
+      id : id,
+      name : this.state.name,
+      description: this.state.description,
+      price: this.state.price,
+      manufacturer: this.state.manufacturer,
+      modelname: this.state.modelname,
+      category_id: this.state.category_id,
+      condition_id: this.state.condition_id,
+      is_sold: this.state.is_sold,
+      user_id: this.state.user_id
+    });
+
+    this.props.makeItemEditable(id);
+    this.setState({
       name : '',
       description: '',
       price: '',
@@ -50,7 +71,7 @@ class SingleItemView extends Component {
       condition_id: '',
       is_sold: '',
       user_id: ''
-    };
+    });
   }
 
   handleChange(evt) {
@@ -69,6 +90,21 @@ class SingleItemView extends Component {
     this.props.loadCategories();
     this.props.loadConditions();
     this.props.loadStatuses();
+  }
+
+  componentWillUnmount() {
+    this.toggleEdit(this.props.singleItem);
+    this.state = {
+      name : '',
+      description: '',
+      price: '',
+      manufacturer: '',
+      modelname: '',
+      category_id: '',
+      condition_id: '',
+      is_sold: '',
+      user_id: ''
+    };
   }
 
   render() {
@@ -94,7 +130,19 @@ class SingleItemView extends Component {
               statuses={ this.props.statuses }
               handleChange={ this.handleChange }
               handleSubmit={ this.handleSubmit } />
-            <button type="submit" onClick={this.toggleEdit.bind(this, this.props.singleItem)}>
+
+
+            <button
+              type="submit"
+              onClick={this.removeItem.bind(
+                this,
+                this.props.singleItem.id)} >
+              DELETE
+            </button>            <button
+              type="submit"
+              onClick={this.toggleEdit.bind(
+                this,
+                this.props.singleItem)} >
               UNDO
             </button>
           </div>
@@ -128,6 +176,12 @@ const mapDispatchToProps = (dispatch) => {
     },
     makeItemEditable: (id) => {
       dispatch(makeItemEditable(id))
+    },
+    editItem: (updatedItem) => {
+      dispatch(editItem(updatedItem))
+    },
+    deleteItem: (id) => {
+      dispatch(deleteItem(id))
     },
     loadCategories: () => {
       dispatch(loadCategories());

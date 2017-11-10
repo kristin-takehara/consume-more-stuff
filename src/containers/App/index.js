@@ -16,7 +16,6 @@ import ItemList from '../../components/itemlist.components';
 import NewItem from '../NewItem/';
 import ImageUpload from '../../containers/ImageUpload/';
 
-
 class App extends Component {
   componentDidMount(){
     this.props.loadItems();
@@ -31,8 +30,8 @@ class App extends Component {
       <div id="app">
 
         <NewItem />
-        <ImageUpload />
-        <ItemList items={this.props.items} />
+
+     <ItemList items={this.props.items} />
 
       </div>
     );

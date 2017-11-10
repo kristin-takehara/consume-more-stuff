@@ -1,4 +1,4 @@
-import { LOAD_SINGLE_ITEM, EDITING } from '../actions/items.actions';
+import { LOAD_SINGLE_ITEM, EDITING, EDIT_ITEM, DEL_ITEM } from '../actions/items.actions';
 
 const initialState = {
   Category : '',
@@ -17,8 +17,38 @@ const singleItem = (state = initialState, action) => {
         isEditing : !state.isEditing
       });
 
-  default:
-      return state;
+    case EDIT_ITEM:
+    const updatedItem = action.updatedItem;
+
+    return Object.assign({}, state, {
+      name : updatedItem.name,
+      price : updatedItem.price,
+      description : updatedItem.description,
+      manufacturer : updatedItem.manufacturer,
+      modelname : updatedItem.modelname,
+      category_id : updatedItem.category_id,
+      condition_id : updatedItem.condition_id,
+      is_sold : updatedItem.is_sold,
+      created_by : updatedItem.created_by,
+      updatedAt : updatedItem.updatedAt
+    });
+
+    case DEL_ITEM:
+      return Object.assign({}, state, {
+        name : '',
+        price : '',
+        description : '',
+        manufacturer : '',
+        modelname : '',
+        category_id : '',
+        condition_id : '',
+        is_sold : '',
+        created_by : '',
+        updatedAt : ''
+      });
+
+    default:
+        return state;
   }
 };
 
