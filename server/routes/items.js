@@ -40,7 +40,7 @@ router.route('/')
     return res.json(err);
  });
 })
-.post(upload.single('file'), (req, res) => {
+.post(isAuthenticated, upload.single('file'), (req, res) => {
   const details = req.body;
   let file = req.file;
   
