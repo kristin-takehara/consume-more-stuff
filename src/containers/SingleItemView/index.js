@@ -39,8 +39,20 @@ class SingleItemView extends Component {
     });
   }
 
-  handleSubmit(evt) {
+  handleSubmit(id, evt) {
     evt.preventDefault();
+    this.props.editItem({
+      id : id,
+      name : this.state.name,
+      description: this.state.description,
+      price: this.state.price,
+      manufacturer: this.state.manufacturer,
+      modelname: this.state.modelname,
+      category_id: this.state.category_id,
+      condition_id: this.state.condition_id,
+      is_sold: this.state.is_sold,
+      user_id: this.state.user_id
+    });
 
     this.setState = {
       name : '',

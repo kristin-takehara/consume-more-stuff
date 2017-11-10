@@ -72,6 +72,8 @@ export const makeItemEditable = (id) => {
 
 //UPDATE(PUT) item
 export const editItem = (updatedItem) => {
+  console.log('actions');
+  
   return (dispatch) => {
     return Axios.put(`${listOfItems/updatedItem.id}`)
     .then(updatedItemDetails => {
