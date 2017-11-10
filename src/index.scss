@@ -7,6 +7,11 @@ html {
   font-family: 'Libre Baskerville', serif;
 }
 
+#logo{
+  display: flex;
+  justify-content: center;
+}
+
 .nav-links{
   display: flex;
   justify-content: space-between;

@@ -34,6 +34,9 @@ ReactDOM.render(
     <Router>
       <div id="source">
         <header id="global-nav-header">
+        <div id="logo">
+          <img src="/assets/jnkr-logo.jpg" />
+        </div>
           <div className="nav-links">
             <Link to="/">Home</Link>
             <Link to="/register">Register</Link>
