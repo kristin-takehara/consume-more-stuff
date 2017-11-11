@@ -13,9 +13,11 @@ const Item = ({ singleItem }) => {
       <div>Description: { singleItem.description }</div>
       <div>Price: ${ singleItem.price }</div>
       <div>Manufacturer: { singleItem.manufacturer }</div>
-      <div>Model: { singleItem.modelname }</div>
+      <div>Model: { singleItem.model }</div>
       <div>Condition: { singleItem.Condition.condition }</div>
       <div>Category: { singleItem.Category.category }</div>
+      <div>Dimensions: { singleItem.dimensions }</div>
+      <div>Notes: { singleItem.notes }</div>
       <div>
         Updated: <FormattedRelative value={ singleItem.updatedAt } />
       </div>
