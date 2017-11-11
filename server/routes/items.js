@@ -38,7 +38,7 @@ router.route('/')
   let file = req.file;
 
   return Item.create({
-    userPhoto: details.userPhoto,
+    url: file.path,
     name : details.name,
     description : details.description,
     manufacturer : details.manufacturer,
