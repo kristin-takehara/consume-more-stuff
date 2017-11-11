@@ -35,9 +35,21 @@ const EditItem = ({ singleItem, categories, conditions, statuses, handleSubmit, 
         </div>
         <div>
           <input
-            name="modelname"
+            name="model"
             onChange={handleChange}
-            defaultValue={singleItem.modelname} />
+            defaultValue={singleItem.model} />
+        </div>
+        <div>
+          <input
+            name="dimensions"
+            onChange={handleChange}
+            defaultValue={singleItem.dimensions} />
+        </div>
+        <div>
+          <input
+            name="notes"
+            onChange={handleChange}
+            defaultValue={singleItem.notes} />
         </div>
         <div>
           <Select

@@ -63,9 +63,6 @@ router.route('/')
       ]
     });
   })
-  // .then((newItem) =>{
-  //   res.send('<img src="/uploads/' + req.file.filename + '" />');
-  // })
   .then(newItem => {
     return res.json(newItem);
   })
@@ -96,27 +93,30 @@ router.route('/:id')
   }));
 })
 .put(isAuthenticated, (req, res) => {
-  let change = req.body;
-
+  let details = req.body; 
+    
   // prevents a logged in user from updating another user's post unless admin or the user that created the post
-  if (req.user.id !== change.user_id ||
+  if (req.user.id !== details.user_id &&
       req.user.role !== 'admin') {
     return { success: false };
   }
 
   return Item
   .update({
-    name: change.name,
-    description: change.description,
-    price: change.price,
-    manufacturer: change.manufacturer,
-    category_id: change.category_id,
-    condition_id: change.condition_id,
-    is_sold: change.is_sold,
-    user_id: change.user_id
+    category_id : details.category_id,
+    condition_id : details.condition_id,
+    description : details.description,
+    dimensions : details.dimensions,
+    // imageUrl: path ? file.path : '',
+    is_sold : 2,
+    name : details.name,
+    notes : details.notes,
+    manufacturer : details.manufacturer,
+    model : details.model,
+    price : details.price
   },
   {
-    where: { id: change.id },
+    where: { id: details.id },
     returning: true
   })
   .then(updatedItem => {
@@ -130,6 +130,7 @@ router.route('/:id')
       ]
     })
     .then(updatedItemDetails => {
+      console.log('item edited');
       res.json(updatedItemDetails);
     });
   })
@@ -141,19 +142,20 @@ router.route('/:id')
 .delete(isAuthenticated, (req, res) => {
   let id = req.params.id;
 
-  // prevents a logged in user from deleting another user's post unless admin or the user that created the post
-  // if (req.user.id !== change.user_id ||
-  //     req.user.role !== 'admin') {
-  //   return { success: false };
-  // }
-
   return Item.findById(id)
   .then(foundItem => {
+    // prevents a logged in user from deleting another user's post unless admin or the user that created the post
+    if (req.user.id !== foundItem.user_id &&
+        req.user.role !== 'admin') {
+      return { success: false };
+    }
+
     return foundItem.update({
       deletedAt: new Date()
     });
   })
   .then(response => {
+    console.log('"deleted item"');
     res.json({
       success: true
     });
