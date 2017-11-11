@@ -33,7 +33,7 @@ router.route('/')
     return res.json(err);
  });
 })
-.post(isAuthenticated, upload.single('userPhoto'), (req, res) => {
+.post(upload.single('userPhoto'), (req, res) => {
   const details = req.body;
   let file = req.file;
 
