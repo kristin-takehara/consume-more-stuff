@@ -15,6 +15,7 @@ import { loadCategories } from '../../actions/categories.actions';
 
 import ItemList from '../../components/itemlist.components';
 //CONTAINERS------------------
+// import Home from '../Home';
 import Register from '../Register';
 import Login from '../LogIN';
 import Logout from '../LogOUT';
