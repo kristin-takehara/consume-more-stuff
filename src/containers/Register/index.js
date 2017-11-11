@@ -79,8 +79,7 @@ class Register extends Component {
           <br/>
           <div>
           <input type="text" placeholder="username" defaultValue={this.state.username} onChange={this.handleUsernameChange}/>
-          <br/>
-          <br/>
+
           </div>
           password
           <br/>

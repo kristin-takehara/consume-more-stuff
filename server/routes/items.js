@@ -38,7 +38,7 @@ router.route('/')
   let file = req.file;
 
   return Item.create({
-    url: file ? file.path : '',
+    url: file?file.path:'',
     name : details.name,
     description : details.description,
     manufacturer : details.manufacturer,
@@ -60,7 +60,7 @@ router.route('/')
     });
   })
   // .then((newItem) =>{
-  //   res.send('<img src="/uploads/' + req.file.filename + '" />');  
+  //   res.send('<img src="/uploads/' + req.file.filename + '" />');
   // })
   .then(newItem => {
     return res.json(newItem);
@@ -121,7 +121,7 @@ router.route('/:id')
         { model : Category, as : 'Category' },
         { model : Condition, as : 'Condition' },
         { model : ItemStatus, as : 'Status'},
-        { model : User, as : 'User', 
+        { model : User, as : 'User',
           attributes : { exclude : ['password'] } }
       ]
     })
@@ -138,10 +138,10 @@ router.route('/:id')
   let id = req.params.id;
 
   // prevents a logged in user from deleting another user's post unless admin or the user that created the post
-  if (req.user.id !== change.user_id ||
-      req.user.role !== 'admin') {
-    return { success: false };
-  }
+  // if (req.user.id !== change.user_id ||
+  //     req.user.role !== 'admin') {
+  //   return { success: false };
+  // }
 
   return Item.findById(id)
   .then(foundItem => {

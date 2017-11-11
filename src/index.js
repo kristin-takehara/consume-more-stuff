@@ -41,23 +41,23 @@ ReactDOM.render(
 
         </header>
 
-          <div className="nav-links">
-            <Link to="/">Home</Link>
-            <Link to="/register">Register</Link>
-            <Link to="/login">Login</Link>
-            <Link to="/logout">Logout</Link>
+        <div className="nav-links">
+          <Link to="/">Home</Link>
+          <Link to="/register">Register</Link>
+          <Link to="/login">Login</Link>
+          <Link to="/logout">Logout</Link>
 
-            <Route path="/login" component={LogIN} />
-            <Route path="/items/:id" component={SingleItemView} />
-            <Route path="/logout" component={LogOUT} />
-          </div>
+          <Route path="/login" component={LogIN} />
+          <Route path="/items/:id" component={SingleItemView} />
+          <Route path="/logout" component={LogOUT} />
+        </div>
 
-          <div className="app-container">
-            <Route exact path="/" component={App} />
-            <Route path="/register" component={Register} />
-          </div>
+        <div className="app-container">
+          <Route exact path="/" component={App} />
+          <Route path="/register" component={Register} />
+        </div>
 
-          </div>
+      </div>
     </Router>
     </IntlProvider>
   </Provider>,
