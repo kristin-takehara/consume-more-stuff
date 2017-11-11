@@ -143,21 +143,21 @@ router.route('/:id')
 })
 .delete(isAuthenticated, (req, res) => {
   let id = req.params.id;
-  let details = req.body;
-
-  // prevents a logged in user from deleting another user's post unless admin or the user that created the post
-  if (req.user.id !== change.user_id ||
-      req.user.role !== 'admin') {
-    return { success: false };
-  }
 
   return Item.findById(id)
   .then(foundItem => {
+    // prevents a logged in user from deleting another user's post unless admin or the user that created the post
+    if (req.user.id !== foundItem.user_id &&
+        req.user.role !== 'admin') {
+      return { success: false };
+    }
+
     return foundItem.update({
       deletedAt: new Date()
     });
   })
   .then(response => {
+    console.log('"deleted item"');
     res.json({
       success: true
     });
