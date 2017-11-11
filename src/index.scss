@@ -3,6 +3,16 @@ html {
   font-family: 'Libre Baskerville', serif;
 }
 
+a {
+  color: white;
+}
+
+h2 {
+  font-family: 'Libre Baskerville', serif;
+  display: flex;
+  justify-content: center;
+}
+
 #global-nav-header{
   background-image: url("/assets/doodles.png");
   background-repeat: repeat;
@@ -23,18 +33,9 @@ html {
   padding: 1.5vw;
 }
 
-a {
-  color: white;
-}
 
 .nav-links a:hover {
   color: #33cccc;
-}
-
-h2 {
-  font-family: 'Libre Baskerville', serif;
-  display: flex;
-  justify-content: center;
 }
 
 #register-container {
@@ -54,16 +55,6 @@ h2 {
   }
 }
 
-.single-item {
-  padding-top: 1vw;
-  border: 0.2vw solid black;
-  box-sizing: content-box;
-  a {
-    color: #33cccc;
-  }
-
-}
-
 #login-container {
   justify-content: center;
 
@@ -79,4 +70,38 @@ h2 {
       padding: 5px 48px;
     }
   }
+}
+
+.single-item {
+  padding-top: 1vw;
+  border: 0.2vw solid black;
+  box-sizing: content-box;
+  a {
+    color: #33cccc;
+  }
+
+}
+
+
+#logout-container {
+  justify-content: center;
+
+  .logout-form {
+    font-size: 1.5vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .logout-btn {
+      background-color: #33cccc;
+      border: none;
+      padding: 5px 48px;
+    }
+  }
+}
+
+#gator {
+  padding-top: 1.5vw;
+  display: flex;
+  justify-content: center;
 }
