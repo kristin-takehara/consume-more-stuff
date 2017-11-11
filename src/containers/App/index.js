@@ -1,17 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import {
-//   BrowserRouter as Router,
-//   Link,
-//   Route
-// } from 'react-router-dom';
 
 import { loadItems } from '../../actions/items.actions';
 import { loadConditions } from '../../actions/conditions.actions';
 import { loadUsers } from '../../actions/users.actions';
 import { loadStatuses } from '../../actions/statuses.actions';
 import { loadCategories } from '../../actions/categories.actions';
-
 
 import ItemList from '../../components/itemlist.components';
 //CONTAINERS------------------
@@ -34,10 +28,10 @@ class App extends Component {
   render() {
     return (
       <div id="app">
-        <Login />
+
         <NewItem />
         <ItemList items={this.props.items} />
-        <Logout />
+
       </div>
     );
   }
