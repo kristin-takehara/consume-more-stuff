@@ -48,13 +48,12 @@ ReactDOM.render(
           <Link to="/logout">Logout</Link>
         </div>
 
-        <div className="app-container">
+
           <Route exact path="/" component={App} />
           <Route path="/register" component={Register} />
           <Route path="/login" component={LogIN} />
           <Route path="/items/:id" component={SingleItemView} />
           <Route path="/logout" component={LogOUT} />
-        </div>
 
       </div>
     </Router>

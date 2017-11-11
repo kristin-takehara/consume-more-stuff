@@ -36,6 +36,7 @@ class App extends Component {
         <Login />
         <NewItem />
         <ItemList items={this.props.items} />
+        <Logout />
       </div>
     );
   }
