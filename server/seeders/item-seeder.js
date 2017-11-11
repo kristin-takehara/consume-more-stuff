@@ -1,203 +1,46 @@
 'use strict';
 
+ var Sequelize = require('sequelize');
+ var env       = process.env.NODE_ENV || 'development';
+ var config    = require('../config/config.json')[env];
+ var sequelize = new Sequelize(config.database, config.username, config.password, config);
+ const faker = require('faker');
+ const db = require('../models');
+ const Condition = db.Condition;
+ const Category = db.Category;
+
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('items', [
-       {
-      items: 'kawasaki remote drone',
-      name: 'someting',
-      description: '',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      items: 'cup',
-      description:'',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      items: 'mac',
-      name: 'someting',
-      description: '',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-    
-      items: 'honda cbr-600',
-      name: 'someting',
-      description: '',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      items: 'designer beer glass',
-      name: 'someting',
-      description: '', 
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      items: 'phone',
-      name: 'someting',
-      description: '',  
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      items: '',
-      name: 'someting',
-      description: '', 
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },
-     {
-      items: 'bmw m3',
-      name: 'someting',
-      description: 'its something',  
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      items: 'tv',
-      name: 'someting',
-      description: 'hehehohoha', 
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      items: 'doom orginal',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-    
-      items: '1997 dodge viper',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      items: 'projector',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      items: 'xbox',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      items: 'lazy boy chair',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },
-     {
-      items: 'tractor',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      items: 'mug for big coffee',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      items: 'ps4',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-    
-      items: '57 chevy truck',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      items: 'hunting rifle',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      items: 'Gaming computer',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      items: 't-shirt',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      items: '1910 model - T',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      items: 'cup',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      items: 'gameboy',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      items: '67 shelby mustang',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      items: 'cup',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      items: 'alarm clock',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      items: 'coffee table',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      items: 'toyota supra',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      items: 'gym bag',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      items: 'cd player vintage',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      items: 'honda civic',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      items: 'table',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      items: 'drone',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      items: 'couch',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      items: 'honda civic',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      items: 'cup',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      items: 'dslr 70d',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      items: 'knitty truck',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      items: 'cup',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      items: 'samsung galaxy',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    },{
-      items: 'bed',
-      createdAt: new Date(),
-      updatedAt: new Date()
-    }
-    ], {});
-},
+    return Condition.findAll({ distinct: 'condition' })
+      .then(conditions => {
+        const items = generateFakeItems(50, conditions);
+        return queryInterface.bulkInsert('items', items, {});
+      });
+  },
 
   down: (queryInterface, Sequelize) => {
     return queryInterface.bulkDelete('items', null, {});
   }
 };
+
+function generateFakeItems(count, conditions) {
+  const items = [];
+  for (let i = 0; i < count; i++) {
+    const newItem = {
+      name: faker.commerce.product(),
+      description: `${faker.commerce.productAdjective()} ${faker.commerce.product()}`,
+      imageUrl: faker.image.imageUrl(),
+      manufacturer: faker.commerce.department(),
+      model: faker.commerce.productName(),
+      price: faker.commerce.price(),
+      dimensions: faker.lorem.word(),
+      notes: faker.lorem.words(),
+      createdAt: faker.date.recent(90),
+      updatedAt: new Date(),
+      condition_id: Math.ceil(Math.random() * conditions.length)
+    };
+    items.push(newItem);
+  }
+  return items;
+}
+
