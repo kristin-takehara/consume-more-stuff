@@ -116,7 +116,7 @@ class SingleItemView extends Component {
  }
 
   render() {
-    if(localStorage.username !== undefined){
+    if(localStorage.username){
     return(
       <div id="single-item-view">
         {
