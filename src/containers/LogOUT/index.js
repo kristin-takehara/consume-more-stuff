@@ -43,13 +43,21 @@ class Logout extends Component {
       return <Redirect to="/"/>
     }
     return (
-      <div>
+      <div id="logout-container">
 
-        <form onSubmit={this.handleSubmit.bind(this)}>
+        <div id="gator">
+          <img src="/assets/gator.png" alt="gator"/>
+        </div>
 
-          <p>See you next time!</p>
+        <h2>See you later, alligator!</h2>
 
-          <button type="submit" className="logout-button" onClick={this.handleSubmit}>Redirect Me Home
+        <form className="logout-form" onSubmit={this.handleSubmit.bind(this)}>
+
+          <button
+            className="logout-btn"
+            type="submit"
+            onClick={this.handleSubmit}>
+            Take Me Back Home
           </button>
 
         </form>
