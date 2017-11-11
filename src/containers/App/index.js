@@ -33,31 +33,8 @@ class App extends Component {
   render() {
     return (
       <div id="app">
-
-        <div className="register">
-          <Register />
-        </div>
-
-        <div className="login">
-          <Login />
-        </div>
-
-        <div className="logout">
-          <Logout />
-        </div>
-
-        <div className="new-item">
-          <NewItem />
-        </div>
-
-        <div className="item-list">
-          <ItemList items={this.props.items} />
-        </div>
-
-        <div className="single-item-view">
-          <SingleItemView />
-        </div>
-
+        <NewItem />
+        <ItemList items={this.props.items} />
       </div>
     );
   }
