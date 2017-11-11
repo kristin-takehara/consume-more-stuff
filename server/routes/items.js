@@ -1,27 +1,13 @@
 const express = require('express');
 const db = require('../models');
-const multer = require('multer');
-const crypto = require('crypto');
-const mime = require('mime');
+const upload = require('../lib/upload');
+const isAuthenticated = require('../lib/authenticate');
 
 const Item = db.Item;
 const User = db.User;
 const Category = db.Category;
 const Condition = db.Condition;
 const ItemStatus = db.ItemStatus;
-const storage = multer.diskStorage({
-  destination: function(req, file, cb) {
-      cb(null, 'uploads/');
-  },
-  filename: function(req, file, cb) {
-    crypto.pseudoRandomBytes(16, function(err, raw) {
-      cb(null, raw.toString('hex') + Date.now() + '.' + mime.ex);
-    });
-  }
-});
-const upload = multer({
-  storage: storage
-});
 
 const router = express.Router();
 
@@ -33,7 +19,9 @@ router.route('/')
     { model : Category, as : 'Category' },
     { model : Condition, as : 'Condition' },
     { model : ItemStatus, as : 'Status'},
-    { model : User, as : 'User', attributes : { exclude : ['password'] } }
+    { model : User, as : 'User',
+      attributes : { exclude : ['password'] }
+    }
   ]
  })
  .then((items) => {
@@ -66,7 +54,8 @@ router.route('/')
         { model : Category, as : 'Category' },
         { model : Condition, as : 'Condition' },
         { model : ItemStatus, as : 'Status'},
-        { model : User, as : 'User', attributes : { exclude : ['password'] } }
+        { model : User, as : 'User',
+          attributes : { exclude : ['password'] } }
       ]
     });
   })
@@ -90,7 +79,8 @@ router.route('/:id')
       { model : Category, as : 'Category' },
       { model : Condition, as : 'Condition' },
       { model : ItemStatus, as : 'Status'},
-      { model : User, as : 'User', attributes : { exclude : ['password'] } },
+      { model : User, as : 'User',
+        attributes : { exclude : ['password'] } },
     ]
   })
   .then((itemDetails) => {
@@ -101,8 +91,14 @@ router.route('/:id')
     return res.json (err);
   }));
 })
-.put((req, res) => {
+.put(isAuthenticated, (req, res) => {
   let change = req.body;
+
+  // prevents a logged in user from updating another user's post unless admin or the user that created the post
+  if (req.user.id !== change.user_id ||
+      req.user.role !== 'admin') {
+    return { success: false };
+  }
 
   return Item
   .update({
@@ -125,7 +121,8 @@ router.route('/:id')
         { model : Category, as : 'Category' },
         { model : Condition, as : 'Condition' },
         { model : ItemStatus, as : 'Status'},
-        { model : User, as : 'User', attributes : { exclude : ['password'] } }
+        { model : User, as : 'User', 
+          attributes : { exclude : ['password'] } }
       ]
     })
     .then(updatedItemDetails => {
@@ -137,8 +134,15 @@ router.route('/:id')
     res.json(err);
   });
 })
-.delete((req, res) => {
+.delete(isAuthenticated, (req, res) => {
   let id = req.params.id;
+
+  // prevents a logged in user from deleting another user's post unless admin or the user that created the post
+  if (req.user.id !== change.user_id ||
+      req.user.role !== 'admin') {
+    return { success: false };
+  }
+
   return Item.findById(id)
   .then(foundItem => {
     return foundItem.update({
@@ -155,10 +159,5 @@ router.route('/:id')
     res.json(err);
   });
 });
-
-function isAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) { next(); }
-  else { res.json({ error : 'Bad Request' }); }
-}
 
 module.exports = router;
