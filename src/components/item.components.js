@@ -10,6 +10,7 @@ const Item = ({ singleItem }) => {
         <div>{ singleItem.name }</div>
       </Link>
       
+      <div><img src={ singleItem.imageUrl } /></div>
       <div>Description: { singleItem.description }</div>
       <div>Price: ${ singleItem.price }</div>
       <div>Manufacturer: { singleItem.manufacturer }</div>
