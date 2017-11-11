@@ -38,7 +38,7 @@ router.route('/')
   let file = req.file;
 
   return Item.create({
-    url: file.path,
+    url: file?file.path:'',
     name : details.name,
     description : details.description,
     manufacturer : details.manufacturer,
@@ -60,7 +60,7 @@ router.route('/')
     });
   })
   // .then((newItem) =>{
-  //   res.send('<img src="/uploads/' + req.file.filename + '" />');  
+  //   res.send('<img src="/uploads/' + req.file.filename + '" />');
   // })
   .then(newItem => {
     return res.json(newItem);
@@ -121,7 +121,7 @@ router.route('/:id')
         { model : Category, as : 'Category' },
         { model : Condition, as : 'Condition' },
         { model : ItemStatus, as : 'Status'},
-        { model : User, as : 'User', 
+        { model : User, as : 'User',
           attributes : { exclude : ['password'] } }
       ]
     })
