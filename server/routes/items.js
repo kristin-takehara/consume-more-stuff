@@ -36,9 +36,10 @@ router.route('/')
 .post(upload.single('userPhoto'), (req, res) => {
   const details = req.body;
   let file = req.file;
+  let path = '';
 
   return Item.create({
-    url: file?file.path:'',
+    url: path ? file.path:'',
     name : details.name,
     description : details.description,
     manufacturer : details.manufacturer,
