@@ -86,21 +86,26 @@ class SingleItemView extends Component {
     });
   }
 
-  componentDidMount() {
-    // if do show/hide in here for authentication can also include redirect link to login
-    const id = this.props.match.params.id;
-    this.props.loadSingleItem(parseInt(id, 10));
-    this.props.loadCategories();
-    this.props.loadConditions();
-    this.props.loadStatuses();
-  }
+  componentDidMount() {// if do show/hide in here for authentication can also include redirect link to login
 
-  componentWillUnmount() {
-    this.props.makeItemEditable(
-      this.props.match.params.id,
-      false
-    );
-  }
+   if(this.props.match && this.props.match.params && this.props.match.params.id){
+     let id = this.props.match.params.id;
+     this.props.loadSingleItem(parseInt(id, 10));
+
+     this.props.loadCategories();
+     this.props.loadConditions();
+     this.props.loadStatuses();
+   }
+ }
+
+ componentWillUnmount() {
+   if(this.props.match && this.props.match.params && this.props.match.params.id){
+     this.props.makeItemEditable(
+       this.props.match.params.id,
+       false
+     );
+   }
+ }
 
   render() {
     if(localStorage.username !== undefined){
@@ -132,7 +137,7 @@ class SingleItemView extends Component {
                 this,
                 this.props.singleItem.id)} >
               DELETE
-            </button>            
+            </button>
 
             <button
               type="submit"
