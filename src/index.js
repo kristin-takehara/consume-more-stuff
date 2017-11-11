@@ -54,6 +54,7 @@ ReactDOM.render(
           <Route path="/login" component={LogIN} />
           <Route path="/items/:id" component={SingleItemView} />
           <Route path="/logout" component={LogOUT} />
+          <Route path="/users/:id"/>
 
       </div>
     </Router>
