@@ -34,27 +34,30 @@ ReactDOM.render(
     <Router>
       <div id="source">
         <header id="global-nav-header">
-        <div id="logo">
-          <img src="/assets/jnkr-logo.jpg" />
-        </div>
+
+          <div id="logo">
+            <img src="/assets/jnkr-logo.jpg" alt=".jnkr"/>
+          </div>
+
         </header>
 
-        <div className="nav-links">
-          <Link to="/">Home</Link>
-          <Link to="/register">Register</Link>
-          <Link to="/login">Login</Link>
-          <Link to="/logout">Logout</Link>
+          <div className="nav-links">
+            <Link to="/">Home</Link>
+            <Link to="/register">Register</Link>
+            <Link to="/login">Login</Link>
+            <Link to="/logout">Logout</Link>
 
-          <Route path="/register" component={Register} />
-          <Route path="/login" component={LogIN} />
-          <Route path="/items/:id" component={SingleItemView} />
-          <Route path="/logout" component={LogOUT} />
-        </div>
+            <Route path="/login" component={LogIN} />
+            <Route path="/items/:id" component={SingleItemView} />
+            <Route path="/logout" component={LogOUT} />
+          </div>
 
-        <br/>
-        <br/>
+          <div className="app-container">
             <Route exact path="/" component={App} />
-      </div>
+            <Route path="/register" component={Register} />
+          </div>
+
+          </div>
     </Router>
     </IntlProvider>
   </Provider>,
