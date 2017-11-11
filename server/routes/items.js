@@ -100,8 +100,6 @@ router.route('/:id')
       req.user.role !== 'admin') {
     return { success: false };
   }
-  console.log('wfyulpfwyplu');
-  
 
   return Item
   .update({
