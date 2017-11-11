@@ -12,9 +12,15 @@ import { loadUsers } from '../../actions/users.actions';
 import { loadStatuses } from '../../actions/statuses.actions';
 import { loadCategories } from '../../actions/categories.actions';
 
-import ItemList from '../../components/itemlist.components';
-import NewItem from '../NewItem/';
 
+import ItemList from '../../components/itemlist.components';
+//CONTAINERS------------------
+import Register from '../Register';
+import Login from '../LogIN';
+import Logout from '../LogOUT';
+import NewItem from '../NewItem/';
+import SingleItemView from '../SingleItemView';
+//----------------------------
 class App extends Component {
   componentDidMount(){
     this.props.loadItems();
@@ -28,9 +34,29 @@ class App extends Component {
     return (
       <div id="app">
 
-        <NewItem />
+        <div className="register">
+          <Register />
+        </div>
 
-        <ItemList items={this.props.items} />
+        <div className="login">
+          <Login />
+        </div>
+
+        <div className="logout">
+          <Logout />
+        </div>
+
+        <div className="new-item">
+          <NewItem />
+        </div>
+
+        <div className="item-list">
+          <ItemList items={this.props.items} />
+        </div>
+
+        <div className="single-item-view">
+          <SingleItemView />
+        </div>
 
       </div>
     );

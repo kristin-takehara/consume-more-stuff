@@ -68,21 +68,31 @@ class Register extends Component {
       return <Redirect to="/login"/>
     }
     return(
-      <div>
-        <h4> Register a new User </h4>
-        <form onSubmit={this.handleSubmit.bind(this)}>
+      <div id="register-container">
+        <h3>Register as new User</h3>
 
+        <div className="register-form">
+        <form className="inner-form-container" onSubmit={this.handleSubmit.bind(this)}>
+
+
+          username
+          <br/>
           <div>
           <input type="text" placeholder="username" defaultValue={this.state.username} onChange={this.handleUsernameChange}/>
+          <br/>
+          <br/>
           </div>
-
+          password
+          <br/>
           <div>
           <input type="password" placeholder="password" defaultValue={this.state.password} onChange={this.handlePasswordChange}/>
           </div>
-
-          <input type="submit" value="Submit"/>
+          <br/>
+          <input className="register-btn" type="submit" value="Register"/>
 
         </form>
+        </div>
+
       </div>
     );
   }

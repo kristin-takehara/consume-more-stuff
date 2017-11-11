@@ -1,5 +1,5 @@
 html {
-  font-family: 'Muli', sans-serif;
+
   font-family: 'Libre Baskerville', serif;
 }
 
@@ -25,4 +25,29 @@ html {
 
 a {
   color: white;
+}
+
+.nav-links a:hover {
+  color: #33cccc;
+}
+
+h3{
+  font-family: 'Libre Baskerville', serif;
+  display: flex;
+  justify-content: center;
+}
+
+#register-container {
+  justify-content: center;
+}
+
+.register-form {
+  font-size: 2vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.register-btn {
+  background-color: #33cccc;
 }
