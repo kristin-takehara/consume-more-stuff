@@ -11,14 +11,16 @@ class SingleItemView extends Component {
   constructor() {
     super();
     this.state = {
-      name : '',
-      description: '',
-      price: '',
-      manufacturer: '',
-      modelname: '',
       category_id: '',
       condition_id: '',
+      description: '',
+      dimensions: '',
       is_sold: '',
+      manufacturer: '',
+      modelname: '',
+      name : '',
+      notes : '',
+      price: '',
       user_id: ''
     };
 
@@ -30,14 +32,16 @@ class SingleItemView extends Component {
     this.props.makeItemEditable(item.id, edit);
 
     this.setState({
-      name : item.name,
-      description: item.description,
-      price: item.price,
-      manufacturer: item.manufacturer,
-      modelname: item.modelname,
       category_id: item.category_id,
       condition_id: item.condition_id,
+      description: item.description,
+      dimensions: item.dimensions,
       is_sold: item.is_sold,
+      manufacturer: item.manufacturer,
+      modelname: item.modelname,
+      name: item.name,
+      notes: item.notes,
+      price: item.price,
       user_id: item.user_id
     });
   }
@@ -50,27 +54,31 @@ class SingleItemView extends Component {
   handleSubmit(id, evt) {
     evt.preventDefault();
     this.props.editItem({
-      id : id,
-      name : this.state.name,
-      description: this.state.description,
-      price: this.state.price,
-      manufacturer: this.state.manufacturer,
-      modelname: this.state.modelname,
       category_id: this.state.category_id,
       condition_id: this.state.condition_id,
+      description: this.state.description,
+      dimensions: this.state.dimensions,
+      id : id,
       is_sold: this.state.is_sold,
+      manufacturer: this.state.manufacturer,
+      model: this.state.model,
+      name : this.state.name,
+      notes: this.state.notes,
+      price: this.state.price,
       user_id: this.state.user_id
     });
 
     this.setState({
-      name : '',
-      description: '',
-      price: '',
-      manufacturer: '',
-      modelname: '',
       category_id: '',
       condition_id: '',
+      description: '',
+      dimensions: '',
       is_sold: '',
+      manufacturer: '',
+      model: '',
+      name : '',
+      notes: '',
+      price: '',
       user_id: ''
     });
 

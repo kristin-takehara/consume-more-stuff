@@ -27,30 +27,34 @@ const singleItem = (state = initialState, action) => {
       const updatedItem = action.updatedItem;
 
       return Object.assign({}, state, {
-        name : updatedItem.name,
-        price : updatedItem.price,
-        description : updatedItem.description,
-        manufacturer : updatedItem.manufacturer,
-        modelname : updatedItem.modelname,
         category_id : updatedItem.category_id,
         condition_id : updatedItem.condition_id,
-        is_sold : updatedItem.is_sold,
         created_by : updatedItem.created_by,
+        description : updatedItem.description,
+        dimensions : updatedItem.dimensions,
+        is_sold : updatedItem.is_sold,
+        manufacturer : updatedItem.manufacturer,
+        model : updatedItem.model,
+        name : updatedItem.name,
+        notes : updatedItem.notes,
+        price : updatedItem.price,
         updatedAt : updatedItem.updatedAt
       });
 
     case DEL_ITEM:
       return Object.assign({}, state, {
-        name : '',
-        price : '',
-        description : '',
-        manufacturer : '',
-        modelname : '',
         category_id : '',
         condition_id : '',
-        is_sold : '',
         created_by : '',
-        updatedAt : ''
+        description : '',
+        dimensions : '',
+        is_sold : '',
+        manufacturer : '',
+        model : '',
+        name : '',
+        notes : '',
+        price : '',
+        deletedAt : ''
       });
 
     default:
