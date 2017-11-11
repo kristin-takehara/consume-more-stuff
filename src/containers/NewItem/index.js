@@ -193,6 +193,7 @@ class NewItem extends Component {
 
             <input type="submit" value="submit item" />
           </form>
+          <br/>
         </div>
       );
 
