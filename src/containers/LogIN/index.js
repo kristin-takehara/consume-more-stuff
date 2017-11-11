@@ -57,25 +57,33 @@ class Login extends Component {
       return <Redirect to="/api/user/:id"/>
     }
     return(
-      <div>
-        <h4>Login</h4>
+      <div id="login-container">
+        <h2>Login</h2>
+        <div><center>.: welcome back :.</center></div>
+        <br/>
+        <div className="login-form">
         <form onSubmit={this.handleSubmit.bind(this)}>
 
+          username
+          <br/>
           <div>
           <input type="text" placeholder="username" defaultValue={this.state.username} onChange={this.handleUsernameInput} />
           </div>
-
+          <br/>
+          password
+          <br/>
           <div>
           <input type="password" placeholder="password" defaultValue={this.state.password} onChange={this.handlePasswordInput} />
           </div>
-
+          <br/>
           <button
+            className="login-btn"
             type="submit"
-            className="login-button"
             onClick={this.handleSubmit}>Login
           </button>
 
         </form>
+        </div>
 
       </div>
     );

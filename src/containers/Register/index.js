@@ -69,18 +69,18 @@ class Register extends Component {
     }
     return(
       <div id="register-container">
-        <h3>Register as new User</h3>
-
+        <h2>Register</h2>
+        <div><center>as new User</center></div>
+        <br/>
         <div className="register-form">
         <form className="inner-form-container" onSubmit={this.handleSubmit.bind(this)}>
-
 
           username
           <br/>
           <div>
           <input type="text" placeholder="username" defaultValue={this.state.username} onChange={this.handleUsernameChange}/>
-
           </div>
+          <br/>
           password
           <br/>
           <div>

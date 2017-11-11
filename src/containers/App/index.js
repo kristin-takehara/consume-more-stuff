@@ -33,6 +33,7 @@ class App extends Component {
   render() {
     return (
       <div id="app">
+        <Login />
         <NewItem />
         <ItemList items={this.props.items} />
       </div>

@@ -46,15 +46,14 @@ ReactDOM.render(
           <Link to="/register">Register</Link>
           <Link to="/login">Login</Link>
           <Link to="/logout">Logout</Link>
-
-          <Route path="/login" component={LogIN} />
-          <Route path="/items/:id" component={SingleItemView} />
-          <Route path="/logout" component={LogOUT} />
         </div>
 
         <div className="app-container">
           <Route exact path="/" component={App} />
           <Route path="/register" component={Register} />
+          <Route path="/login" component={LogIN} />
+          <Route path="/items/:id" component={SingleItemView} />
+          <Route path="/logout" component={LogOUT} />
         </div>
 
       </div>
