@@ -39,14 +39,17 @@ router.route('/')
   let path = '';
 
   return Item.create({
-    url: path ? file.path:'',
-    name : details.name,
-    description : details.description,
-    manufacturer : details.manufacturer,
-    price : details.price,
     category_id : details.category_id,
     condition_id : details.condition_id,
+    description : details.description,
+    dimensions : details.dimensions,
+    imageUrl: path ? file.path:'',
     is_sold : 2,
+    name : details.name,
+    notes : details.notes,
+    manufacturer : details.manufacturer,
+    model : details.model,
+    price : details.price,
     user_id : details.user_id
   })
   .then((newItem) => {
