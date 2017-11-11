@@ -31,7 +31,7 @@ a {
   color: #33cccc;
 }
 
-h3{
+h2 {
   font-family: 'Libre Baskerville', serif;
   display: flex;
   justify-content: center;
@@ -42,12 +42,41 @@ h3{
 }
 
 .register-form {
-  font-size: 2vw;
+  font-size: 1.5vw;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+
+  .register-btn {
+    background-color: #33cccc;
+    border: none;
+    padding: 5px 40px;
+  }
 }
 
-.register-btn {
-  background-color: #33cccc;
+.single-item {
+  padding-top: 1vw;
+  border: 0.2vw solid black;
+  box-sizing: content-box;
+  a {
+    color: #33cccc;
+  }
+
+}
+
+#login-container {
+  justify-content: center;
+
+  .login-form {
+    font-size: 1.5vw;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    .login-btn {
+      background-color: #33cccc;
+      border: none;
+      padding: 5px 48px;
+    }
+  }
 }
