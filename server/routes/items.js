@@ -138,10 +138,10 @@ router.route('/:id')
   let id = req.params.id;
 
   // prevents a logged in user from deleting another user's post unless admin or the user that created the post
-  if (req.user.id !== change.user_id ||
-      req.user.role !== 'admin') {
-    return { success: false };
-  }
+  // if (req.user.id !== change.user_id ||
+  //     req.user.role !== 'admin') {
+  //   return { success: false };
+  // }
 
   return Item.findById(id)
   .then(foundItem => {

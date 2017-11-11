@@ -12,19 +12,31 @@ module.exports = function(sequelize, DataType) {
       type : DataType.STRING,
       allowNull : true
     },
+    // model : {
+    //   type : DataType.STRING,
+    //   allowNull : true
+    // },
     price : {
-      type : DataType.NUMERIC,
+      type : DataType.STRING,
       allowNull : true
     },
+    // dimension : {
+    //   type : DataType.STRING,
+    //   allowNull : true
+    // },
     url : {
       type : DataType.STRING,
       allowNull : true
     },
+    // notes : {
+    //   type : DataType.TEXT,
+    //   allowNull : true
+    // },
     deletedAt : {
       type : DataType.DATE,
       allowNull : true
     },
-  },
+  }, // add columns for dimension
   {
     tableName : 'items'
   });
