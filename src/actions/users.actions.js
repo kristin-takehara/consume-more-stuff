@@ -11,6 +11,7 @@ export const loadSingleUser = (id) => {
   return(dispatch) => {
     return Axios.get(listOfUsers + `/` + id)
     .then(user => {
+      console.log(user, "action user");
       dispatch({
         type: LOAD_SINGLE_USER,
         user: user.data
@@ -24,7 +25,6 @@ export const loadUsers = () => {
   return (dispatch) => {
     return Axios.get(listOfUsers)
     .then(users => {
-
       dispatch({
         type: LOAD_USERS,
         users: users.data
