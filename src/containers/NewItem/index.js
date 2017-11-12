@@ -88,7 +88,7 @@ class NewItem extends Component {
     if(localStorage.username) {
       return (
         <div id="new-item-form">
-          <form target="hidden-iframe" onSubmit={
+          <form onSubmit={
             (evt) => this.handleSubmit(localStorage.userId, evt)
           }>
 
