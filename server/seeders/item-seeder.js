@@ -39,7 +39,7 @@ function generateFakeItems(count, conditions) {
       condition_id: Math.floor(Math.random() * 4) + 1,
       category_id: Math.floor(Math.random() * 4) + 1,
       is_sold: Math.floor(Math.random() * 2) + 1 ,
-      user_id: Math.floor(Math.random() * 500) + 1,
+      user_id: 1,
     };
 
     items.push(newItem);
