@@ -20,7 +20,6 @@ import LogOUT from './containers/LogOUT';
 import SingleItemView from './containers/SingleItemView';
 //---------------------------------------
 
-
 import registerServiceWorker from './lib/registerServiceWorker';
 
 
@@ -42,14 +41,6 @@ ReactDOM.render(
           </div>
 
         </header>
-
-        <div className="nav-links">
-          <Link to="/">Home</Link>
-          <Link to="/register">Register</Link>
-          <Link to="/login">Login</Link>
-          <Link to="/logout">Logout</Link>
-          <Link to={`/users/${localStorage.userId}`}>{localStorage.username}</Link>
-        </div>
 
           <Route exact path="/" component={App} />
           <Route path="/register" component={Register} />

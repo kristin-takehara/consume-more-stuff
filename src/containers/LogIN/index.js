@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { loginUser } from '../../actions/auth.actions';
 import { loadUsers } from '../../actions/users.actions';
+import Nav from '../../components/nav.components';
 
 class Login extends Component {
   constructor(props){
@@ -58,6 +59,7 @@ class Login extends Component {
     }
     return(
       <div id="login-container">
+        <Nav />
         <h2>Login</h2>
         <div><center>.: welcome back :.</center></div>
         <br/>
