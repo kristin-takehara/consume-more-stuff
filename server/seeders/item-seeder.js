@@ -7,15 +7,11 @@
  const faker = require('faker');
  const db = require('../models');
  const Condition = db.Condition;
- const _ = require('lodash');
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return Condition.findAll({ distinct: 'condition' })
-      .then(conditions => {
-        const items = generateFakeItems(50, conditions);
+        const items = generateFakeItems(50);
         return queryInterface.bulkInsert('items', items, {});
-      });
   },
 
   down: (queryInterface, Sequelize) => {
@@ -23,7 +19,7 @@ module.exports = {
   }
 };
 
-function generateFakeItems(count, conditions) {
+function generateFakeItems(count) {
   const items = [];
   for (let i = 0; i < count; i++) {
     const newItem = {
@@ -39,9 +35,9 @@ function generateFakeItems(count, conditions) {
       updatedAt: new Date(),
       condition_id: Math.floor(Math.random() * 4) + 1,
       category_id: Math.floor(Math.random() * 4) + 1,
-      is_sold: (Math.floor(Math.random() * 2) + 1,
-      user_id: (Math.floor(Math.random() * 25) + 1  
-   };
+      is_sold: 1,
+      user_id: Math.floor(Math.random() * 25) + 1
+    };
 
     items.push(newItem);
   }
