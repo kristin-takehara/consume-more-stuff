@@ -1,6 +1,44 @@
-html {
+// theme colors
+$bg-color: #FFFFFF;
+$primary-color: #6699CC;
+$secondary-color: #FFFFFF;
+$accent-color: #33cccc;
 
+// mixins
+@mixin flex-style($flow, $justify) {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  flex-flow: $flow;
+  justify-content: $justify;
+}
+
+@mixin box-style($style) {
+  -webkit-box-sizing: $style;
+  -moz-box-sizing: $style;
+  box-sizing: $style;
+}
+
+@mixin border-style() {
+  border: 1px solid black;
+}
+
+/* STYLE SETTINGS  */
+
+html {
+  @include box-style(border-box);
   font-family: 'Libre Baskerville', serif;
+}
+
+*, *:before, *:after {
+  @include box-style(inherit)
+}
+
+body {
+  margin: 0;
 }
 
 a {
@@ -29,10 +67,8 @@ h2 {
   background-color: black;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   padding: 1.5vw;
 }
-
 
 .nav-links a:hover {
   color: #33cccc;
@@ -60,17 +96,15 @@ h2 {
 
   .login-form {
     font-size: 1.5vw;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-
+    @include flex-style(row wrap, center);
+    }
     .login-btn {
       background-color: #33cccc;
       border: none;
       padding: 5px 48px;
     }
   }
-}
+
 
 .single-item {
   padding-top: 1vw;
@@ -82,16 +116,18 @@ h2 {
 
 }
 
+.item-image {
+  height: auto;
+  width: 250px;
+}
+
 
 #logout-container {
   justify-content: center;
 
   .logout-form {
     font-size: 1.5vw;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-
+    @include flex-style(row wrap, center);
     .logout-btn {
       background-color: #33cccc;
       border: none;
@@ -102,6 +138,5 @@ h2 {
 
 #gator {
   padding-top: 1.5vw;
-  display: flex;
-  justify-content: center;
+  @include flex-style(row wrap, center);
 }

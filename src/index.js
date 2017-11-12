@@ -20,7 +20,6 @@ import LogOUT from './containers/LogOUT';
 import SingleItemView from './containers/SingleItemView';
 //---------------------------------------
 
-
 import registerServiceWorker from './lib/registerServiceWorker';
 
 
