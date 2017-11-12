@@ -32,6 +32,7 @@ const singleItem = (state = initialState, action) => {
         created_by : updatedItem.created_by,
         description : updatedItem.description,
         dimensions : updatedItem.dimensions,
+        imageUrl : updatedItem.imageUrl,
         is_sold : updatedItem.is_sold,
         manufacturer : updatedItem.manufacturer,
         model : updatedItem.model,

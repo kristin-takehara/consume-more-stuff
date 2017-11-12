@@ -8,7 +8,7 @@ class NewItem extends Component {
     super();
 
     this.state = {
-      userPhoto: '',
+      file: '',
       name: '',
       description: '',
       price: 0,
@@ -26,11 +26,12 @@ class NewItem extends Component {
   }
 
   handleSubmit(userId, evt){
+    console.log(evt);
     evt.preventDefault();
 
     let formData = new FormData();
 
-    formData.append('userPhoto', this.state.userPhoto);
+    formData.append('file', this.state.file);
     formData.append('name', this.state.name);
     formData.append('description', this.state.description);
     formData.append('manufacturer', this.state.manufacturer);
@@ -46,7 +47,7 @@ class NewItem extends Component {
 
     this.setState({
      // this will pass up to the newItem that will be submitted on SUBMIT
-      userPhoto: '',
+      file: '',
       name: '',
       description: '',
       price: 0,
@@ -60,15 +61,14 @@ class NewItem extends Component {
   }
 
   handleChangeImage(evt){
-    evt.preventDefault();
-
+    // evt.preventDefault();
     let reader = new FileReader();
     let file = evt.target.files[0];
 
     reader.onloadend = () => {
       this.setState({
-        file: file,
-        imageUrl: reader.result
+        file: file
+        // imageUrl: reader.result
       });
     };
 
@@ -89,7 +89,7 @@ class NewItem extends Component {
       return (
         <div id="new-item-form">
           <form onSubmit={
-            (e) => this.handleSubmit(localStorage.userId, e)
+            (evt) => this.handleSubmit(localStorage.userId, evt)
           }>
 
             <Select
@@ -185,7 +185,7 @@ class NewItem extends Component {
             <div>
               <input
                 accept="image/x-png,image/gif,image/jpeg"
-                name="userPhoto"
+                name="file"
                 onChange={this.handleChangeImage}
                 type="file"
               />
@@ -207,7 +207,7 @@ const mapStateToProps = (state) => {
   return {
     items : state.itemList,
     users : state.userList,
-    categories : state.categoryList,     // setting state
+    categories : state.categoryList, 
     conditions : state.conditionList,
     statuses : state.statusList
   }

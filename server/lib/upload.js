@@ -1,23 +1,15 @@
 const multer = require('multer');
-const crypto = require('crypto');
-const mime = require('mime');
+const path = require('path');
 const storage = multer.diskStorage({
-  destination: destination,
+  destination: path.join('public', 'uploads', 'items'),
   filename: filename
 });
 const upload = multer({
   storage: storage
 });
 
-function destination(req, file, cb) {
-  cb(null, 'public/uploads/items');
+function filename(req, file, cb) {  
+  cb(null, Date.now() + '-' + file.originalname.split(' ').join(''));
 }
-
-function filename(req, file, cb) {
-  crypto.pseudoRandomBytes(16, function(err, raw) {
-    cb(null, raw.toString('hex') + Date.now() + '.' + mime.ex);
-  });
-}
-
 
 module.exports = upload;

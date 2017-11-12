@@ -116,14 +116,18 @@ class SingleItemView extends Component {
  }
 
   render() {
-    if(localStorage.username){
+    if(localStorage.username) {
     return(
       <div id="single-item-view">
         {
           !this.props.singleItem.isEditing &&
           <div>
-            <Item singleItem={ this.props.singleItem } />
-            <button type="submit" onClick={this.toggleEdit.bind(this, this.props.singleItem, true)}>
+            <Item 
+              singleItem={ this.props.singleItem }
+              singleView={ true } />
+            <button 
+              type="submit" 
+              onClick={this.toggleEdit.bind(this, this.props.singleItem, true)}>
               EDIT
             </button>
           </div>
