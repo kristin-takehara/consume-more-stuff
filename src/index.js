@@ -48,7 +48,6 @@ ReactDOM.render(
           <Link to="/logout">Logout</Link>
         </div>
 
-
           <Route exact path="/" component={App} />
           <Route path="/register" component={Register} />
           <Route path="/login" component={LogIN} />

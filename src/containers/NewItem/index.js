@@ -25,8 +25,8 @@ class NewItem extends Component {
     this.handleChangeImage = this.handleChangeImage.bind(this);
   }
 
-  handleSubmit(userId, evt){
-    console.log(evt);
+  handleSubmit(evt){
+    console.log(evt);    
     evt.preventDefault();
 
     let formData = new FormData();
@@ -41,7 +41,7 @@ class NewItem extends Component {
     formData.append('condition_id', this.state.condition_id);
     formData.append('dimensions', this.state.dimensions);
     formData.append('notes', this.state.notes);
-    formData.append('user_id', userId);
+    formData.append('user_id', localStorage.userId);
 
     this.props.addItem(formData);
 
@@ -61,21 +61,23 @@ class NewItem extends Component {
   }
 
   handleChangeImage(evt){
-    // evt.preventDefault();
+    evt.preventDefault();
     let reader = new FileReader();
     let file = evt.target.files[0];
 
     reader.onloadend = () => {
       this.setState({
-        file: file
+        file: file,
         // imageUrl: reader.result
       });
     };
 
     reader.readAsDataURL(file);
+
   }
 
   handleChange(evt) {
+    evt.preventDefault();
     const target = evt.target;
     const name = target.name;
     const value = target.value;
@@ -88,9 +90,7 @@ class NewItem extends Component {
     if(localStorage.username) {
       return (
         <div id="new-item-form">
-          <form onSubmit={
-            (evt) => this.handleSubmit(localStorage.userId, evt)
-          }>
+          <form onSubmit={this.handleSubmit}>
 
             <Select
               defaultValue={this.state.category_id}
