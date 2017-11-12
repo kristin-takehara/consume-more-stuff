@@ -6,7 +6,7 @@ import { loadConditions } from '../../actions/conditions.actions';
 import { loadUsers } from '../../actions/users.actions';
 import { loadStatuses } from '../../actions/statuses.actions';
 import { loadCategories } from '../../actions/categories.actions';
-
+import Nav from '../../components/nav.components';
 import ItemList from '../../components/itemlist.components';
 //CONTAINERS------------------
 import Register from '../Register';
@@ -27,7 +27,7 @@ class App extends Component {
   render() {
     return (
       <div id="app">
-
+        <Nav />
         <NewItem />
         <ItemList items={this.props.items} />
 

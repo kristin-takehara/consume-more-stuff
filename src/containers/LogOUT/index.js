@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { logoutUser } from '../../actions/auth.actions';
-
+import Nav from '../../components/nav.components';
 class Logout extends Component {
   constructor(props){
     super(props);
@@ -43,8 +43,9 @@ class Logout extends Component {
       return <Redirect to="/"/>
     }
     return (
-      <div id="logout-container">
 
+      <div id="logout-container">
+        <Nav />
         <div id="gator">
           <img src="/assets/gator.png" alt="gator"/>
         </div>

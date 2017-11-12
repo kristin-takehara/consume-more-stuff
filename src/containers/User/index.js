@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { loadSingleUser, loadUsers } from '../../actions/users.actions';
 import { loadItems } from '../../actions/items.actions';
 import UserItem from '../../components/user.components';
-
+import Nav from '../../components/nav.components';
 class User extends Component {
   constructor(props) {
     super(props);
@@ -21,8 +21,10 @@ class User extends Component {
   render() {
     if( this.props.match && localStorage.userId === this.props.match.params.id ){
       return(
+
         <div className="user-view">
-         <UserItem singleUser={this.props.singleUser}/>
+          <Nav />
+          <UserItem singleUser={this.props.singleUser}/>
         </div>
       );
     } else {

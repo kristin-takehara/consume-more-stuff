@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { registerUser } from '../../actions/auth.actions';
 import { loadUsers } from '../../actions/users.actions';
+import Nav from '../../components/nav.components';
 
 class Register extends Component {
   constructor(props) {
@@ -69,6 +70,7 @@ class Register extends Component {
     }
     return(
       <div id="register-container">
+        <Nav />
         <h2>Register</h2>
         <div><center>as new User</center></div>
         <br/>
