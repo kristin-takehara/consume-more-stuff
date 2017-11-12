@@ -13,11 +13,13 @@ import thunk from 'redux-thunk';
 import './index.scss';
 //---------------------------------------
 import App from './containers/App';
+import User from './containers/User';
 import Register from './containers/Register';
 import LogIN from './containers/LogIN';
 import LogOUT from './containers/LogOUT';
 import SingleItemView from './containers/SingleItemView';
 //---------------------------------------
+
 
 import registerServiceWorker from './lib/registerServiceWorker';
 
@@ -46,6 +48,7 @@ ReactDOM.render(
           <Link to="/register">Register</Link>
           <Link to="/login">Login</Link>
           <Link to="/logout">Logout</Link>
+          <Link to={`/users/${localStorage.userId}`}>{localStorage.username}</Link>
         </div>
 
 
@@ -54,7 +57,7 @@ ReactDOM.render(
           <Route path="/login" component={LogIN} />
           <Route path="/items/:id" component={SingleItemView} />
           <Route path="/logout" component={LogOUT} />
-          <Route path="/users/:id"/>
+          <Route path="/users/:id" component={User}/>
 
       </div>
     </Router>
