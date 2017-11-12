@@ -7,7 +7,6 @@
  const faker = require('faker');
  const db = require('../models');
  const Condition = db.Condition;
- // const Category = db.Category;
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
@@ -39,8 +38,8 @@ function generateFakeItems(count, conditions) {
       updatedAt: new Date(),
       condition_id: Math.floor(Math.random() * 4) + 1,
       category_id: Math.floor(Math.random() * 4) + 1,
-      user_id: 1,
-      is_sold: Math.floor(Math.random() * 2) + 1 
+      is_sold: Math.floor(Math.random() * 2) + 1 ,
+      user_id: Math.floor(Math.random() * 500) + 1,
     };
 
     items.push(newItem);

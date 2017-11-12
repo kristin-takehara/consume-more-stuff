@@ -26,15 +26,15 @@ module.exports = {
 function generateFakeUsers(count, conditions) {
   const users = [];
   for (let i = 0; i < count; i++) {
-    const newItem = {
-      username: faker.commerce.product(),
-      condition_id: Math.floor(Math.random() * 4) + 1,
-      category_id: Math.floor(Math.random() * 4) + 1,
-      user_id: 1,
-      is_sold: Math.floor(Math.random() * 2) + 1 
+    const newUser = {
+      username: faker.internet.userName(),
+      password: 'pass',
+      role: faker.word('User'),
+      createdAt: faker.date.recent(90),
+      updatedAt: new Date(),
     };
 
-    users.push(newItem);
+    users.push(newUser);
   }
   return users;
 }
