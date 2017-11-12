@@ -4,20 +4,19 @@ import { Link } from 'react-router-dom';
 
 
 const Item = ({ singleItem, singleView }) => {
-  let file = singleItem.imageUrl;
-
-  if (singleView) {
-    file = '/' + file;
+  const url = /^http/;
+  let imageUrl = singleItem.imageUrl;
+   // if imageUrl is not an http link AND this is a request from the single item view
+  if (!url.test(imageUrl) && singleView) {
+    imageUrl = '/' + imageUrl;
   }
-
-
   return (
     <div className="single-item">
       <Link to={`/items/${singleItem.id}`}>
         <div>{ singleItem.name }</div>
       </Link>
 
-      <div className="item-image"><img src={ file } alt="image not found" /></div>
+      <div className="item-image"><img src={ imageUrl } alt="image not found" /></div>
 
       <div>Description: { singleItem.description }</div>
       <div>Price: ${ singleItem.price }</div>
