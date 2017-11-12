@@ -8,7 +8,7 @@ class NewItem extends Component {
     super();
 
     this.state = {
-      userPhoto: '',
+      file: '',
       name: '',
       description: '',
       price: 0,
@@ -25,12 +25,13 @@ class NewItem extends Component {
     this.handleChangeImage = this.handleChangeImage.bind(this);
   }
 
-  handleSubmit(userId, evt){
+  handleSubmit(evt){
+    console.log(evt);    
     evt.preventDefault();
 
     let formData = new FormData();
 
-    formData.append('userPhoto', this.state.userPhoto);
+    formData.append('file', this.state.file);
     formData.append('name', this.state.name);
     formData.append('description', this.state.description);
     formData.append('manufacturer', this.state.manufacturer);
@@ -40,13 +41,13 @@ class NewItem extends Component {
     formData.append('condition_id', this.state.condition_id);
     formData.append('dimensions', this.state.dimensions);
     formData.append('notes', this.state.notes);
-    formData.append('user_id', userId);
+    formData.append('user_id', localStorage.userId);
 
     this.props.addItem(formData);
 
     this.setState({
      // this will pass up to the newItem that will be submitted on SUBMIT
-      userPhoto: '',
+      file: '',
       name: '',
       description: '',
       price: 0,
@@ -61,21 +62,22 @@ class NewItem extends Component {
 
   handleChangeImage(evt){
     evt.preventDefault();
-
     let reader = new FileReader();
     let file = evt.target.files[0];
 
     reader.onloadend = () => {
       this.setState({
         file: file,
-        imageUrl: reader.result
+        // imageUrl: reader.result
       });
     };
 
     reader.readAsDataURL(file);
+
   }
 
   handleChange(evt) {
+    evt.preventDefault();
     const target = evt.target;
     const name = target.name;
     const value = target.value;
@@ -88,9 +90,7 @@ class NewItem extends Component {
     if(localStorage.username) {
       return (
         <div id="new-item-form">
-          <form onSubmit={
-            (e) => this.handleSubmit(localStorage.userId, e)
-          }>
+          <form onSubmit={this.handleSubmit}>
 
             <Select
               defaultValue={this.state.category_id}
@@ -185,7 +185,7 @@ class NewItem extends Component {
             <div>
               <input
                 accept="image/x-png,image/gif,image/jpeg"
-                name="userPhoto"
+                name="file"
                 onChange={this.handleChangeImage}
                 type="file"
               />
@@ -207,7 +207,7 @@ const mapStateToProps = (state) => {
   return {
     items : state.itemList,
     users : state.userList,
-    categories : state.categoryList,     // setting state
+    categories : state.categoryList, 
     conditions : state.conditionList,
     statuses : state.statusList
   }

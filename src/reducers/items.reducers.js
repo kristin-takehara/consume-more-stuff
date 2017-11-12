@@ -6,7 +6,7 @@ const itemList = (state = initialState, action) => {
     case LOAD_ITEMS:
       return [ ...action.items ];
 
-    case ADD_ITEM:
+    case ADD_ITEM:      
       return [ ...state, action.newItem ];
  
     default:

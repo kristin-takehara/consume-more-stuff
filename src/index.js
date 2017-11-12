@@ -51,7 +51,6 @@ ReactDOM.render(
           <Link to={`/users/${localStorage.userId}`}>{localStorage.username}</Link>
         </div>
 
-
           <Route exact path="/" component={App} />
           <Route path="/register" component={Register} />
           <Route path="/login" component={LogIN} />
