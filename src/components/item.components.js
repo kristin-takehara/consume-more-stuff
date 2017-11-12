@@ -2,6 +2,7 @@ import React from 'react';
 import { FormattedRelative } from 'react-intl';
 import { Link } from 'react-router-dom';
 
+
 const Item = ({ singleItem, singleView }) => {
   let file = singleItem.imageUrl;
 
@@ -9,13 +10,15 @@ const Item = ({ singleItem, singleView }) => {
     file = '/' + file;
   }
 
+
   return (
-    <div className="single-item">    
+    <div className="single-item">
       <Link to={`/items/${singleItem.id}`}>
         <div>{ singleItem.name }</div>
       </Link>
-      
+
       <div><img src={ file } height="250px" width="250px" alt="" /></div>
+
       <div>Description: { singleItem.description }</div>
       <div>Price: ${ singleItem.price }</div>
       <div>Manufacturer: { singleItem.manufacturer }</div>

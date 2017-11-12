@@ -6,7 +6,7 @@ const initialState = [];
 const userList = (state = initialState, action) => {
   switch (action.type){
     case LOAD_SINGLE_USER:
-      return [...action.user];
+      return action.user;
 
     case LOAD_USERS:
       return [...action.users];
