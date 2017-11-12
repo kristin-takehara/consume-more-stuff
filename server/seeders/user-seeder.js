@@ -29,7 +29,7 @@ function generateFakeUsers(count, conditions) {
     const newUser = {
       username: faker.internet.userName(),
       password: 'pass',
-      role: faker.word('User'),
+      role: 2,
       createdAt: faker.date.recent(90),
       updatedAt: new Date(),
     };

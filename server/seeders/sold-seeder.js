@@ -1,4 +1,4 @@
-'use strict';
+'use stNorict';
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
