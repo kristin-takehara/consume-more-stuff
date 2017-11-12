@@ -22,7 +22,8 @@ router.route('/')
     { model : User, as : 'User',
       attributes : { exclude : ['password'] }
     }
-  ]
+  ],
+  order : [[ 'updatedAt', 'DESC' ]]
  })
  .then((items) => {
     console.log('list of items returned');

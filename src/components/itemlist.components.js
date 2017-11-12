@@ -5,7 +5,14 @@ import Item from'./item.components';
 const ItemList = ({ items }) => {
   return (
     <div id="item-list"> {
-      items.map((item, idx) => {
+      items
+      .filter(item => {
+        return !item.deletedAt;
+      })
+      .filter(item => {
+        return item.is_sold === 1;
+      })
+      .map((item, idx) => {
         //renders X amount of items
         return (
           <Item
