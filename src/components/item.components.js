@@ -17,7 +17,7 @@ const Item = ({ singleItem, singleView }) => {
         <div>{ singleItem.name }</div>
       </Link>
 
-      <div><img src={ file } height="250px" width="250px" alt="" /></div>
+      <div className="item-image"><img src={ file } alt="image not found" /></div>
 
       <div>Description: { singleItem.description }</div>
       <div>Price: ${ singleItem.price }</div>
