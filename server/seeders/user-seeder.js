@@ -13,38 +13,29 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return Condition.findAll({ distinct: 'condition' })
       .then(conditions => {
-        const items = generateFakeItems(50, conditions);
-        return queryInterface.bulkInsert('items', items, {});
+        const users = generateFakeUsers(25, conditions);
+        return queryInterface.bulkInsert('users', users, {});
       });
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('items', null, {});
+    return queryInterface.bulkDelete('users', null, {});
   }
 };
 
-function generateFakeItems(count, conditions) {
-  const items = [];
+function generateFakeUsers(count, conditions) {
+  const users = [];
   for (let i = 0; i < count; i++) {
     const newItem = {
-      name: faker.commerce.product(),
-      description: `${faker.commerce.productAdjective()} ${faker.commerce.product()}`,
-      imageUrl: faker.image.imageUrl(),
-      manufacturer: faker.commerce.department(),
-      model: faker.commerce.productName(),
-      price: faker.commerce.price(),
-      dimensions: faker.lorem.word(),
-      notes: faker.lorem.words(),
-      createdAt: faker.date.recent(90),
-      updatedAt: new Date(),
+      username: faker.commerce.product(),
       condition_id: Math.floor(Math.random() * 4) + 1,
       category_id: Math.floor(Math.random() * 4) + 1,
       user_id: 1,
       is_sold: Math.floor(Math.random() * 2) + 1 
     };
 
-    items.push(newItem);
+    users.push(newItem);
   }
-  return items;
+  return users;
 }
 
