@@ -46,7 +46,7 @@ export const loadItems = () => {
 export const addItem = (newItem) => {
   return (dispatch) => {
     return Axios.post(listOfItems, newItem)
-    .then(newItemDetails => {
+    .then(newItemDetails => {      
       dispatch({
         type: ADD_ITEM,
         newItem: newItemDetails.data

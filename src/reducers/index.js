@@ -7,7 +7,6 @@ import statusList from './statuses.reducers';
 import userList from './users.reducers';
 import conditionList from './conditions.reducers';
 
-
 export default combineReducers({
   singleItem,
   itemList,
@@ -15,5 +14,4 @@ export default combineReducers({
   statusList,
   userList,
   conditionList
-
 });

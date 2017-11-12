@@ -33,24 +33,28 @@ router.route('/')
     return res.json(err);
  });
 })
-.post(upload.single('userPhoto'), (req, res) => {
-  const details = req.body;
+.post(isAuthenticated, upload.single('file'), (req, res) => {
+  const details = req.body;  
   let file = req.file;
   let path = '';
 
+  if (file) {
+     path = file.path.split('/').slice(1).join('/');
+  }
+  
   return Item.create({
     category_id : details.category_id,
     condition_id : details.condition_id,
     description : details.description,
     dimensions : details.dimensions,
-    imageUrl: path ? file.path:'',
+    imageUrl: path,
     is_sold : 2,
     name : details.name,
     notes : details.notes,
     manufacturer : details.manufacturer,
     model : details.model,
     price : details.price,
-    user_id : details.user_id
+    user_id : req.user.id
   })
   .then((newItem) => {
     return newItem.reload({
@@ -64,6 +68,7 @@ router.route('/')
     });
   })
   .then(newItem => {
+    console.log('newitem created');
     return res.json(newItem);
   })
   .catch((err) => {
