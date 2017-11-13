@@ -8,6 +8,7 @@ import { loadStatuses } from '../../actions/statuses.actions';
 import { loadCategories } from '../../actions/categories.actions';
 import Nav from '../../components/nav.components';
 import ItemList from '../../components/itemlist.components';
+import Footer from '../../components/footer.components';
 //CONTAINERS------------------
 import Register from '../Register';
 import Login from '../LogIN';
@@ -38,11 +39,12 @@ class App extends Component {
                 items={this.props.items}
                 categoryId={category.id}
                 categoryName={category.category}
-                key={idx}
-                width="20%" />
+                key={idx}/>
             )
           })
         }
+
+        <Footer />
       </div>
     );
   }

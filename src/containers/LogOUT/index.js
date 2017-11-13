@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { logoutUser } from '../../actions/auth.actions';
 import Nav from '../../components/nav.components';
+import Footer from '../../components/footer.components';
 class Logout extends Component {
   constructor(props){
     super(props);
@@ -62,7 +63,8 @@ class Logout extends Component {
           </button>
 
         </form>
-
+        <br/>
+        <Footer />
       </div>
     );
   }

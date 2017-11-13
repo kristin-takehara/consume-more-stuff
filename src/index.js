@@ -19,7 +19,6 @@ import LogIN from './containers/LogIN';
 import LogOUT from './containers/LogOUT';
 import SingleItemView from './containers/SingleItemView';
 //---------------------------------------
-
 import registerServiceWorker from './lib/registerServiceWorker';
 
 
@@ -43,7 +42,6 @@ ReactDOM.render(
           </div>
 
         </header>
-
           <Route exact path="/" component={App} />
           <Route path="/register" component={Register} />
           <Route path="/login" component={LogIN} />

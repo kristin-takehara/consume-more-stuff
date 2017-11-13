@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { registerUser } from '../../actions/auth.actions';
 import { loadUsers } from '../../actions/users.actions';
 import Nav from '../../components/nav.components';
+import Footer from '../../components/footer.components';
 
 class Register extends Component {
   constructor(props) {
@@ -93,7 +94,8 @@ class Register extends Component {
 
         </form>
         </div>
-
+        <br/>
+        <Footer />
       </div>
     );
   }

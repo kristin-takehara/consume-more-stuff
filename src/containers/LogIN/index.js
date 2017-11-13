@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { loginUser } from '../../actions/auth.actions';
 import { loadUsers } from '../../actions/users.actions';
 import Nav from '../../components/nav.components';
+import Footer from '../../components/footer.components';
 
 class Login extends Component {
   constructor(props){
@@ -94,7 +95,8 @@ class Login extends Component {
 
         </form>
         </div>
-
+        <br/>
+        <Footer/>
       </div>
     );
   }

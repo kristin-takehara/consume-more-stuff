@@ -2,7 +2,6 @@ import React from 'react';
 import { FormattedRelative } from 'react-intl';
 import { Link } from 'react-router-dom';
 
-
 const Item = ({ singleItem, singleView }) => {
   const url = /^http/;
   let imageUrl = singleItem.imageUrl;
