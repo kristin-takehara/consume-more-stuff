@@ -55,7 +55,7 @@ class Login extends Component {
   }
 
   render(){
-    if (this.state.redirect) {
+    if(this.state.redirect) {
       return <Redirect to="/"/>
     }
     return(
@@ -66,7 +66,6 @@ class Login extends Component {
         <br/>
         <div className="login-form">
         <form onSubmit={this.handleSubmit.bind(this)}>
-
           username
           <br/>
           <div>
