@@ -7,6 +7,7 @@ import Nav from '../../components/nav.components';
 import Footer from '../../components/footer.components';
 import ErrorBoundary from '../../containers/ErrorBoundary';
 
+
 class Login extends Component {
   constructor(props){
     super(props);
@@ -37,7 +38,7 @@ class Login extends Component {
       username : '',
       password : '',
       redirect : true
-    });
+    })
 
   }
 
@@ -56,9 +57,10 @@ class Login extends Component {
   }
 
   render(){
-    if (this.state.redirect) {
-      return <Redirect to="/"/>
-    }
+    // if (this.state.redirect) {
+    //   return <Redirect to="/" />
+    // }
+    // console.log(ErrorBoundary)
     return(
       <div id="login-container">
         <Nav />
@@ -66,35 +68,35 @@ class Login extends Component {
         <div><center>.: welcome back :.</center></div>
         <br/>
         <div className="login-form">
-        <form onSubmit={this.handleSubmit.bind(this)}>
-
-          username
-          <br/>
-          <div>
-          <input
-            type="text"
-            placeholder="username"
-            defaultValue={this.state.username}
-            onChange={this.handleUsernameInput} />
-          </div>
-          <br/>
-          password
-          <br/>
-          <div>
-          <input
-            type="password"
-            placeholder="password"
-            defaultValue={this.state.password}
-            onChange={this.handlePasswordInput} />
-          </div>
-          <br/>
-          <button
-            className="login-btn"
-            type="submit"
-            onClick={this.handleSubmit}>Login
-          </button>
-
-        </form>
+          <form onSubmit={this.handleSubmit.bind(this)}>
+            username
+            <br/>
+            <div>
+            <input
+              type="text"
+              placeholder="username"
+              defaultValue={this.state.username}
+              onChange={this.handleUsernameInput} />
+            </div>
+            <br/>
+            password
+            <br/>
+            <div>
+            <input
+              type="password"
+              placeholder="password"
+              defaultValue={this.state.password}
+              onChange={this.handlePasswordInput} />
+            </div>
+            <br/>
+            <ErrorBoundary> {/*!!!!!!!!!!!!!!!!!!!!!*/}
+            <button
+              className="login-btn"
+              type="submit"
+              onClick={this.handleSubmit}>Login
+            </button>
+          </ErrorBoundary> {/*!!!!!!!!!!!!!!!!!!!!!*/}
+          </form>
         </div>
         <br/>
         <Footer/>

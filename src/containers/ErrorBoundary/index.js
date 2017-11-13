@@ -1,33 +1,45 @@
 import React, { Component } from 'react';
-// import { connect } from 'react-redux';
+import { render } from "react-dom";
 // import { Redirect } from 'react-router-dom';
 
 // import Nav from '../../components/nav.components';
 // import Footer from '../../components/footer.components';
+import { connect } from 'react-redux';
 
 class ErrorBoundary extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state = {hasError: false};
+    this.state = {
+      error: null,
+      errorInfo: null
+    };
   }
 
-  componentDidCatch(error, info) {
-    this.setState({ hasError: true});
-    // logError(error,info);
+  componentDidCatch(error, errorInfo) {
+    // Catch errors in any child components and re-renders with an error message
+    this.setState({
+      error: error,
+      errorInfo: errorInfo
+    });
   }
 
   render() {
-    if (this.state.hasError) {
+    if (this.state.error) {
       return (
-        <div className='err-msg'>
-          <h4>something went wrong!</h4>
+        <div>
+          <h2>{"Oh Junk!! Something went wrong"}</h2>
+          <p className="red">
+            {this.state.error && this.state.error.toString()}
+          </p>
+          <div>{"Component Stack Error Details: "}</div>
+          <p className="red">{this.state.errorInfo.componentStack}</p>
         </div>
       );
     }
-    else {
-      return this.props.children;
-    }
+    // component normally just renders children
+    return this.props.children;
   }
 }
+
 
 export default ErrorBoundary;
