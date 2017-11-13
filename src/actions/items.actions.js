@@ -7,6 +7,7 @@ export const LOAD_ITEMS = 'LOAD_ITEMS';
 export const ADD_ITEM = 'ADD_ITEM';
 export const EDIT_ITEM = 'EDIT_ITEM';
 export const EDITING ='EDITING';
+export const ITEM_SOLD ='ITEM_SOLD';
 export const DEL_ITEM ='DEL_ITEM';
 export const ERROR = 'ERROR';
 
@@ -93,19 +94,37 @@ export const editItem = (updatedItem) => {
   };
 };
 
-export const deleteItem = (id) => {
+export const setItemToSold = (itemId) => {
   return dispatch => {
-    return Axios.delete(`${listOfItems}/${id}`)
+    return Axios.put((`${listOfItems}/${itemId}/sold`))
     .then(response => {
-      dispatch({
-        type : DEL_ITEM,
-        id : id
+      dispatch ({
+        type : ITEM_SOLD,
+        id : itemId
       });
     })
     .catch(err => {
       dispatch({
         type : ERROR,
-        error: err
+        error : err
+      });
+    });
+  };
+};
+
+export const deleteItem = (itemId) => {
+  return dispatch => {
+    return Axios.delete(`${listOfItems}/${itemId}`)
+    .then(response => {
+      dispatch({
+        type : DEL_ITEM,
+        id : itemId
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type : ERROR,
+        error : err
       });
     });
   };
