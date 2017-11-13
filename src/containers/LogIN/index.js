@@ -5,6 +5,7 @@ import { loginUser } from '../../actions/auth.actions';
 import { loadUsers } from '../../actions/users.actions';
 import Nav from '../../components/nav.components';
 import Footer from '../../components/footer.components';
+import ErrorBoundary from '../../containers/ErrorBoundary';
 
 class Login extends Component {
   constructor(props){
