@@ -37,7 +37,9 @@ ReactDOM.render(
         <header id="global-nav-header">
 
           <div id="logo">
+            <Link to="/">
             <img src="/assets/jnkr-logo.jpg" alt=".jnkr"/>
+            </Link>
           </div>
 
         </header>

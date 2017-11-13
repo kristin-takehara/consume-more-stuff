@@ -104,21 +104,30 @@ h2 {
     }
   }
 
-
-.single-item {
-  padding-top: 1vw;
-  border: 0.2vw solid black;
-  box-sizing: content-box;
-  a {
-    color: #33cccc;
+.item-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 2px 16px;
+  .single-item {
+    width: 33%;
+    // box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.5s;
+    padding: 16px;
+    a {
+      color: #33cccc;
+    }
+    .uploaded-img {
+      width: 100%;
+    }
   }
-
+}
+.single-item:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5);
 }
 
-.item-image {
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-  transition: 0.3s;
-  width: 40%;
+.card-details {
+  font-size: 60%;
 }
 
 
