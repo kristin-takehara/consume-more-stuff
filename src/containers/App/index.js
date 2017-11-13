@@ -24,13 +24,24 @@ class App extends Component {
     this.props.loadStatuses();
   }
 
-  render() {
+  render() {    
     return (
       <div id="app">
         <Nav />
         <NewItem />
-        <ItemList items={this.props.items} />
-
+        
+        {
+          this.props.categories
+          .map((category, idx) => {            
+            return(
+              <ItemList 
+                items={this.props.items}
+                categoryId={category.id}
+                categoryName={category.category} 
+                key={idx} />            
+            )
+          })
+        }
       </div>
     );
   }
