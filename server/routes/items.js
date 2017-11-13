@@ -23,7 +23,7 @@ router.route('/')
       attributes : { exclude : ['password'] }
     }
   ],
-  order : [[ 'updatedAt', 'DESC' ]]
+  order : [[ 'createdAt', 'DESC' ]]
  })
  .then((items) => {
     console.log('list of items returned');

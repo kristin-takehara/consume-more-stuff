@@ -11,25 +11,61 @@ const Item = ({ singleItem, singleView }) => {
   }
   return (
     <div className="single-item">
-      <Link to={`/items/${singleItem.id}`}>
-      { singleItem.name }
-      </Link><br />
-      <img className="uploaded-img" src={ imageUrl } alt="image not found" />
-      <div className="card-details">
-        <div className="card-manufacturer">{ singleItem.manufacturer }</div><br/>
-        <div>{ singleItem.description }</div><br/>
-        <div className="card-price">${ singleItem.price }</div><br/>
-        <div>Model: { singleItem.model }</div><br/>
-        <div>Condition: { singleItem.Condition.condition }</div><br/>
-        <div>Category: { singleItem.Category.category }</div><br/>
-        <div>Dimensions: { singleItem.dimensions }</div><br/>
-        <div>Notes: { singleItem.notes }<br/>
-          Updated: <FormattedRelative value={ singleItem.updatedAt } /><br/>
 
-          Posted: <FormattedRelative value={ singleItem.createdAt } /><br/>
-        </div>
+      <div>
+        { singleItem.name }
+      </div>
+      
+      { singleView
+        ? <img className="uploaded-img" src={ imageUrl } alt="image not found" />
+        : <Link to={`/items/${singleItem.id}`}>
+            <img className="uploaded-img" src={ imageUrl } alt="image not found" />
+          </Link>        
+      }
+
+      <div className="card-price">
+        ${ singleItem.price }
       </div>
 
+      <div>
+        { singleItem.description }
+      </div>
+
+      <div>
+        <FormattedRelative value={ singleItem.createdAt } />
+      </div>
+
+      { singleView 
+        // if singleView is true render these
+        ? <div className="card-details">
+            <div>
+              Category: { singleItem.Category.category }
+            </div>
+            <div>
+              Condition: { singleItem.Condition.condition }
+            </div>
+
+            { singleItem.manufacturer
+              ? <div className="card-manufacturer">{ singleItem.manufacturer }</div>
+              : null
+            }
+            { singleItem.model 
+              ? <div>Model: { singleItem.model }</div>
+              : null 
+            }
+            { singleItem.dimensions
+              ? <div>Dimensions: { singleItem.dimensions }</div>
+              : null
+            }
+            { singleItem.notes
+              ? <div>Notes: { singleItem.notes }</div>
+              : null
+            }
+          </div>
+          // else render nothing
+        : null
+      }
+  
     </div>
   );
 }
