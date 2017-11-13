@@ -15,10 +15,14 @@ const Item = ({ singleItem, singleView }) => {
       <div>
         { singleItem.name }
       </div>
-  
-      <Link to={`/items/${singleItem.id}`}>
-        <img className="uploaded-img" src={ imageUrl } alt="image not found" />
-      </Link>
+      
+      { singleView
+        ? <img className="uploaded-img" src={ imageUrl } alt="image not found" />
+        : <Link to={`/items/${singleItem.id}`}>
+            <img className="uploaded-img" src={ imageUrl } alt="image not found" />
+          </Link>        
+      }
+
 
       <div className="card-price">
         ${ singleItem.price }
