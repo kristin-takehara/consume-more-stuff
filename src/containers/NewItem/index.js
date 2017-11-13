@@ -26,7 +26,7 @@ class NewItem extends Component {
   }
 
   handleSubmit(evt){
-    console.log(evt);    
+    console.log(evt);
     evt.preventDefault();
 
     let formData = new FormData();
@@ -89,8 +89,9 @@ class NewItem extends Component {
   render() {
     if(localStorage.username) {
       return (
-        <div id="new-item-form">
-          <form onSubmit={this.handleSubmit}>
+        <div id="new-item-form-container">
+
+          <div><form className="new-item-form" onSubmit={this.handleSubmit}>
 
             <Select
               defaultValue={this.state.category_id}
@@ -161,7 +162,7 @@ class NewItem extends Component {
                 value={this.state.dimensions}
               />
             </div>
-            
+
             <div className="description-form">
               <textarea
                 name="description"
@@ -182,17 +183,19 @@ class NewItem extends Component {
               />
             </div>
 
-            <div>
-              <input
-                accept="image/x-png,image/gif,image/jpeg"
-                name="file"
-                onChange={this.handleChangeImage}
-                type="file"
-              />
-            </div>
-
-            <input type="submit" value="submit item" />
-          </form>
+            <div><input
+              accept="image/x-png,image/gif,image/jpeg"
+              name="file"
+              onChange={this.handleChangeImage}
+              type="file"
+            /></div>
+            <br/>
+            <input
+            className="new-item-submit-btn"
+            type="submit"
+            value="
+            Submit" />
+          </form></div>
           <br/>
         </div>
       );
@@ -207,7 +210,7 @@ const mapStateToProps = (state) => {
   return {
     items : state.itemList,
     users : state.userList,
-    categories : state.categoryList, 
+    categories : state.categoryList,
     conditions : state.conditionList,
     statuses : state.statusList
   }

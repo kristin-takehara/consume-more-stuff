@@ -2,6 +2,7 @@
 $bg-color: #FFFFFF;
 $primary-color: #000000;
 $accent-color: #33cccc;
+$contrast-accent: #ffa31a;
 
 // mixins
 @mixin flex-style($flow, $justify) {
@@ -137,12 +138,27 @@ h2 {
     }
   }
 }
+.card-details {
+  font-size: 60%;
+}
 .single-item:hover {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5);
 }
-
-.card-details {
-  font-size: 60%;
+// ---------------------------
+#new-item-form-container {
+  justify-content: center;
+  min-height: 100%;
+  position: relative;
+  padding-bottom: 40px;
+  .new-item-form {
+    padding-top: 10px;
+    padding-left: 50px;
+  }
+  .new-item-submit-btn {
+    background-color: $accent-color;
+    border: none;
+    padding: 5px 75px;
+  }
 }
 
 #logout-container {
