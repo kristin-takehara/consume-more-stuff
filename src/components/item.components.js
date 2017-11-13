@@ -28,34 +28,38 @@ const Item = ({ singleItem, singleView }) => {
         { singleItem.description }
       </div>
 
+      <div>
+        <FormattedRelative value={ singleItem.createdAt } />
+      </div>
+
       { singleView 
         // if singleView is true render these
         ? <div className="card-details">
-          <div className="card-manufacturer">{ singleItem.manufacturer }
+            <div>
+              Category: { singleItem.Category.category }
+            </div>
+            <div>
+              Condition: { singleItem.Condition.condition }
+            </div>
+
+            { singleItem.manufacturer
+              ? <div className="card-manufacturer">{ singleItem.manufacturer }</div>
+              : null
+            }
+            { singleItem.model 
+              ? <div>Model: { singleItem.model }</div>
+              : null 
+            }
+            { singleItem.dimensions
+              ? <div>Dimensions: { singleItem.dimensions }</div>
+              : null
+            }
+            { singleItem.notes
+              ? <div>Notes: { singleItem.notes }</div>
+              : null
+            }
           </div>
-          <div>
-            Model: { singleItem.model }
-          </div>
-          <div>
-            Condition: { singleItem.Condition.condition }
-          </div>
-          <div>
-            Category: { singleItem.Category.category }
-          </div>
-          <div>
-            Dimensions: { singleItem.dimensions }
-          </div>
-          <div>
-            Notes: { singleItem.notes }
-          </div>
-          <div>
-            Updated: <FormattedRelative value={ singleItem.updatedAt } />
-          </div>
-          <div>
-            Posted: <FormattedRelative value={ singleItem.createdAt } />
-          </div>
-        </div>
-        // else render nothing
+          // else render nothing
         : null
       }
   
