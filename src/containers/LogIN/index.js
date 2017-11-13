@@ -68,6 +68,7 @@ class Login extends Component {
         <div><center>.: welcome back :.</center></div>
         <br/>
         <div className="login-form">
+      <ErrorBoundary> {/*!!!!!!!!!!!!!!!!!!!!!*/}
           <form onSubmit={this.handleSubmit.bind(this)}>
             username
             <br/>
@@ -89,14 +90,13 @@ class Login extends Component {
               onChange={this.handlePasswordInput} />
             </div>
             <br/>
-            <ErrorBoundary> {/*!!!!!!!!!!!!!!!!!!!!!*/}
             <button
               className="login-btn"
               type="submit"
               onClick={this.handleSubmit}>Login
             </button>
-          </ErrorBoundary> {/*!!!!!!!!!!!!!!!!!!!!!*/}
           </form>
+          </ErrorBoundary> {/*!!!!!!!!!!!!!!!!!!!!!*/}
         </div>
         <br/>
         <Footer/>

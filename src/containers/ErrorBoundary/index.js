@@ -1,18 +1,14 @@
 import React, { Component } from 'react';
 import { render } from "react-dom";
-// import { Redirect } from 'react-router-dom';
 
+// import { Redirect } from 'react-router-dom';
 // import Nav from '../../components/nav.components';
 // import Footer from '../../components/footer.components';
-import { connect } from 'react-redux';
 
 class ErrorBoundary extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      error: null,
-      errorInfo: null
-    };
+    this.state = { error: null, errorInfo: null };
   }
 
   componentDidCatch(error, errorInfo) {
@@ -24,7 +20,7 @@ class ErrorBoundary extends Component {
   }
 
   render() {
-    if (this.state.error) {
+    if (this.state.errorInfo) {
       return (
         <div>
           <h2>{"Oh Junk!! Something went wrong"}</h2>
@@ -36,10 +32,9 @@ class ErrorBoundary extends Component {
         </div>
       );
     }
-    // component normally just renders children
+    // Renders CHildren 
     return this.props.children;
   }
 }
-
 
 export default ErrorBoundary;

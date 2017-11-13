@@ -15,6 +15,7 @@ import Login from '../LogIN';
 import Logout from '../LogOUT';
 import NewItem from '../NewItem/';
 import SingleItemView from '../SingleItemView';
+import ErrorBoundary from '../ErrorBoundary';
 //----------------------------
 class App extends Component {
   componentDidMount(){
