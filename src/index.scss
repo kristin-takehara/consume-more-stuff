@@ -1,7 +1,6 @@
 // theme colors
 $bg-color: #FFFFFF;
-$primary-color: #6699CC;
-$secondary-color: #FFFFFF;
+$primary-color: #000000;
 $accent-color: #33cccc;
 
 // mixins
@@ -23,14 +22,20 @@ $accent-color: #33cccc;
 }
 
 @mixin border-style() {
-  border: 1px solid black;
+  border: 1px solid $primary-color;
 }
 
 /* STYLE SETTINGS  */
+#source {
+  min-height: 100%;
+  position: relative;
+}
 
 html {
   @include box-style(border-box);
   font-family: 'Libre Baskerville', serif;
+  height: 100%;
+  width: 100%;
 }
 
 *, *:before, *:after {
@@ -38,11 +43,13 @@ html {
 }
 
 body {
+  height: 100%;
   margin: 0;
 }
 
 a {
-  color: white;
+  // color: white;
+  font-size: 75%;
 }
 
 h2 {
@@ -68,10 +75,13 @@ h2 {
   display: flex;
   justify-content: space-between;
   padding: 1.5vw;
+  a {
+    color: $bg-color;
+  }
 }
 
 .nav-links a:hover {
-  color: #33cccc;
+  color: $accent-color;
 }
 
 #register-container {
@@ -79,13 +89,13 @@ h2 {
 }
 
 .register-form {
-  font-size: 1.5vw;
+  font-size: 60%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 
   .register-btn {
-    background-color: #33cccc;
+    background-color: $accent-color;
     border: none;
     padding: 5px 40px;
   }
@@ -93,43 +103,55 @@ h2 {
 
 #login-container {
   justify-content: center;
-
+  min-height: 100%;
+  position: relative;
+  padding-bottom: 40px;
   .login-form {
-    font-size: 1.5vw;
+    height: 100%;
+    padding-bottom: 40px;
+    font-size: 60%;
     @include flex-style(row wrap, center);
     }
     .login-btn {
-      background-color: #33cccc;
+      background-color: $accent-color;
       border: none;
       padding: 5px 48px;
     }
   }
 
-
-.single-item {
-  padding-top: 1vw;
-  border: 0.2vw solid black;
-  box-sizing: content-box;
-  a {
-    color: #33cccc;
+.item-list {
+  @include flex-style(row wrap, space-between);
+  padding: 2px 16px;
+  padding-bottom: 40px;
+  .single-item {
+    width: 33%;
+    // box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.5s;
+    padding: 16px;
+    // padding-bottom: 40px;
+    a {
+      color: $accent-color;
+    }
+    .uploaded-img {
+      width: 100%;
+    }
   }
-
+}
+.single-item:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5);
 }
 
-.item-image {
-  height: auto;
-  width: 250px;
+.card-details {
+  font-size: 60%;
 }
-
 
 #logout-container {
   justify-content: center;
-
   .logout-form {
-    font-size: 1.5vw;
+    font-size: 100%;
     @include flex-style(row wrap, center);
     .logout-btn {
-      background-color: #33cccc;
+      background-color: $accent-color;
       border: none;
       padding: 5px 48px;
     }
@@ -139,4 +161,30 @@ h2 {
 #gator {
   padding-top: 1.5vw;
   @include flex-style(row wrap, center);
+}
+
+.footer {
+  background-color: #a6a3a2;
+  display: flex;
+  justify-content: center;
+  left: 0;
+  bottom: 0;
+  position: fixed;
+  height: 40px;
+  width: 100%;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  .footer-details {
+    font-size: 40%;
+    text-align: center;
+    padding-top: 10px;
+  }
+}
+
+@media screen and (min-width: 480px){
+
+  a {
+    font-size: 100%;
+  }
+
 }

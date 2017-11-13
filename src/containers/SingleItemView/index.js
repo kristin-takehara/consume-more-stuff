@@ -4,8 +4,11 @@ import { loadSingleItem, makeItemEditable, editItem, deleteItem } from '../../ac
 import { loadCategories } from '../../actions/categories.actions';
 import { loadConditions } from '../../actions/conditions.actions';
 import { loadStatuses } from '../../actions/statuses.actions';
+
+import Nav from '../../components/nav.components';
 import Item from '../../components/item.components';
 import EditItem from '../../components/edit-item.components';
+import Footer from '../../components/footer.components';
 
 class SingleItemView extends Component {
   constructor() {
@@ -119,14 +122,15 @@ class SingleItemView extends Component {
     if(localStorage.username) {
     return(
       <div id="single-item-view">
+        <Nav />
         {
           !this.props.singleItem.isEditing &&
           <div>
-            <Item 
+            <Item
               singleItem={ this.props.singleItem }
               singleView={ true } />
-            <button 
-              type="submit" 
+            <button
+              type="submit"
               onClick={this.toggleEdit.bind(this, this.props.singleItem, true)}>
               EDIT
             </button>
@@ -166,6 +170,8 @@ class SingleItemView extends Component {
       return(
         <div>
           <Item singleItem={ this.props.singleItem }/>
+          <br/>
+          <Footer/>
         </div>
       )
     }

@@ -8,6 +8,7 @@ import { loadStatuses } from '../../actions/statuses.actions';
 import { loadCategories } from '../../actions/categories.actions';
 import Nav from '../../components/nav.components';
 import ItemList from '../../components/itemlist.components';
+import Footer from '../../components/footer.components';
 //CONTAINERS------------------
 import Register from '../Register';
 import Login from '../LogIN';
@@ -24,24 +25,26 @@ class App extends Component {
     this.props.loadStatuses();
   }
 
-  render() {    
+  render() {
     return (
       <div id="app">
         <Nav />
         <NewItem />
-        
+
         {
           this.props.categories
-          .map((category, idx) => {            
+          .map((category, idx) => {
             return(
-              <ItemList 
+              <ItemList
                 items={this.props.items}
                 categoryId={category.id}
-                categoryName={category.category} 
-                key={idx} />            
+                categoryName={category.category}
+                key={idx}/>
             )
           })
         }
+
+        <Footer />
       </div>
     );
   }

@@ -19,7 +19,6 @@ import LogIN from './containers/LogIN';
 import LogOUT from './containers/LogOUT';
 import SingleItemView from './containers/SingleItemView';
 //---------------------------------------
-
 import registerServiceWorker from './lib/registerServiceWorker';
 
 
@@ -37,11 +36,12 @@ ReactDOM.render(
         <header id="global-nav-header">
 
           <div id="logo">
+            <Link to="/">
             <img src="/assets/jnkr-logo.jpg" alt=".jnkr"/>
+            </Link>
           </div>
 
         </header>
-
           <Route exact path="/" component={App} />
           <Route path="/register" component={Register} />
           <Route path="/login" component={LogIN} />

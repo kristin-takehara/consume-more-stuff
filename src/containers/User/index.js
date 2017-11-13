@@ -23,8 +23,8 @@ class User extends Component {
       return(
 
         <div className="user-view">
-          <Nav />
           <UserItem singleUser={this.props.singleUser}/>
+          <Nav />
         </div>
       );
     } else {
