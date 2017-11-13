@@ -35,21 +35,21 @@ router.route('/')
  });
 })
 .post(isAuthenticated, upload.single('file'), (req, res) => {
-  const details = req.body;  
+  const details = req.body;
   let file = req.file;
   let path = '';
 
   if (file) {
      path = file.path.split('/').slice(1).join('/');
   }
-  
+
   return Item.create({
     category_id : details.category_id,
     condition_id : details.condition_id,
     description : details.description,
     dimensions : details.dimensions,
     imageUrl: path,
-    is_sold : 2,
+    is_sold : 1,
     name : details.name,
     notes : details.notes,
     manufacturer : details.manufacturer,
@@ -99,8 +99,8 @@ router.route('/:id')
   }));
 })
 .put(isAuthenticated, (req, res) => {
-  let details = req.body; 
-    
+  let details = req.body;
+  console.log(details);
   // prevents a logged in user from updating another user's post unless admin or the user that created the post
   if (req.user.id !== details.user_id &&
       req.user.role !== 'admin') {
@@ -114,7 +114,7 @@ router.route('/:id')
     description : details.description,
     dimensions : details.dimensions,
     // imageUrl: path ? file.path : '',
-    is_sold : 2,
+    is_sold : details.is_sold,
     name : details.name,
     notes : details.notes,
     manufacturer : details.manufacturer,

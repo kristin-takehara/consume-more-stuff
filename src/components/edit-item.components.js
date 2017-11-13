@@ -75,7 +75,7 @@ const EditItem = ({ singleItem, categories, conditions, statuses, handleSubmit, 
             name="is_sold"
             label="Sold: "
             type="sold"
-            handler={this.handleChange}
+            handler={handleChange}
             defaultValue={singleItem.is_sold} />
         </div>
 
