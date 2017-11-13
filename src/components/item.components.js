@@ -23,7 +23,6 @@ const Item = ({ singleItem, singleView }) => {
           </Link>        
       }
 
-
       <div className="card-price">
         ${ singleItem.price }
       </div>
