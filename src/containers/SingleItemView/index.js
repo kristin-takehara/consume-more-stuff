@@ -148,13 +148,18 @@ class SingleItemView extends Component {
                 true)} >
               EDIT
             </button>
-            <button
-              onClick={this.handleSold.bind(
-                this,
-                this.props.singleItem.id)}
-              type="button" >
-              SOLD
-            </button>
+
+            { this.props.singleItem.is_sold === 1
+              ? <button
+                onClick={this.handleSold.bind(
+                  this,
+                  this.props.singleItem.id)}
+                type="button" >
+                SOLD
+              </button>
+              : null              
+            }
+
           </div>
         }
         {

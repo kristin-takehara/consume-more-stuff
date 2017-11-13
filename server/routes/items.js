@@ -153,7 +153,9 @@ router.route('/:id')
     // prevents a logged in user from deleting another user's post unless admin or the user that created the post
     if (req.user.id !== foundItem.user_id &&
         req.user.role !== 'admin') {
-      return { success: false };
+      return res.json(
+        { success: false }
+      );
     }
 
     return foundItem.update({
@@ -179,14 +181,12 @@ router.route('/:id/sold')
   return Item.findById(id)
   .then(foundItem => {
     // prevents a logged in user from deleting another user's post unless admin or the user that created the post
-    if (req.user.id !== foundItem.user_id &&
-        req.user.role !== 'admin') {
-      return { success: false };
+    if (req.user.id === foundItem.user_id ||
+        req.user.role === 'admin') {
+      return foundItem.update({
+        is_sold : 2
+      });
     }
-
-    return foundItem.update({
-      is_sold : 2
-    });
   })
   .then(response => {
     console.log('item sold');
