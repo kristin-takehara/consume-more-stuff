@@ -12,14 +12,6 @@ const Nav = () => {
           <Link to="/logout">Logout</Link>
         </div>
 
-        <div className="user-side-bar">
-          <Link to="javascript:void(0)" className="close-btn" onClick="closeNav()">&times;</Link>
-          <Link to="/">Home</Link>
-          <Link to="/messages">Messages</Link>
-          <Link to="/settings">Settings</Link>
-        </div>
-        <span onClick="openNav()">open</span>
-
       </div>
     )
   }else{
@@ -29,7 +21,7 @@ const Nav = () => {
         <Link to="/register">Sign Up</Link>
         <Link to="/login">Login</Link>
       </div>
-    )
+    );
   }
 }
 
