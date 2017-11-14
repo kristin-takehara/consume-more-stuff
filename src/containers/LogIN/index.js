@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { loginUser } from '../../actions/auth.actions';
 import { loadUsers } from '../../actions/users.actions';
-import ErrorBoundary from '../../containers/ErrorBoundary'; //ERROR BOUNDARY !!!!!!!!!!!!!
+import ErrorBoundary from '../../containers/ErrorBoundary';
 import Nav from '../../components/nav.components';
 import Footer from '../../components/footer.components';
 import {
@@ -15,10 +15,9 @@ import {
 class Login extends Component {
   constructor(props){
     super(props);
-    console.log(props);
     this.state = {
-      username : ' ',
-      password : ' ',
+      username : '',
+      password : '',
       redirect : false // set initial state to false
     };
 
@@ -36,12 +35,11 @@ class Login extends Component {
       username : this.state.username,
       password : this.state.password
     }
-    console.log("loginCreds", loginCreds);
     this.props.loginUser(loginCreds);
     this.setState(
     {
-      username : "",
-      password : "",
+      username : '',
+      password : '',
       redirect : true
     })
 
@@ -66,18 +64,18 @@ class Login extends Component {
       return <Redirect to="/"/>
     }
 
-    if (this.state.username.length === 0 || this.state.password === undefined) {
-      return (
-        <div className="form-warning">
-          <p>Oh junk~ You left out some login Credentials!</p>
-            <Link to="/login"><button>Click here to go back</button></Link>
-        </div>
-      );
+    // if (this.state.username.length === 0 || this.state.password === undefined) {
+    //   return (
+    //     <div className="form-warning">
+    //       <p>Oh junk~ You left out some login Credentials!</p>
+    //         <Link to="/login"><button>Click here to go back</button></Link>
+    //     </div>
+    //   );
 
-    }
-    else if (this.state.redirect) {
-      return <Redirect to="/" />
-    }
+    // }
+    // else if (this.state.redirect) {
+    //   return <Redirect to="/" />
+    // }
 
     return(
       <div id="login-container">
