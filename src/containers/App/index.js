@@ -15,6 +15,7 @@ import Login from '../LogIN';
 import Logout from '../LogOUT';
 import NewItem from '../NewItem/';
 import SingleItemView from '../SingleItemView';
+import ErrorBoundary from '../ErrorBoundary';
 //----------------------------
 class App extends Component {
   componentDidMount(){
@@ -29,8 +30,9 @@ class App extends Component {
     return (
       <div id="app">
         <Nav />
+      
         <NewItem />
-
+     
         {
           this.props.categories
           .map((category, idx) => {
@@ -43,7 +45,7 @@ class App extends Component {
             )
           })
         }
-
+      
         <Footer />
       </div>
     );

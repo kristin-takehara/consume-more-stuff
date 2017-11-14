@@ -7,6 +7,7 @@ export const LOAD_ITEMS = 'LOAD_ITEMS';
 export const ADD_ITEM = 'ADD_ITEM';
 export const EDIT_ITEM = 'EDIT_ITEM';
 export const EDITING ='EDITING';
+export const ITEM_SOLD ='ITEM_SOLD';
 export const DEL_ITEM ='DEL_ITEM';
 export const ERROR = 'ERROR';
 
@@ -73,12 +74,10 @@ export const makeItemEditable = (id, editing) => {
 };
 
 //UPDATE(PUT) item
-export const editItem = (updatedItem) => {  
-  console.log(updatedItem);
-  
+export const editItem = (updatedItem) => {    
   return (dispatch) => {
     return Axios.put(`${listOfItems}/${updatedItem.id}`, updatedItem)
-    .then(updatedItemDetails => {
+    .then(updatedItemDetails => {      
       dispatch({
         type: EDIT_ITEM,
         updatedItem: updatedItemDetails.data
@@ -93,19 +92,37 @@ export const editItem = (updatedItem) => {
   };
 };
 
-export const deleteItem = (id) => {
+export const setItemToSold = (itemId) => {
   return dispatch => {
-    return Axios.delete(`${listOfItems}/${id}`)
-    .then(response => {
-      dispatch({
-        type : DEL_ITEM,
-        id : id
+    return Axios.put((`${listOfItems}/${itemId}/sold`))
+    .then(soldItemDetails => {
+      dispatch ({
+        type : ITEM_SOLD,
+        soldItem : soldItemDetails.data
       });
     })
     .catch(err => {
       dispatch({
         type : ERROR,
-        error: err
+        error : err
+      });
+    });
+  };
+};
+
+export const deleteItem = (itemId) => {
+  return dispatch => {
+    return Axios.delete(`${listOfItems}/${itemId}`)
+    .then(response => {
+      dispatch({
+        type : DEL_ITEM,
+        id : itemId
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type : ERROR,
+        error : err
       });
     });
   };

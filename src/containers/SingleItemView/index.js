@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loadSingleItem, makeItemEditable, editItem, deleteItem } from '../../actions/items.actions';
+import { loadSingleItem, 
+         makeItemEditable, 
+         editItem, 
+         setItemToSold,
+         deleteItem 
+       } from '../../actions/items.actions';
 import { loadCategories } from '../../actions/categories.actions';
 import { loadConditions } from '../../actions/conditions.actions';
 import { loadStatuses } from '../../actions/statuses.actions';
@@ -28,7 +33,6 @@ class SingleItemView extends Component {
     };
 
     this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   toggleEdit(item, edit) {
@@ -41,7 +45,7 @@ class SingleItemView extends Component {
       dimensions: item.dimensions,
       is_sold: item.is_sold,
       manufacturer: item.manufacturer,
-      modelname: item.modelname,
+      model: item.modelname,
       name: item.name,
       notes: item.notes,
       price: item.price,
@@ -49,19 +53,17 @@ class SingleItemView extends Component {
     });
   }
 
-  removeItem(id) {
-    this.props.deleteItem(id);
-    this.props.makeItemEditable(id);
-  }
-
-  handleSubmit(id, evt) {
+  handleSubmit(evt) {
     evt.preventDefault();
+
+    const itemId = this.props.singleItem.id;
+
     this.props.editItem({
       category_id: this.state.category_id,
       condition_id: this.state.condition_id,
       description: this.state.description,
       dimensions: this.state.dimensions,
-      id : id,
+      id : itemId,
       is_sold: this.state.is_sold,
       manufacturer: this.state.manufacturer,
       model: this.state.model,
@@ -85,7 +87,7 @@ class SingleItemView extends Component {
       user_id: ''
     });
 
-    this.props.makeItemEditable(id);
+    this.props.makeItemEditable(itemId);
   }
 
   handleChange(evt) {
@@ -95,6 +97,15 @@ class SingleItemView extends Component {
     this.setState({
       [name] : value
     });
+  }
+
+  handleSold(itemId) {    
+    this.props.setItemToSold(itemId);
+  }
+
+  removeItem(itemId) {    
+    this.props.deleteItem(itemId);
+    this.props.makeItemEditable(itemId);
   }
 
   componentDidMount() {// if do show/hide in here for authentication can also include redirect link to login
@@ -130,10 +141,25 @@ class SingleItemView extends Component {
               singleItem={ this.props.singleItem }
               singleView={ true } />
             <button
-              type="submit"
-              onClick={this.toggleEdit.bind(this, this.props.singleItem, true)}>
+              type="button"
+              onClick={this.toggleEdit.bind(
+                this, 
+                this.props.singleItem, 
+                true)} >
               EDIT
             </button>
+
+            { this.props.singleItem.is_sold === 1
+              ? <button
+                onClick={this.handleSold.bind(
+                  this,
+                  this.props.singleItem.id)}
+                type="button" >
+                SOLD
+              </button>
+              : null              
+            }
+
           </div>
         }
         {
@@ -145,22 +171,29 @@ class SingleItemView extends Component {
               conditions={ this.props.conditions }
               statuses={ this.props.statuses }
               handleChange={ this.handleChange }
-              handleSubmit={ this.handleSubmit } />
+              handleSold={ this.handleSold } />
 
             <button
-              type="submit"
+              type="button"
+              onClick={this.handleSubmit.bind(this)} >
+              CONFIRM
+            </button>
+
+            <button
+              type="button"
+              onClick={this.toggleEdit.bind(
+                this,
+                this.props.singleItem, 
+                false)} >
+              UNDO
+            </button>
+
+            <button
+              type="button"
               onClick={this.removeItem.bind(
                 this,
                 this.props.singleItem.id)} >
               DELETE
-            </button>
-
-            <button
-              type="submit"
-              onClick={this.toggleEdit.bind(
-                this,
-                this.props.singleItem, false)} >
-              UNDO
             </button>
           </div>
         }
@@ -170,7 +203,7 @@ class SingleItemView extends Component {
       return(
         <div>
           <Item singleItem={ this.props.singleItem }/>
-          <br/>
+
           <Footer/>
         </div>
       )
@@ -198,6 +231,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     editItem: (updatedItem) => {
       dispatch(editItem(updatedItem))
+    },
+    setItemToSold: (id) => {
+      dispatch(setItemToSold(id))
     },
     deleteItem: (id) => {
       dispatch(deleteItem(id))

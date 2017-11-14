@@ -3,22 +3,29 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { loginUser } from '../../actions/auth.actions';
 import { loadUsers } from '../../actions/users.actions';
+import ErrorBoundary from '../../containers/ErrorBoundary'; //ERROR BOUNDARY !!!!!!!!!!!!!
 import Nav from '../../components/nav.components';
 import Footer from '../../components/footer.components';
+import {
+  BrowserRouter as Router,
+  Link,
+  Route
+} from 'react-router-dom';
 
 class Login extends Component {
   constructor(props){
     super(props);
     console.log(props);
     this.state = {
-      username : '',
-      password : '',
+      username : ' ',
+      password : ' ',
       redirect : false // set initial state to false
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUsernameInput = this.handleUsernameInput.bind(this);
     this.handlePasswordInput = this.handlePasswordInput.bind(this);
+
   }
 
 
@@ -33,10 +40,10 @@ class Login extends Component {
     this.props.loginUser(loginCreds);
     this.setState(
     {
-      username : '',
-      password : '',
+      username : "",
+      password : "",
       redirect : true
-    });
+    })
 
   }
 
@@ -55,9 +62,18 @@ class Login extends Component {
   }
 
   render(){
-    if (this.state.redirect) {
-      return <Redirect to="/"/>
+    if (this.state.username.length === 0 || this.state.password === undefined) {
+      return (
+        <div className="form-warning">
+          <p>Oh junk~ You left out some login Credentials!</p>
+            <Link to="/login"><button>Click here to go back</button></Link>
+        </div>
+      );
     }
+    else if (this.state.redirect) {
+      return <Redirect to="/" />
+    }
+    
     return(
       <div id="login-container">
         <Nav />
@@ -65,35 +81,33 @@ class Login extends Component {
         <div><center>.: welcome back :.</center></div>
         <br/>
         <div className="login-form">
-        <form onSubmit={this.handleSubmit.bind(this)}>
-
-          username
-          <br/>
-          <div>
-          <input
-            type="text"
-            placeholder="username"
-            defaultValue={this.state.username}
-            onChange={this.handleUsernameInput} />
-          </div>
-          <br/>
-          password
-          <br/>
-          <div>
-          <input
-            type="password"
-            placeholder="password"
-            defaultValue={this.state.password}
-            onChange={this.handlePasswordInput} />
-          </div>
-          <br/>
-          <button
-            className="login-btn"
-            type="submit"
-            onClick={this.handleSubmit}>Login
-          </button>
-
-        </form>
+          <form onSubmit={this.handleSubmit.bind(this)}>
+            username
+            <br/>
+            <div>
+            <input
+              type="text"
+              placeholder="username"
+              defaultValue={this.state.username}
+              onChange={this.handleUsernameInput} />
+            </div>
+            <br/>
+            password
+            <br/>
+            <div>
+            <input
+              type="password"
+              placeholder="password"
+              defaultValue={this.state.password}
+              onChange={this.handlePasswordInput} />
+            </div>
+            <br/>
+            <button
+              className="login-btn"
+              type="submit"
+              onClick={this.handleSubmit}>Login
+            </button>
+          </form>
         </div>
         <br/>
         <Footer/>
