@@ -31,6 +31,12 @@ class Login extends Component {
 
   handleSubmit(evt) {
     //on success do this:
+
+    // if username and password is null
+      // call error boundary
+
+
+
     evt.preventDefault();
     let loginCreds = {
       username : this.state.username,
@@ -71,6 +77,7 @@ class Login extends Component {
         <Nav />
         <h2>Login</h2>
         <div><center>.: welcome back :.</center></div>
+      {/* Below is for username and password submission  - send to servergit*/}
         {(this.props.users[0] === 'invalid user name or password') ? <h2>{this.props.users[0]}</h2> : null}
         <br/>
         <div className="login-form">
