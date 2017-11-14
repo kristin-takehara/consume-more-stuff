@@ -98,7 +98,7 @@ h2 {
 .nav-links a:hover {
   color: $accent-color;
 }
-
+//----------------------------
 /* The side navigation menu */
 .user-side-bar {
     height: 100%;
@@ -136,11 +136,11 @@ h2 {
     font-size: 36px;
     margin-left: 50px;
 }
-// ---------------------
+//----------------------------
 .single-user {
   padding-bottom: 5px;
 }
-// ---------------------
+//----------------------------
 #register-container {
   justify-content: center;
 }
@@ -154,7 +154,7 @@ h2 {
     padding: 5px 40px;
   }
 }
-
+//----------------------------
 #login-container {
   justify-content: center;
   min-height: 100%;
@@ -172,17 +172,15 @@ h2 {
       padding: 5px 48px;
     }
   }
-
+//----------------------------
 .item-list {
   @include flex-style(row wrap, space-between);
   padding: 2px 16px;
   padding-bottom: 40px;
   .single-item {
     width: 33%;
-    // box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.5s;
     padding: 16px;
-    // padding-bottom: 40px;
     a {
       color: $accent-color;
     }
@@ -198,6 +196,27 @@ h2 {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5);
 }
 // ---------------------------
+#auth-single-item-view {
+  width: 100%;
+  .single-item-name {
+    padding-top: 10px;
+  }
+  .uploaded-img {
+    width: 50%;
+    padding-top: 10px;
+  }
+}
+//----------------------------
+.single-item {
+  width: 100%;
+  .single-item-name {
+    padding-top: 10px;
+  }
+  .uploaded-img {
+    width: 50%;
+    padding-top: 10px;
+  }
+}
 #product-listing {
   @include flex-style(row wrap, center);
   p {

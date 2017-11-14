@@ -12,7 +12,7 @@ const Item = ({ singleItem, singleView }) => {
   return (
     <div className="single-item">
 
-      <div>
+      <div className="single-item-name">
         { singleItem.name }
       </div>
 
