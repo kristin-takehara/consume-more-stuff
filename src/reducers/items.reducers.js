@@ -7,7 +7,7 @@ const itemList = (state = initialState, action) => {
       return [ ...action.items ];
 
     case ADD_ITEM:      
-      return [ ...state, action.newItem ];
+      return [ action.newItem, ...state ];
  
     default:
       return state;
