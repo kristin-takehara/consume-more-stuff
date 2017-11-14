@@ -3,7 +3,6 @@ import { FormattedRelative } from 'react-intl';
 import { Link } from 'react-router-dom';
 
 const UserItem = ({ singleUser }) => {
-  console.log(singleUser)
   return (
     <div className="single-user">
       <h1>Welcome, { singleUser.username }</h1>
