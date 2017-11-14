@@ -66,7 +66,7 @@ class Login extends Component {
       return (
         <div className="form-warning">
           <p>Oh junk~ You left out some login Credentials!</p>
-            <Link to="/login"><button>Click here to go back</button></Link>
+            <Link to="/login"><button onClick={() => window.location.reload()}>Click here to go back</button></Link>
         </div>
       );
     }
