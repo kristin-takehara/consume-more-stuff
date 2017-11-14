@@ -5,7 +5,7 @@ const UserItem = ({ singleUser }) => {
   console.log(singleUser);
   return (
     <div className="single-user">
-      <div> Welcome, { singleUser.username }! </div><br/>
+Welcome, { singleUser.username }!
     </div>
   );
 }
