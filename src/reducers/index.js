@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 
+import singleUserList from './single.user.reducers'
 import singleItem from './single.item.reducers';
 import itemList from './items.reducers';
 import categoryList from './categories.reducers';
@@ -13,5 +14,6 @@ export default combineReducers({
   categoryList,
   statusList,
   userList,
-  conditionList
+  conditionList,
+  singleUserList
 });
