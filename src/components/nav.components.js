@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import SideBar from './side-bar.components';
+import SideBar from '../containers/SideBar';
 
 const Nav = () => {
   if(localStorage.username){
@@ -13,6 +13,7 @@ const Nav = () => {
           <Link to="/logout">Logout</Link>
         </div>
 
+        <SideBar />
       </div>
     )
   }else{
