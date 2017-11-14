@@ -133,7 +133,7 @@ class SingleItemView extends Component {
     if(localStorage.username) {
     return(
       <div id="single-item-view">
-        <Nav />
+      <Nav />
         {
           !this.props.singleItem.isEditing &&
           <div>
@@ -143,20 +143,14 @@ class SingleItemView extends Component {
             <button
               className="edit-btn"
               type="button"
-              onClick={this.toggleEdit.bind(
-                this,
-                this.props.singleItem,
-                true)} >
+              onClick={this.toggleEdit.bind(this, this.props.singleItem, true)}>
               EDIT
             </button>
 
             { this.props.singleItem.is_sold === 1
               ? <button
                 className="sold-btn"
-                onClick={this.handleSold.bind(
-                  this,
-                  this.props.singleItem.id)}
-                type="button" >
+                onClick={this.handleSold.bind(this, this.props.singleItem.id)} type="button">
                 SOLD
               </button>
               : null
@@ -207,17 +201,20 @@ class SingleItemView extends Component {
   } else {
       return(
         <div className="unauth-single-item">
-          <Item singleItem={ this.props.singleItem }/>
+          <div>
 
-          <Footer/>
-        </div>
+            <Nav />
+            <Item singleItem={ this.props.singleItem }/>
+
+            <Footer/>
+          </div>
+       </div>
       )
     }
   }
 }
 
-// sets store state on local props
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     singleItem : state.singleItem,
     categories : state.categoryList,

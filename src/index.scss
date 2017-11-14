@@ -208,15 +208,18 @@ h2 {
 }
 //----------------------------
 .single-item {
+  min-height: 100%;
   width: 100%;
+  padding-bottom: 40px;
   .single-item-name {
     padding-top: 10px;
   }
   .uploaded-img {
-    width: 50%;
+    width: 33%;
     padding-top: 10px;
   }
 }
+
 #product-listing {
   @include flex-style(row wrap, center);
   p {
