@@ -13,8 +13,8 @@ class Login extends Component {
     super(props);
     console.log(props);
     this.state = {
-      username : '',
-      password : '',
+      username : ' ',
+      password : ' ',
       // redirect : false // set initial state to false
     };
 
@@ -57,10 +57,18 @@ class Login extends Component {
   }
 
   render(){
-    // if (this.state.redirect) {
-    //   return <Redirect to="/" />
-    // }
-    // console.log(ErrorBoundary)
+    if (this.state.username.length === 0 || this.state.password === undefined) {
+      return (
+        <div className="form-warning">
+          <p>Oh junk You left out some login Credentials!</p>
+          <button>Click</button>
+        </div>
+      );
+    }
+    else if (this.state.redirect) {
+      return <Redirect to="/" />
+    }
+    
     return(
       <div id="login-container">
         <Nav />
@@ -68,7 +76,6 @@ class Login extends Component {
         <div><center>.: welcome back :.</center></div>
         <br/>
         <div className="login-form">
-    <ErrorBoundary> {/*!!!!!!!!!!!!!!!!!!!!!*/}
           <form onSubmit={this.handleSubmit.bind(this)}>
             username
             <br/>
@@ -96,7 +103,6 @@ class Login extends Component {
               onClick={this.handleSubmit}>Login
             </button>
           </form>
-     </ErrorBoundary> {/*!!!!!!!!!!!!!!!!!!!!!*/}
         </div>
         <br/>
         <Footer/>

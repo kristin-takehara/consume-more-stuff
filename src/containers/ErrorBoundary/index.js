@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { render } from "react-dom";
 
+
+// import { render } from "react-dom";
 // import { Redirect } from 'react-router-dom';
 // import Nav from '../../components/nav.components';
 // import Footer from '../../components/footer.components';
@@ -12,7 +13,7 @@ class ErrorBoundary extends Component {
   }
 
   componentDidCatch(error, errorInfo) {
-    // Catch errors in any child components and re-renders with an error message
+    // Catch errors in any child components 
     this.setState({
       error: error,
       errorInfo: errorInfo
@@ -23,7 +24,7 @@ class ErrorBoundary extends Component {
     let errorInfo = this.state.errorInfo;
     let error = this.state.error;
 
-    if (error) {
+    if (errorInfo) {
       return (
         <div>
           <h2>{"Oh Junk!! Something went wrong"}</h2>
@@ -40,4 +41,4 @@ class ErrorBoundary extends Component {
   }
 }
 
-export default ErrorBoundary
+export default ErrorBoundary;

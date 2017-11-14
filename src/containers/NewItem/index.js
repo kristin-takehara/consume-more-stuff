@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addItem } from '../../actions/items.actions';
 import Select from '../../components/select.components';
+// import ErrorBoundary from '../../containers/ErrorBoundary';
 
 class NewItem extends Component {
   constructor() {
@@ -89,6 +90,7 @@ class NewItem extends Component {
   render() {
     if(localStorage.username) {
       return (
+      // <ErrorBoundary> 
         <div id="new-item-form">
           <form onSubmit={this.handleSubmit}>
 
@@ -195,6 +197,7 @@ class NewItem extends Component {
           </form>
           <br/>
         </div>
+      /*</ErrorBoundary>*/
       );
 
     } else {
