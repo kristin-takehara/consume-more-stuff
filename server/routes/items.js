@@ -57,7 +57,7 @@ router.route('/')
     price : details.price,
     user_id : req.user.id
   })
-  .then((newItem) => {
+  .then((newItem) => {    
     return newItem.reload({
       include : [
         { model : Category, as : 'Category' },
@@ -107,7 +107,7 @@ router.route('/:id')
     // prevents a logged in user from deleting another user's post unless admin or the user that created the post
     if (req.user.id === itemToEdit.user_id ||
         req.user.role === 'admin') {
-      return Item
+      return itemToEdit
       .update({
         category_id : details.category_id,
         condition_id : details.condition_id,
@@ -120,25 +120,23 @@ router.route('/:id')
         manufacturer : details.manufacturer,
         model : details.model,
         price : details.price
-      },
-      {
-        where: { id: details.id },
-        returning: true
       })
-      .then(updatedItem => {
-        updatedItem[1][0].reload({
-          include: [
+      .then((editedItem) => {
+        console.log('reloading');
+                
+        return editedItem
+        .reload({          
+          include : [
             { model : Category, as : 'Category' },
-            { model : Condition, as : 'Condition' },
-            { model : ItemStatus, as : 'Status'},
-            { model : User, as : 'User',
-              attributes : { exclude : ['password'] } }
+            { model : Condition, as : 'Condition' }
+            // { model : ItemStatus, as : 'Status'},
+            // { model : User, as : 'User',
           ]
-        })
-        .then(updatedItemDetails => {
-          console.log('item edited');
-          res.json(updatedItemDetails);
         });
+      })
+      .then(updatedItemDetails => {
+        console.log('item edited');
+        res.json(updatedItemDetails);
       });
     }
   })
