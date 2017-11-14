@@ -1,32 +1,33 @@
 import React from 'react';
+import { FormattedRelative } from 'react-intl';
 import { Link } from 'react-router-dom';
 
 const UserItem = ({ singleUser }) => {
+  console.log(singleUser)
   return (
-    <div>
-      <div className="single-user">
+    <div className="single-user">
+      <h1>Welcome, { singleUser.username }</h1>
+      <div className="unsold">
+      { singleUser.Items.map((itemDetails) => {
+        const url = /^http/;
+        let imageUrl = itemDetails.imageUrl;
+         // if imageUrl is not an http link AND this is a request from the single item view
+        if (!url.test(imageUrl)) { imageUrl = '/' + imageUrl; }
+        return(
         <div>
-        Welcome, { singleUser.username }
+          <Link to={`/items/${itemDetails.id}`}>
+            <h3>{ itemDetails.name }</h3>
+            <img className="uploaded-img" src={ imageUrl } alt="image not found" />
+          </Link>
+          <div>Price: ${ itemDetails.price } </div>
+          <div>Description: { itemDetails.description } </div>
+          <div>
+            <h3>Posted:</h3> <FormattedRelative value={ itemDetails.createdAt } />
+          </div>
         </div>
-      </div>
-      <div className="single-user-items">
-        {
-         singleUser.Items
-         .map((itemDetails) => {
-          console.log(itemDetails)
-           return(
-            <div>
-            <div>
-              {itemDetails.name}
-             </div>
-
-            <div>
-               {itemDetails.price}
-             </div>
-             </div>
-           );
-         })
-        }
+        );
+        })
+      }
       </div>
     </div>
   );
