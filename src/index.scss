@@ -99,6 +99,44 @@ h2 {
   color: $accent-color;
 }
 
+/* The side navigation menu */
+.user-side-bar {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px;
+    transition: 0.5s;
+}
+
+/* The navigation menu links */
+.user-side-bar a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s
+}
+
+/* When you mouse over the navigation links, change their color */
+.user-side-bar a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+/* Position and style the close button (top right corner) */
+.user-side-bar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+// ---------------------
 .single-user {
   padding-bottom: 5px;
 }
@@ -220,9 +258,9 @@ h2 {
 }
 
 @media screen and (min-width: 480px){
-
   a {
     font-size: 100%;
   }
-
+  .user-side-bar {padding-top: 15px;}
+  .user-side-bar a {font-size: 100%;}
 }
