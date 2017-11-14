@@ -29,6 +29,8 @@ const singleItem = (state = initialState, action) => {
       });  
 
     case EDIT_ITEM:
+      console.log(action.updatedItem);
+      
       return Object.assign({}, state, action.updatedItem);
 
     case ITEM_SOLD:      
