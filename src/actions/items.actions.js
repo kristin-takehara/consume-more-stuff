@@ -97,10 +97,10 @@ export const editItem = (updatedItem) => {
 export const setItemToSold = (itemId) => {
   return dispatch => {
     return Axios.put((`${listOfItems}/${itemId}/sold`))
-    .then(response => {
+    .then(soldItemDetails => {
       dispatch ({
         type : ITEM_SOLD,
-        id : itemId
+        soldItem : soldItemDetails.data
       });
     })
     .catch(err => {

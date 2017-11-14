@@ -175,7 +175,7 @@ class SingleItemView extends Component {
 
             <button
               type="button"
-              onClick={this.handleSubmit} >
+              onClick={this.handleSubmit.bind(this)} >
               CONFIRM
             </button>
 

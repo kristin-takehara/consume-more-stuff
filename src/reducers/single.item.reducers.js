@@ -29,28 +29,10 @@ const singleItem = (state = initialState, action) => {
       });  
 
     case EDIT_ITEM:
-      const updatedItem = action.updatedItem;
+      return Object.assign({}, state, action.updatedItem);
 
-      return Object.assign({}, state, {
-        category_id : updatedItem.category_id,
-        condition_id : updatedItem.condition_id,
-        created_by : updatedItem.created_by,
-        description : updatedItem.description,
-        dimensions : updatedItem.dimensions,
-        imageUrl : updatedItem.imageUrl,
-        is_sold : updatedItem.is_sold,
-        manufacturer : updatedItem.manufacturer,
-        model : updatedItem.model,
-        name : updatedItem.name,
-        notes : updatedItem.notes,
-        price : updatedItem.price,
-        updatedAt : updatedItem.updatedAt
-      });
-
-    case ITEM_SOLD:
-      return Object.assign({}, state, {
-        is_sold : 2
-      });
+    case ITEM_SOLD:      
+      return Object.assign({}, state, action.soldItem);
 
     case DEL_ITEM:
       return Object.assign({}, state, {
