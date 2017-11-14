@@ -7,7 +7,11 @@ module.exports = function(sequelize, DataType) {
     },
     password : {
       type : DataType.STRING
-    }
+    },
+    // email : {
+    //   type : DataType.STRING,
+    //   validate : {isEmail: true}
+    // },
   },
   {
     tableName : 'users'

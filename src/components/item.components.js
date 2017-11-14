@@ -18,9 +18,9 @@ const Item = ({ singleItem, singleView }) => {
       </div>
 
       { singleView
-        ? <img className="uploaded-img" src={ imageUrl } alt="image not found" />
+        ? <img className="uploaded-img" src={ imageUrl } alt="not found" />
         : <Link to={`/items/${singleItem.id}`}>
-            <img className="uploaded-img" src={ imageUrl } alt="image not found" />
+            <img className="uploaded-img" src={ imageUrl } alt="not found" />
           </Link>
       }
 
@@ -64,7 +64,7 @@ const Item = ({ singleItem, singleView }) => {
             }
             {
               singleItem.createdAt
-              ? <div>Posted: <FormattedRelative 
+              ? <div>Posted: <FormattedRelative
                   value={singleItem.createdAt} />
                 </div>
               : null
