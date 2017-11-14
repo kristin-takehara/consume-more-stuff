@@ -89,116 +89,134 @@ class NewItem extends Component {
   render() {
     if(localStorage.username) {
       return (
-        <div id="new-item-form-container">
-
-          <div><form className="new-item-form" onSubmit={this.handleSubmit}>
-
-            <Select
-              defaultValue={this.state.category_id}
-              handler={this.handleChange}
-              label="Category: "
-              list={this.props.categories}
-              name="category_id"
-              type="category"
-            />
-
-            <Select
-              defaultValue={this.state.condition_id}
-              handler={this.handleChange}
-              label="Condition: "
-              list={this.props.conditions}
-              name="condition_id"
-              type="condition"
-            />
-
-            <div className="name-form">
-              <input
-                name="name"
-                onChange={this.handleChange}
-                placeholder="item name"
-                type="text"
-                value={this.state.name}
-              />
-            </div>
-
-            <div className="manufacturer-form">
-              <input
-                name="manufacturer"
-                onChange={this.handleChange}
-                placeholder="manufacturer"
-                type="text"
-                value={this.state.manufacturer}
-              />
-            </div>
-
-            <div className="model-form">
-              <input
-                name="model"
-                onChange={this.handleChange}
-                placeholder="model"
-                type="text"
-                value={this.state.model}
-              />
-            </div>
-
-            <div className="price-form">
-              <input
-                max="100000"
-                min="0"
-                name="price"
-                onChange={this.handleChange}
-                placeholder="price"
-                type="decimal"
-                value={this.state.price}
-              />
-            </div>
-
-            <div className="dimensions-form">
-              <input
-                name="dimensions"
-                onChange={this.handleChange}
-                placeholder="dimensions"
-                type="text"
-                value={this.state.dimensions}
-              />
-            </div>
-
-            <div className="description-form">
-              <textarea
-                name="description"
-                onChange={this.handleChange} cols="30" rows="10"
-                placeholder="description"
-                type="text"
-                value={this.state.description}
-              />
-            </div>
-
-            <div className="notes-form">
-              <textarea
-                name="notes"
-                onChange={this.handleChange} cols="30" rows="10"
-                placeholder="notes"
-                type="text"
-                value={this.state.notes}
-              />
-            </div>
-
-            <div><input
-              accept="image/x-png,image/gif,image/jpeg"
-              name="file"
-              onChange={this.handleChangeImage}
-              type="file"
-            /></div>
-            <br/>
-            <input
-            className="new-item-submit-btn"
-            type="submit"
-            value="
-            Submit" />
-          </form></div>
-          <br/>
+        <div id="product-listing">
+        <div><h2>List a new item</h2>
+        <p>Tell us about the details of your item</p>
         </div>
-      );
+          <div id="new-item-form-container">
+            <form className="new-item-form" onSubmit={this.handleSubmit}>
+
+              <div id="product_row_1">
+              <Select
+                defaultValue={this.state.category_id}
+                handler={this.handleChange}
+                label="Category: "
+                list={this.props.categories}
+                name="category_id"
+                type="category"
+              /></div>
+
+              <div id="product_row_2">
+              <Select
+                defaultValue={this.state.condition_id}
+                handler={this.handleChange}
+                label="Condition: "
+                list={this.props.conditions}
+                name="condition_id"
+                type="condition"
+              /></div>
+
+              <div id="product_row_3">
+              <div className="name-form">
+                <input
+                  name="name"
+                  onChange={this.handleChange}
+                  placeholder="item name"
+                  type="text"
+                  value={this.state.name}
+                />
+              </div>
+              <div className="manufacturer-form">
+                <input
+                  name="manufacturer"
+                  onChange={this.handleChange}
+                  placeholder="manufacturer"
+                  type="text"
+                  value={this.state.manufacturer}
+                />
+              </div>
+              </div>
+
+              <div id="product_row_5">
+              <div className="model-form">
+                <input
+                  name="model"
+                  onChange={this.handleChange}
+                  placeholder="model"
+                  type="text"
+                  value={this.state.model}
+                />
+              </div>
+              </div>
+
+              <div id="product_row_6">
+              <div className="price-form">
+                <input
+                  max="100000"
+                  min="0"
+                  name="price"
+                  onChange={this.handleChange}
+                  placeholder="price"
+                  type="decimal"
+                  value={this.state.price}
+                />
+              </div>
+              </div>
+
+              <div id="product_row_7">
+              <div className="dimensions-form">
+                <input
+                  name="dimensions"
+                  onChange={this.handleChange}
+                  placeholder="dimensions"
+                  type="text"
+                  value={this.state.dimensions}
+                />
+              </div>
+              </div>
+
+              <div id="product_row_8">
+              <div className="description-form">
+                <textarea
+                  name="description"
+                  onChange={this.handleChange} cols="30" rows="10"
+                  placeholder="description"
+                  type="text"
+                  value={this.state.description}
+                />
+              </div>
+              </div>
+
+              <div id="product_row_9">
+              <div className="notes-form">
+                <textarea
+                  name="notes"
+                  onChange={this.handleChange} cols="30" rows="10"
+                  placeholder="notes"
+                  type="text"
+                  value={this.state.notes}
+                />
+              </div>
+              </div>
+
+              <div id="product_row_10"><input
+                accept="image/x-png,image/gif,image/jpeg"
+                name="file"
+                onChange={this.handleChangeImage}
+                type="file"
+              /></div>
+              <br/>
+
+              <input
+              className="new-item-submit-btn"
+              type="submit"
+              value="
+              Submit" />
+            </form>
+            <br/>
+          </div>
+        </div>
+        );
 
     } else {
       return null;
