@@ -30,7 +30,7 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <IntlProvider>
+    <IntlProvider locale="en">
     <Router>
       <div id="source">
         <header id="global-nav-header">
