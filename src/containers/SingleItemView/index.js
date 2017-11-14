@@ -133,7 +133,7 @@ class SingleItemView extends Component {
     if(localStorage.username) {
     return(
       <div id="single-item-view">
-        <Nav />
+      <Nav />
         {
           !this.props.singleItem.isEditing &&
           <div>
@@ -142,19 +142,13 @@ class SingleItemView extends Component {
               singleView={ true } />
             <button
               type="button"
-              onClick={this.toggleEdit.bind(
-                this,
-                this.props.singleItem,
-                true)} >
+              onClick={this.toggleEdit.bind(this, this.props.singleItem, true)}>
               EDIT
             </button>
 
             { this.props.singleItem.is_sold === 1
               ? <button
-                onClick={this.handleSold.bind(
-                  this,
-                  this.props.singleItem.id)}
-                type="button" >
+                onClick={this.handleSold.bind(this, this.props.singleItem.id)} type="button">
                 SOLD
               </button>
               : null
@@ -201,7 +195,10 @@ class SingleItemView extends Component {
     );
   } else {
       return(
+
         <div>
+
+          <Nav />
           <Item singleItem={ this.props.singleItem }/>
 
           <Footer/>
