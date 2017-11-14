@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { loginUser } from '../../actions/auth.actions';
 import { loadUsers } from '../../actions/users.actions';
+import ErrorBoundary from '../../containers/ErrorBoundary'; //ERROR BOUNDARY !!!!!!!!!!!!!
 import Nav from '../../components/nav.components';
 import Footer from '../../components/footer.components';
-import ErrorBoundary from '../../containers/ErrorBoundary';
 
 
 class Login extends Component {
@@ -15,7 +15,7 @@ class Login extends Component {
     this.state = {
       username : '',
       password : '',
-      redirect : false // set initial state to false
+      // redirect : false // set initial state to false
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -68,7 +68,7 @@ class Login extends Component {
         <div><center>.: welcome back :.</center></div>
         <br/>
         <div className="login-form">
-      <ErrorBoundary> {/*!!!!!!!!!!!!!!!!!!!!!*/}
+    <ErrorBoundary> {/*!!!!!!!!!!!!!!!!!!!!!*/}
           <form onSubmit={this.handleSubmit.bind(this)}>
             username
             <br/>
@@ -96,7 +96,7 @@ class Login extends Component {
               onClick={this.handleSubmit}>Login
             </button>
           </form>
-          </ErrorBoundary> {/*!!!!!!!!!!!!!!!!!!!!!*/}
+     </ErrorBoundary> {/*!!!!!!!!!!!!!!!!!!!!!*/}
         </div>
         <br/>
         <Footer/>

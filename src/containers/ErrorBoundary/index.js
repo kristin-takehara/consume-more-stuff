@@ -20,15 +20,18 @@ class ErrorBoundary extends Component {
   }
 
   render() {
-    if (this.state.errorInfo) {
+    let errorInfo = this.state.errorInfo;
+    let error = this.state.error;
+
+    if (error) {
       return (
         <div>
           <h2>{"Oh Junk!! Something went wrong"}</h2>
           <p className="red">
-            {this.state.error && this.state.error.toString()}
+            {error && error.toString()}
           </p>
           <div>{"Component Stack Error Details: "}</div>
-          <p className="red">{this.state.errorInfo.componentStack}</p>
+          <p className="red">{errorInfo.componentStack}</p>
         </div>
       );
     }
@@ -37,4 +40,4 @@ class ErrorBoundary extends Component {
   }
 }
 
-export default ErrorBoundary;
+export default ErrorBoundary
