@@ -62,10 +62,15 @@ const Item = ({ singleItem, singleView }) => {
               : null
             }
             {
-              singleItem.is_sold === 2
-              ? <div>SOLD <FormattedRelative 
-                  value={singleItem.updatedAt} />
+              singleItem.createdAt
+              ? <div>Posted: <FormattedRelative 
+                  value={singleItem.createdAt} />
                 </div>
+              : null
+            }
+            {
+              singleItem.is_sold === 2
+              ? <div>SOLD</div>
               : null
             }
           </div>
