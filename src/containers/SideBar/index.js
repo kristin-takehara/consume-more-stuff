@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { slide as Menu } from 'react-burger-menu';
 
 class SideBar extends Component {
   constructor() {
@@ -9,31 +9,26 @@ class SideBar extends Component {
       showNav : false
     };
   }
-   toggleNav() {
+
+  toggleNav(evt) {
+    evt.preventDefault();
     this.setState({
       showNav : !this.state.showNav
     });
-
-   }
-
-
-    render() {
-    if(localStorage.username) {
-      return (
-        <div className="user-side-bar">
-          <Link to="" className="close-btn" onClick={this.showNav}>&times;</Link>
-          <Link to="/">Home</Link>
-          <Link to="/messages">Messages</Link>
-          <Link to="/settings">Settings</Link>
-
-          <span onClick={this.showNav}>&#9776;</span>
-
-        </div>
-      )
-    }else{
-      return null;
-    }
   }
+
+  render() {
+    return(
+      <Menu>
+          <a id="home" className="menu-item" href="/">Home</a>
+          <a id="about" className="menu-item" href="/about">About</a>
+          <a id="contact" className="menu-item" href="/contact">Contact</a>
+          <a onClick={ this.showSettings } className="menu-item--small" href="">Settings</a>
+      </Menu>
+    );
+  }
+
 }
+
 
 export default SideBar;

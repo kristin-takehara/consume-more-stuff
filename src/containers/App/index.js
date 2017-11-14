@@ -10,6 +10,7 @@ import Nav from '../../components/nav.components';
 import ItemList from '../../components/itemlist.components';
 import Footer from '../../components/footer.components';
 //CONTAINERS------------------
+import SideBar from '../SideBar';
 import NewItem from '../NewItem/';
 //import ErrorBoundary from '../ErrorBoundary';
 //----------------------------
@@ -26,7 +27,7 @@ class App extends Component {
     return (
       <div id="app">
         <Nav />
-
+        <SideBar />
         <NewItem />
 
         {
