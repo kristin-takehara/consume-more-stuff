@@ -3,6 +3,7 @@ import { FormattedRelative } from 'react-intl';
 import { Link } from 'react-router-dom';
 
 const Item = ({ singleItem, singleView }) => {
+  console.log(singleItem, "SINGLEITEM");
   const url = /^http/;
   let imageUrl = singleItem.imageUrl;
    // if imageUrl is not an http link AND this is a request from the single item view
@@ -15,12 +16,12 @@ const Item = ({ singleItem, singleView }) => {
       <div>
         { singleItem.name }
       </div>
-      
+
       { singleView
         ? <img className="uploaded-img" src={ imageUrl } alt="image not found" />
         : <Link to={`/items/${singleItem.id}`}>
             <img className="uploaded-img" src={ imageUrl } alt="image not found" />
-          </Link>        
+          </Link>
       }
 
       <div className="card-price">
@@ -35,7 +36,7 @@ const Item = ({ singleItem, singleView }) => {
         <FormattedRelative value={ singleItem.createdAt } />
       </div>
 
-      { singleView 
+      { singleView
         // if singleView is true render these
         ? <div className="card-details">
             <div>
@@ -49,9 +50,9 @@ const Item = ({ singleItem, singleView }) => {
               ? <div className="card-manufacturer">{ singleItem.manufacturer }</div>
               : null
             }
-            { singleItem.model 
+            { singleItem.model
               ? <div>Model: { singleItem.model }</div>
-              : null 
+              : null
             }
             { singleItem.dimensions
               ? <div>Dimensions: { singleItem.dimensions }</div>
@@ -65,7 +66,7 @@ const Item = ({ singleItem, singleView }) => {
           // else render nothing
         : null
       }
-  
+
     </div>
   );
 }

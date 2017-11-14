@@ -1,13 +1,10 @@
-import { LOAD_USERS, LOAD_SINGLE_USER } from '../actions/users.actions';
+import { LOAD_USERS } from '../actions/users.actions';
 import { REGISTER_USER, LOGIN_USER, LOGOUT_USER } from '../actions/auth.actions';
 
 const initialState = [];
 
 const userList = (state = initialState, action) => {
   switch (action.type){
-    case LOAD_SINGLE_USER:
-      return action.user;
-
     case LOAD_USERS:
       return [...action.users];
 
