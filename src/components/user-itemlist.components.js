@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 
 const UserItemList = ({ items, soldValue, title }) => {
   return(
-    <div className="user-item-list">
-      <h2> { title } </h2>
+    <div className="single-item">
+      <h2>{ title }</h2>
       {
       items
       .filter(item => {
@@ -18,7 +18,6 @@ const UserItemList = ({ items, soldValue, title }) => {
         if (!url.test(imageUrl)) { imageUrl = '/' + imageUrl; }
         return (
           <div className="unsold" key={idx}>
-
             <Link to={`/items/${itemDetails.id}`}>
               <h3>{ itemDetails.name }</h3>
               <img className="uploaded-img" src={ imageUrl } alt="not found" />
@@ -29,10 +28,10 @@ const UserItemList = ({ items, soldValue, title }) => {
               <h3>Posted:</h3> <FormattedRelative value={ itemDetails.createdAt } />
             </div>
          </div>
-       )
-     })
+        )
+      })
     }
-        </div>
+    </div>
   )
 }
 

@@ -23,7 +23,6 @@ class User extends Component {
   render() {
     if( this.props.match && localStorage.userId === this.props.match.params.id ){
       return(
-
         <div className="user-view">
           <Nav />
           <UserItem singleUser={this.props.singleUser}/>

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loadSingleItem, 
-         makeItemEditable, 
-         editItem, 
+import { loadSingleItem,
+         makeItemEditable,
+         editItem,
          setItemToSold,
-         deleteItem 
+         deleteItem
        } from '../../actions/items.actions';
 import { loadCategories } from '../../actions/categories.actions';
 import { loadConditions } from '../../actions/conditions.actions';
@@ -99,11 +99,11 @@ class SingleItemView extends Component {
     });
   }
 
-  handleSold(itemId) {    
+  handleSold(itemId) {
     this.props.setItemToSold(itemId);
   }
 
-  removeItem(itemId) {    
+  removeItem(itemId) {
     this.props.deleteItem(itemId);
     this.props.makeItemEditable(itemId);
   }
@@ -133,7 +133,7 @@ class SingleItemView extends Component {
     if(localStorage.username) {
     return(
       <div id="single-item-view">
-        <Nav />
+      <Nav />
         {
           !this.props.singleItem.isEditing &&
           <div>
@@ -142,22 +142,16 @@ class SingleItemView extends Component {
               singleView={ true } />
             <button
               type="button"
-              onClick={this.toggleEdit.bind(
-                this, 
-                this.props.singleItem, 
-                true)} >
+              onClick={this.toggleEdit.bind(this, this.props.singleItem, true)}>
               EDIT
             </button>
 
             { this.props.singleItem.is_sold === 1
               ? <button
-                onClick={this.handleSold.bind(
-                  this,
-                  this.props.singleItem.id)}
-                type="button" >
+                onClick={this.handleSold.bind(this, this.props.singleItem.id)} type="button">
                 SOLD
               </button>
-              : null              
+              : null
             }
 
           </div>
@@ -183,7 +177,7 @@ class SingleItemView extends Component {
               type="button"
               onClick={this.toggleEdit.bind(
                 this,
-                this.props.singleItem, 
+                this.props.singleItem,
                 false)} >
               UNDO
             </button>
@@ -201,7 +195,10 @@ class SingleItemView extends Component {
     );
   } else {
       return(
+
         <div>
+
+          <Nav />
           <Item singleItem={ this.props.singleItem }/>
 
           <Footer/>
