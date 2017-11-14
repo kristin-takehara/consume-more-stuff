@@ -35,8 +35,8 @@ class Login extends Component {
     this.props.loginUser(loginCreds);
     this.setState(
     {
-      username : '',
-      password : '',
+      username : "",
+      password : "",
       redirect : true
     })
 
