@@ -6,7 +6,11 @@ import { loadUsers } from '../../actions/users.actions';
 import ErrorBoundary from '../../containers/ErrorBoundary'; //ERROR BOUNDARY !!!!!!!!!!!!!
 import Nav from '../../components/nav.components';
 import Footer from '../../components/footer.components';
-
+import {
+  BrowserRouter as Router,
+  Link,
+  Route
+} from 'react-router-dom';
 
 class Login extends Component {
   constructor(props){
@@ -15,12 +19,13 @@ class Login extends Component {
     this.state = {
       username : ' ',
       password : ' ',
-      // redirect : false // set initial state to false
+      redirect : false // set initial state to false
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUsernameInput = this.handleUsernameInput.bind(this);
     this.handlePasswordInput = this.handlePasswordInput.bind(this);
+
   }
 
 
@@ -60,8 +65,8 @@ class Login extends Component {
     if (this.state.username.length === 0 || this.state.password === undefined) {
       return (
         <div className="form-warning">
-          <p>Oh junk You left out some login Credentials!</p>
-          <button>Click</button>
+          <p>Oh junk~ You left out some login Credentials!</p>
+            <Link to="/login"><button>Click here to go back</button></Link>
         </div>
       );
     }
