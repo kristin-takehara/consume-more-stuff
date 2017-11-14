@@ -2,7 +2,7 @@
 import React from 'react';
 import Item from'./item.components';
 
-const ItemList = ({ items, categoryId, categoryName }) => {  
+const ItemList = ({ items, categoryId, categoryName }) => {
   return (
     <div className="item-list" id={categoryName}> {
       items
@@ -12,7 +12,7 @@ const ItemList = ({ items, categoryId, categoryName }) => {
       .filter(item => {
         return item.is_sold === 1;
       })
-      .filter(item => {        
+      .filter(item => {
         return item.category_id === categoryId;
       })
       .map((item, idx) => {
