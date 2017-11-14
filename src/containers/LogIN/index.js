@@ -17,8 +17,8 @@ class Login extends Component {
     super(props);
     console.log(props);
     this.state = {
-      username : ' ',
-      password : ' ',
+      username : '',
+      password : '',
       redirect : false // set initial state to false
     };
 
@@ -62,28 +62,16 @@ class Login extends Component {
   }
 
   render(){
-    if(this.state.redirect) {
-      return <Redirect to="/"/>
-    }
-
-    if (this.state.username.length === 0 || this.state.password === undefined) {
-      return (
-        <div className="form-warning">
-          <p>Oh junk~ You left out some login Credentials!</p>
-            <Link to="/login"><button onClick={() => window.location.reload()}>Click here to go back</button></Link>
-        </div>
-      );
-
-    }
-    else if (this.state.redirect) {
-      return <Redirect to="/" />
-    }
+    // if(this.state.redirect) {
+    //   return <Redirect to="/"/>
+    // }
 
     return(
       <div id="login-container">
         <Nav />
         <h2>Login</h2>
         <div><center>.: welcome back :.</center></div>
+        {(this.props.users[0] === 'invalid user name or password') ? <h2>{this.props.users[0]}</h2> : null}
         <br/>
         <div className="login-form">
           <form onSubmit={this.handleSubmit.bind(this)}>
@@ -121,8 +109,10 @@ class Login extends Component {
   }
 }
 
+
 // maps store state to local props
 const mapStateToProps = (state) => {
+  console.log(state, ' STATE HAHAHAHAHAHA')
   return {
     users : state.userList
   };
@@ -145,3 +135,4 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Login);
+
