@@ -62,6 +62,10 @@ class Login extends Component {
   }
 
   render(){
+    if(this.state.redirect) {
+      return <Redirect to="/"/>
+    }
+
     if (this.state.username.length === 0 || this.state.password === undefined) {
       return (
         <div className="form-warning">
@@ -69,11 +73,12 @@ class Login extends Component {
             <Link to="/login"><button onClick={() => window.location.reload()}>Click here to go back</button></Link>
         </div>
       );
+
     }
     else if (this.state.redirect) {
       return <Redirect to="/" />
     }
-    
+
     return(
       <div id="login-container">
         <Nav />

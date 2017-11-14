@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadSingleUser, loadUsers } from '../../actions/users.actions';
 import { loadItems } from '../../actions/items.actions';
+
 import UserItem from '../../components/user.components';
 import Nav from '../../components/nav.components';
+
 class User extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
+    console.log(this.props.singleUser, "USERPROPS");
   }
 
   componentDidMount() {
@@ -23,8 +25,8 @@ class User extends Component {
       return(
 
         <div className="user-view">
-          <UserItem singleUser={this.props.singleUser}/>
           <Nav />
+          <UserItem singleUser={this.props.singleUser}/>
         </div>
       );
     } else {
@@ -39,9 +41,9 @@ class User extends Component {
 
 // sets store state on local props
 const mapStateToProps = state => {
-  console.log(state, "STATE");
   return {
-    singleUser : state.userList,
+    singleUser : state.singleUserList,
+    items : state.itemList,
   }
 }
 
