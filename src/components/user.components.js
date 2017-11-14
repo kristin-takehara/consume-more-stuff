@@ -15,6 +15,7 @@ const UserItem = ({ singleUser }) => {
         if ( itemDetails.is_sold === 1 ){
           return(
           <div className="unsold">
+          <h2> ITEMS FOR SALE </h2>
             <Link to={`/items/${itemDetails.id}`}>
               <h3>{ itemDetails.name }</h3>
               <img className="uploaded-img" src={ imageUrl } alt="image not found" />
@@ -26,9 +27,10 @@ const UserItem = ({ singleUser }) => {
             </div>
           </div>
           );
-        } else {
+          } else {
             return(
             <div className="sold">
+            <h2> SOLD ITEMS </h2>
               <Link to={`/items/${itemDetails.id}`}>
                 <h3>{ itemDetails.name }</h3>
                 <img className="uploaded-img" src={ imageUrl } alt="image not found" />
