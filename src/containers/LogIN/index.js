@@ -119,7 +119,7 @@ class Login extends Component {
 
 // maps store state to local props
 const mapStateToProps = (state) => {
-  console.log(state, ' STATE HAHAHAHAHAHA')
+
   return {
     users : state.userList
   };
