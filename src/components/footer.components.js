@@ -3,7 +3,7 @@ import React from 'react';
 const Footer = () => {
 
   return (
-    <div className="footer">
+    <div id="footer">
       <img src="/assets/plushy.png" alt="plushy"/>
       <br/>
       <div className="footer-details">

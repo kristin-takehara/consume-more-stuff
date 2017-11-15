@@ -207,6 +207,8 @@ h2 {
 
 .item-list {
   @include flex-style(row nowrap, space-between);
+  border-top: 1px solid $footer-color;
+  border-bottom: 1px solid $footer-color;
   width: 100%;
   overflow: auto;
   padding: 2px 16px 15px;
@@ -214,7 +216,7 @@ h2 {
 
   .single-item {
     min-width: 300px;
-    border: 1px solid black;
+    // border: 1px solid black;
     transition: 0.5s;
     padding: 16px;
     a {
@@ -302,7 +304,7 @@ h2 {
   padding-top: 1.5vw;
 }
 
-.footer {
+#footer {
   background-color: $footer-color;
   margin-top: 50px;
   display: flex;
