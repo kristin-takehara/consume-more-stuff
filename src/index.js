@@ -17,7 +17,10 @@ import User from './containers/User';
 import Register from './containers/Register';
 import LogIN from './containers/LogIN';
 import LogOUT from './containers/LogOUT';
+import SideBar from './containers/SideBar';
 import SingleItemView from './containers/SingleItemView';
+import Footer from './components/footer.components';
+import Nav from './components/nav.components';
 //---------------------------------------
 import registerServiceWorker from './lib/registerServiceWorker';
 
@@ -34,21 +37,23 @@ ReactDOM.render(
     <Router>
       <div id="source">
         <header id="global-nav-header">
+          <SideBar />
 
-          <div id="logo">
-            <Link to="/">
-            <img src="/assets/jnkr-logo.jpg" alt=".jnkr"/>
-            </Link>
-          </div>
+          <Link to="/">
+            <div id="logo"></div>
+          </Link>
 
+          <Nav />
         </header>
-          <Route exact path="/" component={App} />
-          <Route path="/register" component={Register} />
-          <Route path="/login" component={LogIN} />
-          <Route path="/items/:id" component={SingleItemView} />
-          <Route path="/logout" component={LogOUT} />
-          <Route path="/users/:id" component={User}/>
+        
+        <Route exact path="/" component={App} />
+        <Route path="/register" component={Register} />
+        <Route path="/login" component={LogIN} />
+        <Route path="/items/:id" component={SingleItemView} />
+        <Route path="/logout" component={LogOUT} />
+        <Route path="/users/:id" component={User}/>
 
+        <Footer />
       </div>
     </Router>
     </IntlProvider>

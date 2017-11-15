@@ -9,11 +9,8 @@ import { loadSingleItem,
 import { loadCategories } from '../../actions/categories.actions';
 import { loadConditions } from '../../actions/conditions.actions';
 import { loadStatuses } from '../../actions/statuses.actions';
-import Nav from '../../components/nav.components';
-import SideBar from '../SideBar';
 import Item from '../../components/item.components';
 import EditItem from '../../components/edit-item.components';
-import Footer from '../../components/footer.components';
 
 class SingleItemView extends Component {
   constructor() {
@@ -131,8 +128,6 @@ class SingleItemView extends Component {
     if(localStorage.username === this.props.singleItem.User.username) {
     return(
       <div id="single-item-view">
-      <Nav />
-      <SideBar />
         { !this.props.singleItem.isEditing &&
           <div>
             <Item
@@ -195,9 +190,7 @@ class SingleItemView extends Component {
       return(
         <div className="unauth-single-item">
         <div>
-          <Nav />
           <Item singleItem={ this.props.singleItem } singleView={ true } />
-          <Footer />
           </div>
        </div>
       )

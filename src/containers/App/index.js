@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import { loadItems } from '../../actions/items.actions';
 import { loadConditions } from '../../actions/conditions.actions';
 import { loadCategories } from '../../actions/categories.actions';
-import Nav from '../../components/nav.components';
 import ItemList from '../../components/itemlist.components';
-import Footer from '../../components/footer.components';
-
-import SideBar from '../SideBar';
-//import ErrorBoundary from '../ErrorBoundary';
 
 class App extends Component {
   componentDidMount(){
@@ -21,8 +15,6 @@ class App extends Component {
   render() {
     return (
       <div id="app">
-        <Nav />
-        <SideBar />
 
         {
           this.props.categories
@@ -37,7 +29,6 @@ class App extends Component {
           })
         }
 
-        <Footer />
       </div>
     );
   }
