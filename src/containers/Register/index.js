@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { registerUser } from '../../actions/auth.actions';
-import { loadUsers } from '../../actions/users.actions';
 import Nav from '../../components/nav.components';
 import Footer from '../../components/footer.components';
 
@@ -13,7 +12,6 @@ class Register extends Component {
     this.state = {
       username : '',
       password : '',
-      redirect : false
     };
 
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
@@ -35,93 +33,73 @@ class Register extends Component {
     let registerCreds = {
       username : this.state.username,
       password : this.state.password
-    }
-    // console.log(registerCreds);
-    this.props.registerUser(registerCreds);
+    };
 
+    this.props.registerUser(registerCreds);
     this.setState(
     {
       username : '',
-      password : '',
-      redirect : true
+      password : ''
     });
   }
 
   handleUsernameChange(event) {
-
     this.setState({
       username: event.target.value
     });
   }
 
   handlePasswordChange(event) {
-
     this.setState({
       password: event.target.value
-    })
-  }
-
-  componentDidMount() {
-    this.props.loadUsers();
+    });
   }
 
   render() {
-    if(this.state.redirect) {
+    if(localStorage.loggegIn) {
       return <Redirect to="/login"/>
     }
     return(
       <div id="register-container">
         <Nav />
         <h2>Register</h2>
-        <div><center>as new User</center></div>
-        <br/>
+        <div>
+          <center>
+            as new User
+          </center>
+        </div>
         <div className="register-form">
-        <form className="inner-form-container" onSubmit={this.handleSubmit.bind(this)}>
+          <form className="inner-form-container" onSubmit={this.handleSubmit.bind(this)}>
 
           username
-          <br/>
           <div>
           <input type="text" placeholder="username" defaultValue={this.state.username} onChange={this.handleUsernameChange}/>
           </div>
-          <br/>
           password
-          <br/>
           <div>
           <input type="password" placeholder="password" defaultValue={this.state.password} onChange={this.handlePasswordChange}/>
           </div>
-          <br/>
           <input className="register-btn" type="submit" value="Register"/>
 
-        </form>
+          </form>
         </div>
-        <br/>
+        
         <Footer />
       </div>
     );
   }
 }
 
-// maps store state to local props
-const mapStateToProps = (state) => {
-  return {
-    users : state.userList
-  };
-};
-
 // maps store dispatch to local props
 const mapDispatchToProps = (dispatch) => {
   return {
     registerUser: (registerCreds) => {
       dispatch(registerUser(registerCreds));
-    },
-
-    loadUsers: () => {
-      dispatch(loadUsers());
     }
   };
 };
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(Register);

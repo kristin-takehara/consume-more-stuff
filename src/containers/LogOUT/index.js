@@ -5,33 +5,15 @@ import { logoutUser } from '../../actions/auth.actions';
 import Nav from '../../components/nav.components';
 import Footer from '../../components/footer.components';
 class Logout extends Component {
-  constructor(props){
-    super(props);
-    console.log(props, "PROPS");
-
-    this.state = {
-      redirect : false // set initial state to false
-    };
+  constructor() {
+    super();
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-
   handleSubmit(evt) {
     evt.preventDefault();
-    let logoutCreds = {
-      username : this.state.username,
-      password : this.state.password
-    }
 
-    this.props.logoutUser(logoutCreds);
-
-    this.setState(
-    {
-      username : '',
-      password : '',
-      redirect : true
-    });
   }
 
   componentDidMount(){
@@ -40,7 +22,7 @@ class Logout extends Component {
   }
 
   render(){
-    if(this.state.redirect) {
+    if(!localStorage.loggedIn) {
       return <Redirect to="/"/>
     }
     return (
@@ -70,12 +52,6 @@ class Logout extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
-  return {
-    users : state.userList
-  };
-};
-
 const mapDispatchToProps = (dispatch) => {
   return{
     logoutUser: () => {
@@ -85,6 +61,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps
 )(Logout);

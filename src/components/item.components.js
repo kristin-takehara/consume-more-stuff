@@ -3,7 +3,6 @@ import { FormattedRelative } from 'react-intl';
 import { Link } from 'react-router-dom';
 
 const Item = ({ singleItem, singleView }) => {
-  console.log(singleItem)
   const url = /^http/;
   let imageUrl = singleItem.imageUrl;
    // if imageUrl is not an http link AND this is a request from the single item view

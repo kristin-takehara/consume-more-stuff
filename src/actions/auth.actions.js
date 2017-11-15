@@ -38,13 +38,17 @@ export const loginUser = (userCreds) => {
           type: LOGIN_USER,
           userDetails: response.data
         });
-      }
+      } else {
+        dispatch({
+          type: LOGOUT_USER,
+        });
+      } 
     })
     .catch((err) => {
       dispatch({
         type: ERROR,
         error: 'invalid user name or password'
-      })
+      });
     });
   };
 };
@@ -54,7 +58,6 @@ export const logoutUser = () => {
     // console.log(dispatch, "logout");
     return Axios.get(logout)
     .then((response) => {
-      console.log("AXIOS LOGOUT RESPONSE", response);
       if (response.data.success) {
         dispatch({
           type: LOGOUT_USER,

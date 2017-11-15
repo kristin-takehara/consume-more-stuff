@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 
-import singleUserList from './single.user.reducers'
+import singleUser from './single.user.reducers';
 import singleItem from './single.item.reducers';
 import itemList from './items.reducers';
 import categoryList from './categories.reducers';
 import statusList from './statuses.reducers';
-import userList from './users.reducers';
+// import userList from './users.reducers';
 import conditionList from './conditions.reducers';
 
 export default combineReducers({
@@ -13,7 +13,7 @@ export default combineReducers({
   itemList,
   categoryList,
   statusList,
-  userList,
+  // userList,
   conditionList,
-  singleUserList
+  singleUser
 });
