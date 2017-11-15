@@ -58,7 +58,6 @@ export const logoutUser = () => {
     // console.log(dispatch, "logout");
     return Axios.get(logout)
     .then((response) => {
-      console.log("AXIOS LOGOUT RESPONSE", response);
       if (response.data.success) {
         dispatch({
           type: LOGOUT_USER,

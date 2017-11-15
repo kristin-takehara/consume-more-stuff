@@ -53,7 +53,8 @@ class Login extends Component {
     });
   }
 
-  render(){
+  render() {
+    // loggedIn is a string so its basically checking if anything exists there
     if(localStorage.loggedIn) {
       return <Redirect to="/"/>
     }
@@ -109,7 +110,7 @@ class Login extends Component {
 // maps store state to local props
 const mapStateToProps = (state) => {
   return {
-    users : state.userList
+    singleUser : state.singleUser
   };
 };
 

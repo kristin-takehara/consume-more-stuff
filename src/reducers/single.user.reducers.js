@@ -30,8 +30,6 @@ const singleUser = (state = initialState, action) => {
       }
 
     case LOGOUT_USER:
-      localStorage.clear();
-
       return Object.assign({}, state, initialState);
      
     default:
