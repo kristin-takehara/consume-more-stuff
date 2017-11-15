@@ -15,7 +15,7 @@ export const registerUser = (registerCreds) => {
     .then(response => {
         dispatch({
           type: REGISTER_USER,
-          newUser: response.data
+          response: response.data
        });
     })
     .catch(err => {
@@ -33,16 +33,10 @@ export const loginUser = (userCreds) => {
     return Axios.post(login, userCreds)
     .then((response) => {
       // console.log(response, "RESPONSE DATA");
-      if (response.data.success) {
-        dispatch({
-          type: LOGIN_USER,
-          userDetails: response.data
-        });
-      } else {
-        dispatch({
-          type: LOGOUT_USER,
-        });
-      } 
+      dispatch({
+        type: LOGIN_USER,
+        userDetails: response.data
+      });
     })
     .catch((err) => {
       dispatch({

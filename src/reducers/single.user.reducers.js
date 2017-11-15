@@ -12,22 +12,29 @@ const singleUser = (state = initialState, action) => {
       return Object.assign({}, state, action.user);
 
     case REGISTER_USER:
+      if (action.response.success) {
+        localStorage.setItem('registered', true);
+      }
+
       return Object.assign({}, state, initialState);
 
     case LOGIN_USER:
       const userDetails = action.userDetails;
+      let newState = {};
       
-      if (action.userDetails.success) {
+      if (userDetails.success) {
+        newState = action.userDetails;
+
         localStorage.setItem('loggedIn', true);
         localStorage.setItem('userId', userDetails.id);
         localStorage.setItem('username', userDetails.username);
         localStorage.setItem('role', userDetails.role);
 
-        return Object.assign({}, state, action.userDetails);
-
       } else {
-        return Object.assign({}, state, initialState);
+        newState = initialState;
       }
+
+      return Object.assign({}, state, newState);
 
     case LOGOUT_USER:
       return Object.assign({}, state, initialState);
