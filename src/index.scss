@@ -3,6 +3,7 @@ $bg-color: #FFFFFF;
 $primary-color: #000000;
 $accent-color: #33cccc;
 $contrast-accent: #ffa31a;
+$footer-color: #a6a3a2;
 
 // mixins
 @mixin flex-style($flow, $justify) {
@@ -52,7 +53,7 @@ a {
 
   text-decoration: none;
   font-size: 75%;
-  color: black;
+  color: $primary-color;
 
 }
 
@@ -75,7 +76,7 @@ h2 {
 }
 
 .unauth-nav-links {
-  background-color: black;
+  background-color: $primary-color;
   display: flex;
   justify-content: space-between;
   padding: 1.5vw;
@@ -89,7 +90,7 @@ h2 {
 }
 
 .nav-links{
-  background-color: black;
+  background-color: $primary-color;
   display: flex;
   justify-content: space-between;
   padding: 1.5vw;
@@ -291,7 +292,7 @@ h2 {
 }
 
 .footer {
-  background-color: #a6a3a2;
+  background-color: $footer-color;
   display: flex;
   justify-content: center;
   left: 0;

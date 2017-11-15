@@ -10,7 +10,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-        const items = generateFakeItems(50);
+        const items = generateFakeItems(35);
         return queryInterface.bulkInsert('items', items, {});
   },
 
@@ -25,7 +25,7 @@ function generateFakeItems(count) {
     const newItem = {
       name: faker.commerce.product(),
       description: `${faker.commerce.productAdjective()} ${faker.commerce.product()}`,
-      imageUrl: faker.image.imageUrl(),
+      imageUrl: faker.image.image(),
       manufacturer: faker.commerce.department(),
       model: faker.commerce.productName(),
       price: faker.commerce.price(),

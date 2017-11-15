@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 
 import { loadItems } from '../../actions/items.actions';
 import { loadConditions } from '../../actions/conditions.actions';
-import { loadUsers } from '../../actions/users.actions';
-import { loadStatuses } from '../../actions/statuses.actions';
 import { loadCategories } from '../../actions/categories.actions';
 import Nav from '../../components/nav.components';
 import ItemList from '../../components/itemlist.components';
@@ -18,8 +16,6 @@ class App extends Component {
     this.props.loadItems();
     this.props.loadCategories();
     this.props.loadConditions();
-    this.props.loadUsers();
-    this.props.loadStatuses();
   }
 
   render() {
@@ -52,8 +48,6 @@ const mapStateToProps = (state) => {
     items : state.itemList, // makes it this.props.items
     categories : state.categoryList,
     conditions : state.conditionList,
-    statuses : state.statusList,
-    users : state.userList
   }
 }
 
@@ -67,12 +61,6 @@ const mapDispatchToProps = (dispatch) => {
     },
     loadConditions: () => {
       dispatch(loadConditions());
-    },
-    loadStatuses: () => {
-      dispatch(loadStatuses());
-    },
-    loadUsers: () => {
-      dispatch(loadUsers());
     }
   }
 }
