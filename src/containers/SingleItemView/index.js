@@ -193,15 +193,10 @@ class SingleItemView extends Component {
   } else {
       return(
         <div className="unauth-single-item">
-          <div>
-
         <div>
-
           <Nav />
-
-          <Item singleItem={ this.props.singleItem } singleView={ true }/>
-
-            <Footer/>
+          <Item singleItem={ this.props.singleItem } singleView={ true } />
+          <Footer />
           </div>
        </div>
       )
