@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadSingleUser } from '../../actions/users.actions';
 import { loadItems } from '../../actions/items.actions';
-
 import UserItem from '../../components/user.components';
-import Nav from '../../components/nav.components';
-
+import NewItem from '../NewItem/';
 
 class User extends Component {
   componentDidMount() {
@@ -22,7 +20,7 @@ class User extends Component {
       return(
         <div className="user-view">
           <div id="user-welcome">Hello, { localStorage.username }!</div>
-          <Nav />
+          <NewItem />
           <UserItem singleUser={this.props.singleUser}/>
         </div>
       );

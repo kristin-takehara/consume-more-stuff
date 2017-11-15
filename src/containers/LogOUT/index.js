@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { logoutUser } from '../../actions/auth.actions';
-import Nav from '../../components/nav.components';
-import Footer from '../../components/footer.components';
 
 class Logout extends Component {
   constructor() {
@@ -47,7 +45,6 @@ class Logout extends Component {
     }
     return (
       <div id="logout-container">
-        <Nav />
         <div id="gator">
           <img src="/assets/gator.png" alt="gator"/>
         </div>
@@ -64,8 +61,6 @@ class Logout extends Component {
           </button>
 
         </form>
-        <br/>
-        <Footer />
       </div>
     );
   }

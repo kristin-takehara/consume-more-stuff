@@ -17,9 +17,13 @@ const Item = ({ singleItem, singleView }) => {
       </div>
 
       { singleView
-        ? <img className="uploaded-img" src={ imageUrl } alt="not found" />
-        : <Link to={`/items/${singleItem.id}`}>
+        ? <div className="item-img">
             <img className="uploaded-img" src={ imageUrl } alt="not found" />
+          </div>
+        : <Link to={`/items/${singleItem.id}`}>
+            <div className="item-img">
+              <img className="uploaded-img" src={ imageUrl } alt="not found" />
+            </div>
           </Link>
       }
 

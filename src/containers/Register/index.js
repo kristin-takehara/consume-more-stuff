@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { registerUser } from '../../actions/auth.actions';
-import Nav from '../../components/nav.components';
-import Footer from '../../components/footer.components';
 
 class Register extends Component {
   constructor() {
@@ -52,7 +50,6 @@ class Register extends Component {
     
     return(
       <div id="register-container">
-        <Nav />
         <h2>Register</h2>
         <div className="register-form">
           <form 
@@ -87,8 +84,6 @@ class Register extends Component {
 
           </form>
         </div>
-        
-        <Footer />
       </div>
     );
   }

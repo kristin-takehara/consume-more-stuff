@@ -1,34 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import { loadItems } from '../../actions/items.actions';
 import { loadConditions } from '../../actions/conditions.actions';
-import { loadUsers } from '../../actions/users.actions';
-import { loadStatuses } from '../../actions/statuses.actions';
 import { loadCategories } from '../../actions/categories.actions';
-import Nav from '../../components/nav.components';
 import ItemList from '../../components/itemlist.components';
-import Footer from '../../components/footer.components';
-//CONTAINERS------------------
-import SideBar from '../SideBar';
-import NewItem from '../NewItem/';
-//import ErrorBoundary from '../ErrorBoundary';
-//----------------------------
+
 class App extends Component {
   componentDidMount(){
     this.props.loadItems();
     this.props.loadCategories();
     this.props.loadConditions();
-    this.props.loadUsers();
-    this.props.loadStatuses();
   }
 
   render() {
     return (
       <div id="app">
-        <Nav />
-        <SideBar />
-        <NewItem />
 
         {
           this.props.categories
@@ -43,7 +29,6 @@ class App extends Component {
           })
         }
 
-        <Footer />
       </div>
     );
   }
@@ -54,8 +39,6 @@ const mapStateToProps = (state) => {
     items : state.itemList, // makes it this.props.items
     categories : state.categoryList,
     conditions : state.conditionList,
-    statuses : state.statusList,
-    users : state.userList
   }
 }
 
@@ -69,12 +52,6 @@ const mapDispatchToProps = (dispatch) => {
     },
     loadConditions: () => {
       dispatch(loadConditions());
-    },
-    loadStatuses: () => {
-      dispatch(loadStatuses());
-    },
-    loadUsers: () => {
-      dispatch(loadUsers());
     }
   }
 }
