@@ -8,7 +8,7 @@ const upload = multer({
   storage: storage
 });
 
-function filename(req, file, cb) {  
+function filename(req, file, cb) {
   cb(null, Date.now() + '-' + file.originalname.split(' ').join(''));
 }
 
