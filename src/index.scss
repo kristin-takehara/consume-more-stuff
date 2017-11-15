@@ -249,11 +249,25 @@ h2 {
   }
 }
 
-#product-listing {
-  @include flex-style(row wrap, center);
-  p {
-    font-size: 50%;
+#product-listing-container {
+  a {
+    color: $accent-color;
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 5px;
   }
+  .product-info {
+    padding-right: 20px;
+    border-right: 1px lightgray solid;
+    p {
+      font-size: 70%;
+    }
+  }
+}
+
+#listing-details {
+  display: flex;
+  justify-content: center;
 }
 
 #new-item-form-container {
@@ -271,7 +285,7 @@ h2 {
     padding: 5px 75px;
   }
 }
-
+//----------------------------
 #logout-container {
   justify-content: center;
   .logout-form {

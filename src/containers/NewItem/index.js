@@ -95,16 +95,21 @@ class NewItem extends Component {
   render() {
     if(localStorage.username) {
       return (
-    <div>
-      <div id="product-listing">
-        <h2><a onClick={this.newItemDisplay.bind(this)} href="">
-          List a new item
+      <div id="product-listing-container">
+
+        <a onClick={this.newItemDisplay.bind(this)} href="">
+          START SELLING
         </a>
-        { this.state.showNewItemForm &&
-        <div id="product-listing">
-        <br/>
+
+        <div id="listing-details">
+
+        <div className="product-info">
+          <h3>Product Info</h3>
           <p>Tell us about the details of your item</p>
+        </div>
+
           <div id="new-item-form-container">
+          { this.state.showNewItemForm }
             <form className="new-item-form"
               onSubmit={this.handleSubmit}>
               <div id="product_row_1">
@@ -190,7 +195,7 @@ class NewItem extends Component {
               <div className="description-form">
                 <textarea
                   name="description"
-                  onChange={this.handleChange} cols="30" rows="10"
+                  onChange={this.handleChange} cols="50" rows="8"
                   placeholder="description"
                   type="text"
                   value={this.state.description}
@@ -202,7 +207,7 @@ class NewItem extends Component {
               <div className="notes-form">
                 <textarea
                   name="notes"
-                  onChange={this.handleChange} cols="30" rows="10"
+                  onChange={this.handleChange} cols="50" rows="5"
                   placeholder="notes"
                   type="text"
                   value={this.state.notes}
@@ -228,8 +233,7 @@ class NewItem extends Component {
           </div>
         </div>
       }
-      </h2></div>
-    </div>
+      </div>
       );
     } else {
       return null;
