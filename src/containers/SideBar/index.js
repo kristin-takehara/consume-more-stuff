@@ -1,4 +1,4 @@
-import React, { Component } from 'react'; 
+import React, { Component } from 'react';
 import { slide as Menu } from 'react-burger-menu';
 
 class SideBar extends Component {
