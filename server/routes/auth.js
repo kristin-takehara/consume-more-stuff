@@ -32,15 +32,13 @@ router.post('/register', (req, res) => {
   const username = req.body.username.toLowerCase();
   // need to check if user already exists first
   return User.findOne({
-    where: {
-      username: username
-    },
+    where: { username: username },
     attributes: { exclude: ['password'] }
   })
   .then(response => {
     // if user does not exist, findOne will return null
     // if user does exist, user details will be returned
-    if (!response) {
+    if (response) {
       res.json({
         success: false
       });      
@@ -57,7 +55,8 @@ router.post('/register', (req, res) => {
             console.log('new user registered');
             return res.json({
               id : newUserDetails.id,
-              username : newUserDetails.username
+              username : newUserDetails.username,
+              success : true
             });
           });
         });

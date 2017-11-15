@@ -46,9 +46,10 @@ class Register extends Component {
   }
 
   render() {
-    if(localStorage.loggedIn) {
+    if(localStorage.getItem('registered')) {
       return <Redirect to="/login"/>
     }
+    
     return(
       <div id="register-container">
         <Nav />
@@ -93,6 +94,13 @@ class Register extends Component {
   }
 }
 
+// maps store state to local props
+const mapStateToProps = (state) => {
+  return {
+    singleUser : state.singleUser
+  };
+};
+
 // maps store dispatch to local props
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -103,6 +111,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Register);
