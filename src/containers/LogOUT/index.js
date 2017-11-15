@@ -4,15 +4,35 @@ import { Redirect } from 'react-router-dom';
 import { logoutUser } from '../../actions/auth.actions';
 import Nav from '../../components/nav.components';
 import Footer from '../../components/footer.components';
+
 class Logout extends Component {
   constructor() {
     super();
+
+    this.state = {
+      username: '',
+      password: '',
+      redirect: true
+    }
 
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(evt) {
     evt.preventDefault();
+
+    let logoutCreds = {
+      username : '',
+      password : ''
+    };
+
+    this.props.logoutUser(logoutCreds);
+
+    this.setState(
+    {
+      username : '',
+      password : '',
+    });
 
   }
 
@@ -26,7 +46,6 @@ class Logout extends Component {
       return <Redirect to="/"/>
     }
     return (
-
       <div id="logout-container">
         <Nav />
         <div id="gator">

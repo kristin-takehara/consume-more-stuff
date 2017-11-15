@@ -114,6 +114,7 @@ h2 {
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
   background: #373a47;
+  position: fixed;
 }
 
 /* Position and sizing of clickable cross button */
@@ -194,6 +195,12 @@ h2 {
       padding: 5px 48px;
     }
   }
+//----------------------------
+#user-welcome {
+  text-align: right;
+  font-size: 120%;
+  padding-right: 5px;
+}
 //----------------------------
 .item-list {
   @include flex-style(row wrap, space-between);

@@ -6,6 +6,7 @@ import { loadItems } from '../../actions/items.actions';
 import UserItem from '../../components/user.components';
 import Nav from '../../components/nav.components';
 
+
 class User extends Component {
   componentDidMount() {
   // if do show/hide in here for authentication can also include redirect link to login
@@ -20,6 +21,7 @@ class User extends Component {
     if( this.props.match && localStorage.userId === this.props.match.params.id ){
       return(
         <div className="user-view">
+          <div id="user-welcome">Hello, { localStorage.username }!</div>
           <Nav />
           <UserItem singleUser={this.props.singleUser}/>
         </div>
