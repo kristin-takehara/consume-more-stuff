@@ -109,33 +109,30 @@ class SingleItemView extends Component {
   }
 
   componentDidMount() {// if do show/hide in here for authentication can also include redirect link to login
+  let id = this.props.match.params.id;
+  if(this.props.match && this.props.match.params && id){
+    this.props.loadSingleItem(parseInt(id, 10));
 
-   if(this.props.match && this.props.match.params && this.props.match.params.id){
-     let id = this.props.match.params.id;
-     this.props.loadSingleItem(parseInt(id, 10));
-
-     this.props.loadCategories();
-     this.props.loadConditions();
-     this.props.loadStatuses();
+    this.props.loadCategories();
+    this.props.loadConditions();
+    this.props.loadStatuses();
    }
  }
 
  componentWillUnmount() {
-   if(this.props.match && this.props.match.params && this.props.match.params.id){
-     this.props.makeItemEditable(
-       this.props.match.params.id,
-       false
-     );
+  let id = this.props.match.params.id;
+   if(this.props.match && this.props.match.params && id){
+     this.props.makeItemEditable(id, false);
    }
  }
 
   render() {
-    if(localStorage.username) {
+    console.log(this.props.singleItem.User.username);
+    if(localStorage.username === this.props.singleItem.User.username) {
     return(
       <div id="single-item-view">
       <Nav />
-        {
-          !this.props.singleItem.isEditing &&
+        { !this.props.singleItem.isEditing &&
           <div>
             <Item
               singleItem={ this.props.singleItem }
@@ -179,19 +176,14 @@ class SingleItemView extends Component {
             <button
               className="undo-btn"
               type="button"
-              onClick={this.toggleEdit.bind(
-                this,
-                this.props.singleItem,
-                false)} >
+              onClick={this.toggleEdit.bind(this, this.props.singleItem, false)} >
               UNDO
             </button>
 
             <button
               className="delete-btn"
               type="button"
-              onClick={this.removeItem.bind(
-                this,
-                this.props.singleItem.id)} >
+              onClick={this.removeItem.bind(this, this.props.singleItem.id)} >
               DELETE
             </button>
           </div>
@@ -203,8 +195,11 @@ class SingleItemView extends Component {
         <div className="unauth-single-item">
           <div>
 
-            <Nav />
-            <Item singleItem={ this.props.singleItem }/>
+        <div>
+
+          <Nav />
+
+          <Item singleItem={ this.props.singleItem } singleView={ true }/>
 
             <Footer/>
           </div>
