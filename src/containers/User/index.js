@@ -17,6 +17,7 @@ class User extends Component {
   }
 
   render() {
+    console.log(this.props.singleUser);
     if( this.props.match && localStorage.userId === this.props.match.params.id ){
       return(
         <div className="user-view">
@@ -37,12 +38,13 @@ class User extends Component {
 // sets store state on local props
 const mapStateToProps = state => {
   return {
-    singleUser : state.singleUserList,
+    singleUser : state.singleUser,
     items : state.itemList,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
+
   return {
     loadSingleUser: (id) => {
       dispatch(loadSingleUser(id));
