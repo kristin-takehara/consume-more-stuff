@@ -9,11 +9,10 @@ import { loadCategories } from '../../actions/categories.actions';
 import Nav from '../../components/nav.components';
 import ItemList from '../../components/itemlist.components';
 import Footer from '../../components/footer.components';
-//CONTAINERS------------------
+
 import SideBar from '../SideBar';
-import NewItem from '../NewItem/';
 //import ErrorBoundary from '../ErrorBoundary';
-//----------------------------
+
 class App extends Component {
   componentDidMount(){
     this.props.loadItems();
@@ -28,7 +27,6 @@ class App extends Component {
       <div id="app">
         <Nav />
         <SideBar />
-        <NewItem />
 
         {
           this.props.categories

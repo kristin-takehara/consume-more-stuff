@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadSingleUser } from '../../actions/users.actions';
 import { loadItems } from '../../actions/items.actions';
-
-import UserItem from '../../components/user.components';
 import Nav from '../../components/nav.components';
-
+import UserItem from '../../components/user.components';
+import NewItem from '../NewItem/';
+import SideBar from '../SideBar';
 
 class User extends Component {
   componentDidMount() {
@@ -23,6 +23,8 @@ class User extends Component {
         <div className="user-view">
           <div id="user-welcome">Hello, { localStorage.username }!</div>
           <Nav />
+          <SideBar />
+          <NewItem />
           <UserItem singleUser={this.props.singleUser}/>
         </div>
       );
