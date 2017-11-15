@@ -59,6 +59,7 @@ class Login extends Component {
       return <Redirect to="/"/>
     }
 
+
     return(
       <div id="login-container">
         <Nav />

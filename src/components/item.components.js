@@ -12,7 +12,7 @@ const Item = ({ singleItem, singleView }) => {
   return (
     <div className="single-item">
 
-      <div>
+      <div className="single-item-name">
         { singleItem.name }
       </div>
 
@@ -27,13 +27,14 @@ const Item = ({ singleItem, singleView }) => {
         ${ singleItem.price }
       </div>
 
-      <div>
+      <div className="card-description">
         { singleItem.description }
       </div>
 
-      <div>
+      <div className="card-createdAt">
         <FormattedRelative value={ singleItem.createdAt } />
       </div>
+
 
       { singleView
         // if singleView is true render these

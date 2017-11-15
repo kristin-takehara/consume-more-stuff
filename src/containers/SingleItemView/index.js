@@ -109,38 +109,36 @@ class SingleItemView extends Component {
   }
 
   componentDidMount() {// if do show/hide in here for authentication can also include redirect link to login
+  let id = this.props.match.params.id;
+  if(this.props.match && this.props.match.params && id){
+    this.props.loadSingleItem(parseInt(id, 10));
 
-   if(this.props.match && this.props.match.params && this.props.match.params.id){
-     let id = this.props.match.params.id;
-     this.props.loadSingleItem(parseInt(id, 10));
-
-     this.props.loadCategories();
-     this.props.loadConditions();
-     this.props.loadStatuses();
+    this.props.loadCategories();
+    this.props.loadConditions();
+    this.props.loadStatuses();
    }
  }
 
  componentWillUnmount() {
-   if(this.props.match && this.props.match.params && this.props.match.params.id){
-     this.props.makeItemEditable(
-       this.props.match.params.id,
-       false
-     );
+  let id = this.props.match.params.id;
+   if(this.props.match && this.props.match.params && id){
+     this.props.makeItemEditable(id, false);
    }
  }
 
   render() {
-    if(localStorage.username) {
+    console.log(this.props.singleItem.User.username);
+    if(localStorage.username === this.props.singleItem.User.username) {
     return(
       <div id="single-item-view">
       <Nav />
-        {
-          !this.props.singleItem.isEditing &&
+        { !this.props.singleItem.isEditing &&
           <div>
             <Item
               singleItem={ this.props.singleItem }
               singleView={ true } />
             <button
+              className="edit-btn"
               type="button"
               onClick={this.toggleEdit.bind(this, this.props.singleItem, true)}>
               EDIT
@@ -148,6 +146,7 @@ class SingleItemView extends Component {
 
             { this.props.singleItem.is_sold === 1
               ? <button
+                className="sold-btn"
                 onClick={this.handleSold.bind(this, this.props.singleItem.id)} type="button">
                 SOLD
               </button>
@@ -168,25 +167,23 @@ class SingleItemView extends Component {
               handleSold={ this.handleSold } />
 
             <button
+              className="confirm-btn"
               type="button"
               onClick={this.handleSubmit.bind(this)} >
               CONFIRM
             </button>
 
             <button
+              className="undo-btn"
               type="button"
-              onClick={this.toggleEdit.bind(
-                this,
-                this.props.singleItem,
-                false)} >
+              onClick={this.toggleEdit.bind(this, this.props.singleItem, false)} >
               UNDO
             </button>
 
             <button
+              className="delete-btn"
               type="button"
-              onClick={this.removeItem.bind(
-                this,
-                this.props.singleItem.id)} >
+              onClick={this.removeItem.bind(this, this.props.singleItem.id)} >
               DELETE
             </button>
           </div>
@@ -195,21 +192,19 @@ class SingleItemView extends Component {
     );
   } else {
       return(
-
+        <div className="unauth-single-item">
         <div>
-
           <Nav />
-          <Item singleItem={ this.props.singleItem }/>
-
-          <Footer/>
-        </div>
+          <Item singleItem={ this.props.singleItem } singleView={ true } />
+          <Footer />
+          </div>
+       </div>
       )
     }
   }
 }
 
-// sets store state on local props
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     singleItem : state.singleItem,
     categories : state.categoryList,

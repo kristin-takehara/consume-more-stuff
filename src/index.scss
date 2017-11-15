@@ -98,49 +98,68 @@ h2 {
 .nav-links a:hover {
   color: $accent-color;
 }
-
-/* The side navigation menu */
-.user-side-bar {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #111;
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 60px;
-    transition: 0.5s;
+//-------Burger Bar----------
+/* Position and sizing of burger button */
+.bm-burger-button {
+  position: fixed;
+  width: 26px;
+  height: 20px;
+  left: 26px;
+  top: 26px;
 }
 
-/* The navigation menu links */
-.user-side-bar a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: #373a47;
 }
 
-/* When you mouse over the navigation links, change their color */
-.user-side-bar a:hover, .offcanvas a:focus{
-    color: #f1f1f1;
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
 }
 
-/* Position and style the close button (top right corner) */
-.user-side-bar .close-btn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #bdc3c7;
 }
-// ---------------------
+
+/* General sidebar styles */
+.bm-menu {
+  background: #373a47;
+  opacity: 0.8;
+  padding: 2em 1em 0;
+  font-size: 0.9em;
+}
+
+.bm-menu a {
+  color: $bg-color;
+  padding: 5px;
+}
+
+.bm-menu a:hover {
+  color: $accent-color;
+}
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: #373a47;
+}
+
+/* Wrapper for item list */
+.bm-item-list {
+  color: $contrast-accent;
+  padding: 0.8em;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+//----------------------------
 .single-user {
   padding-bottom: 5px;
 }
-// ---------------------
+//----------------------------
 #register-container {
   justify-content: center;
 }
@@ -154,7 +173,7 @@ h2 {
     padding: 5px 40px;
   }
 }
-
+//----------------------------
 #login-container {
   justify-content: center;
   min-height: 100%;
@@ -172,17 +191,15 @@ h2 {
       padding: 5px 48px;
     }
   }
-
+//----------------------------
 .item-list {
   @include flex-style(row wrap, space-between);
   padding: 2px 16px;
   padding-bottom: 40px;
   .single-item {
     width: 33%;
-    // box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     transition: 0.5s;
     padding: 16px;
-    // padding-bottom: 40px;
     a {
       color: $accent-color;
     }
@@ -198,6 +215,30 @@ h2 {
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.5);
 }
 // ---------------------------
+#auth-single-item-view {
+  width: 100%;
+  .single-item-name {
+    padding-top: 10px;
+  }
+  .uploaded-img {
+    width: 50%;
+    padding-top: 10px;
+  }
+}
+//----------------------------
+.single-item {
+  min-height: 100%;
+  width: 100%;
+  padding-bottom: 40px;
+  .single-item-name {
+    padding-top: 10px;
+  }
+  .uploaded-img {
+    width: 33%;
+    padding-top: 10px;
+  }
+}
+
 #product-listing {
   @include flex-style(row wrap, center);
   p {
