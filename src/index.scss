@@ -98,7 +98,7 @@ h2 {
 .nav-links a:hover {
   color: $accent-color;
 }
-//----------------------------
+//-------Burger Bar----------
 /* Position and sizing of burger button */
 .bm-burger-button {
   position: fixed;
@@ -127,13 +127,14 @@ h2 {
 /* General sidebar styles */
 .bm-menu {
   background: #373a47;
+  opacity: 0.8;
   padding: 2em 1em 0;
-  font-size: 1em;
+  font-size: 0.9em;
 }
 
 .bm-menu a {
   color: $bg-color;
-  padding: 10px;
+  padding: 5px;
 }
 
 .bm-menu a:hover {
@@ -146,7 +147,7 @@ h2 {
 
 /* Wrapper for item list */
 .bm-item-list {
-  color: #b8b7ad;
+  color: $contrast-accent;
   padding: 0.8em;
 }
 
