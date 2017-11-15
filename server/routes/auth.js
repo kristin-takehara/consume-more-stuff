@@ -38,6 +38,7 @@ router.post('/register', (req, res) => {
         role: 2
       })
       .then((newUserDetails) => {
+        console.log('new user registered');
         return res.json({
           id : newUserDetails.id,
           username : newUserDetails.username
