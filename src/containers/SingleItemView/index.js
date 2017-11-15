@@ -141,6 +141,7 @@ class SingleItemView extends Component {
               singleItem={ this.props.singleItem }
               singleView={ true } />
             <button
+              className="edit-btn"
               type="button"
               onClick={this.toggleEdit.bind(this, this.props.singleItem, true)}>
               EDIT
@@ -148,6 +149,7 @@ class SingleItemView extends Component {
 
             { this.props.singleItem.is_sold === 1
               ? <button
+                className="sold-btn"
                 onClick={this.handleSold.bind(this, this.props.singleItem.id)} type="button">
                 SOLD
               </button>
@@ -168,12 +170,14 @@ class SingleItemView extends Component {
               handleSold={ this.handleSold } />
 
             <button
+              className="confirm-btn"
               type="button"
               onClick={this.handleSubmit.bind(this)} >
               CONFIRM
             </button>
 
             <button
+              className="undo-btn"
               type="button"
               onClick={this.toggleEdit.bind(
                 this,
@@ -183,6 +187,7 @@ class SingleItemView extends Component {
             </button>
 
             <button
+              className="delete-btn"
               type="button"
               onClick={this.removeItem.bind(
                 this,
@@ -195,21 +200,21 @@ class SingleItemView extends Component {
     );
   } else {
       return(
+        <div className="unauth-single-item">
+          <div>
 
-        <div>
+            <Nav />
+            <Item singleItem={ this.props.singleItem }/>
 
-          <Nav />
-          <Item singleItem={ this.props.singleItem }/>
-
-          <Footer/>
-        </div>
+            <Footer/>
+          </div>
+       </div>
       )
     }
   }
 }
 
-// sets store state on local props
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     singleItem : state.singleItem,
     categories : state.categoryList,
