@@ -17,7 +17,8 @@ class NewItem extends Component {
       dimensions: '',
       category_id: 1,
       condition_id: 1,
-      notes: ''
+      notes: '',
+      showNewItemForm: false
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -60,6 +61,11 @@ class NewItem extends Component {
     });
   }
 
+  newItemDisplay(evt) {
+    evt.preventDefault();
+    this.setState({showNewItemForm: !this.state.showNewItemForm})
+  }
+
   handleChangeImage(evt){
     evt.preventDefault();
     let reader = new FileReader();
@@ -89,13 +95,18 @@ class NewItem extends Component {
   render() {
     if(localStorage.username) {
       return (
+    <div>
+      <div id="product-listing">
+        <h2><a onClick={this.newItemDisplay.bind(this)} href="">
+          List a new item
+        </a>
+        { this.state.showNewItemForm &&
         <div id="product-listing">
-        <div><h2>List a new item</h2>
-        <p>Tell us about the details of your item</p>
-        </div>
+        <br/>
+          <p>Tell us about the details of your item</p>
           <div id="new-item-form-container">
-            <form className="new-item-form" onSubmit={this.handleSubmit}>
-
+            <form className="new-item-form"
+              onSubmit={this.handleSubmit}>
               <div id="product_row_1">
               <Select
                 defaultValue={this.state.category_id}
@@ -212,16 +223,20 @@ class NewItem extends Component {
               type="submit"
               value="
               Submit" />
-            </form>
             <br/>
+            </form>
           </div>
         </div>
-        );
-
+      }
+      </h2></div>
+    </div>
+      );
     } else {
       return null;
     }
+
   }
+
 }
 
 const mapStateToProps = (state) => {

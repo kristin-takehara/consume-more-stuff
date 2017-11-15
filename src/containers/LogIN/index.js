@@ -53,6 +53,10 @@ class Login extends Component {
     });
   }
 
+  componentDidMount() {
+    localStorage.clear();
+  }
+
   render() {
     // loggedIn is a string so its basically checking if anything exists there
     if(localStorage.loggedIn) {
