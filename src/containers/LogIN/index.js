@@ -68,6 +68,7 @@ class Login extends Component {
   }
 
   render(){
+    console.log(this.props.users);
     // if(this.state.redirect) {
     //   return <Redirect to="/"/>
     // }

@@ -14,8 +14,10 @@ const UserItemList = ({ items, soldValue, title }) => {
       .map((itemDetails, idx) => {
         const url = /^http/;
         let imageUrl = itemDetails.imageUrl;
+        imageUrl = '/' + imageUrl;
          // if imageUrl is not an http link AND this is a request from the single item view
-        if (!url.test(imageUrl)) { imageUrl = '/' + imageUrl; }
+        if (!url.test(imageUrl))
+
         return (
           <div className="unsold" key={idx}>
             <Link to={`/items/${itemDetails.id}`}>
