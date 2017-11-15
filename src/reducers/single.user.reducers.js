@@ -6,7 +6,7 @@ import { REGISTER_USER,
 
 const initialState = { Items : [] };
 
-const singleUserList = (state = initialState, action) => {
+const singleUser = (state = initialState, action) => {
   switch (action.type){
     case LOAD_SINGLE_USER:
       return Object.assign({}, state, action.user);
@@ -16,13 +16,18 @@ const singleUserList = (state = initialState, action) => {
 
     case LOGIN_USER:
       const userDetails = action.userDetails;
+      
+      if (action.userDetails.success) {
+        localStorage.setItem('loggedIn', true);
+        localStorage.setItem('userId', userDetails.id);
+        localStorage.setItem('username', userDetails.username);
+        localStorage.setItem('role', userDetails.role);
 
-      localStorage.setItem('loggedin', true);
-      localStorage.setItem('userId', userDetails.id);
-      localStorage.setItem('username', userDetails.username);
-      localStorage.setItem('role', userDetails.role);
+        return Object.assign({}, state, action.userDetails);
 
-      return Object.assign({}, state, action.userDetails);
+      } else {
+        return Object.assign({}, state, initialState);
+      }
 
     case LOGOUT_USER:
       localStorage.clear();
@@ -34,4 +39,4 @@ const singleUserList = (state = initialState, action) => {
   }
 };
 
-export default singleUserList;
+export default singleUser;

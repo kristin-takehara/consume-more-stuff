@@ -29,6 +29,7 @@ router.get('/logout', (req, res) => {
 });
 
 router.post('/register', (req, res) => {
+  // need to check if user already exists first
   bcrypt.genSalt(saltRounds, (err, salt) => {
     bcrypt.hash(req.body.password, salt, (err, hash) => {
       User.create({

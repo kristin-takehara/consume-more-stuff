@@ -38,13 +38,17 @@ export const loginUser = (userCreds) => {
           type: LOGIN_USER,
           userDetails: response.data
         });
-      }
+      } else {
+        dispatch({
+          type: LOGOUT_USER,
+        });
+      } 
     })
     .catch((err) => {
       dispatch({
         type: ERROR,
         error: 'invalid user name or password'
-      })
+      });
     });
   };
 };
