@@ -6,8 +6,8 @@ import Nav from '../../components/nav.components';
 import Footer from '../../components/footer.components';
 
 class Register extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       username : '',
@@ -17,16 +17,6 @@ class Register extends Component {
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
   }
-
-//-------------------------------------
-//NEED TO COMPLETE CODE TO VERIFY IF USERNAME ALREADY EXISTS IN THE DATABASE
-
-  // verifyUsername(newUsername) {
-  //   return newUsername.some(user => {
-  //     return user.username === newUsername;
-  //   });
-  // }
-//-------------------------------------
 
   handleSubmit(evt) {
     evt.preventDefault();
@@ -56,30 +46,43 @@ class Register extends Component {
   }
 
   render() {
-    if(localStorage.loggegIn) {
+    if(localStorage.loggedIn) {
       return <Redirect to="/login"/>
     }
     return(
       <div id="register-container">
         <Nav />
         <h2>Register</h2>
-        <div>
-          <center>
-            as new User
-          </center>
-        </div>
         <div className="register-form">
-          <form className="inner-form-container" onSubmit={this.handleSubmit.bind(this)}>
+          <form 
+            className="inner-form-container" 
+            onSubmit={this.handleSubmit.bind(this)}>
 
-          username
           <div>
-          <input type="text" placeholder="username" defaultValue={this.state.username} onChange={this.handleUsernameChange}/>
+            username
           </div>
-          password
           <div>
-          <input type="password" placeholder="password" defaultValue={this.state.password} onChange={this.handlePasswordChange}/>
+            <input 
+              defaultValue={this.state.username} 
+              onChange={this.handleUsernameChange}
+              placeholder="username" 
+              type="text" />
           </div>
-          <input className="register-btn" type="submit" value="Register"/>
+          <div>
+            password
+          </div>
+          <div>
+          <input 
+            defaultValue={this.state.password} 
+            onChange={this.handlePasswordChange}
+            placeholder="password" 
+            type="password" />
+          </div>
+          
+          <input 
+            className="register-btn" 
+            type="submit" 
+            value="Register" />
 
           </form>
         </div>
