@@ -6,6 +6,7 @@ import { loadItems } from '../../actions/items.actions';
 import UserItem from '../../components/user.components';
 import Nav from '../../components/nav.components';
 
+
 class User extends Component {
   componentDidMount() {
   // if do show/hide in here for authentication can also include redirect link to login
