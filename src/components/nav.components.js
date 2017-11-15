@@ -7,9 +7,8 @@ const Nav = () => {
     return (
       <div>
         <div className="nav-links">
-          <SideBar/>
           <Link to="/">Home</Link>
-          <Link to={`/users/${localStorage.userId}`}>{localStorage.username}</Link>
+          <Link to={`/users/${localStorage.userId}`}>{localStorage.username}'s Store</Link>
           <Link to="/logout">Logout</Link>
         </div>
       </div>

@@ -193,6 +193,12 @@ h2 {
     }
   }
 //----------------------------
+#user-welcome {
+  text-align: right;
+  font-size: 120%;
+  padding-right: 5px;
+}
+//----------------------------
 .item-list {
   @include flex-style(row wrap, space-between);
   padding: 2px 16px;
