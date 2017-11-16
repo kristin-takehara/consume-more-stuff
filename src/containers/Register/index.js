@@ -32,7 +32,7 @@ class Register extends Component {
       this.setState({
         error: error
       });
-      
+
     } else {
 
     let registerCreds = {
@@ -77,8 +77,7 @@ class Register extends Component {
 
   handleBlurValidation(evt) {
 
-    console.log(evt.target.name);
-    if (evt.target.name === "username" && this.state.username.length < 3 || this.state.username.length > 20){
+    if (evt.target.name === "username" && (this.state.username.length < 3 || this.state.username.length > 20)){
       let error = "Username must be max 20 characters and at min 3 charaters";
 
       this.setState({
