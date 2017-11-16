@@ -30,11 +30,12 @@ $footer-color: #a6a3a2;
 /* STYLE SETTINGS  */
 #source {
   position: relative;
+  min-height: 100%;
 }
 
 html {
   @include box-style(border-box);
-  font-family: 'Libre Baskerville', sans-serif;
+  font-family: 'Molengo', sans-serif;
 }
 
 *, *:before, *:after {
@@ -55,7 +56,10 @@ a {
 h2 {
   display: flex;
   justify-content: center;
-  font-family: 'Libre Baskerville', serif;
+}
+
+textarea {
+  resize: none;
 }
 
 #global-nav-header {
@@ -168,6 +172,15 @@ h2 {
 //----------------------------
 #register-container {
   justify-content: center;
+  .inner-form-container {
+    justify-content: center;
+    padding: 10px;
+    border: 1px solid black;
+    font-size: 120%;
+    .form-header {
+      padding-bottom: 5px;
+    }
+  }
 }
 
 .register-form {
@@ -182,7 +195,6 @@ h2 {
 //----------------------------
 #login-container {
   position: relative;
-  padding-bottom: 40px;
   .login-form {
     @include flex-style(row wrap, center);
     padding-bottom: 40px;
@@ -203,6 +215,12 @@ h2 {
 //----------------------------
 .category-header {
   font-size: 150%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  a{
+    color: $accent-color;
+  }
+
 }
 
 .item-list {
@@ -215,7 +233,8 @@ h2 {
   margin-bottom: 40px;
 
   .single-item {
-    max-width: 300px;
+    min-width: 20%;
+    max-width: 20%;
     // border: 1px solid black;
     transition: 0.5s;
     padding: 16px;
@@ -226,13 +245,11 @@ h2 {
       // max-width: 100%;
       width: 100%;
       overflow: hidden;
-
-
+    }
       img {
-        max-height: 100%;
+        // max-height: 100%;
         width: inherit;
       }
-    }
   }
 }
 .card-details {
@@ -253,16 +270,20 @@ h2 {
   }
 }
 //----------------------------
-.single-item {
-  // min-height: 100%;
-  width: 100%;
-  padding-bottom: 40px;
-  .single-item-name {
-    padding-top: 10px;
-  }
-  .item-img {
-    width: 33%;
-    padding-top: 10px;
+#unaut-single-item-view {
+  display: flex;
+  justify-content: center;
+  .single-item {
+    // min-height: 100%;
+    width: 100%;
+    padding-bottom: 40px;
+    .single-item-name {
+      padding-top: 10px;
+    }
+    .item-img {
+      width: 33%;
+      padding-top: 10px;
+    }
   }
 }
 
@@ -328,7 +349,7 @@ h2 {
   justify-content: center;
   left: 0;
   bottom: 0;
-  // position: fixed;
+  position: fixed;
   height: 40px;
   width: 100%;
   padding-top: 2px;

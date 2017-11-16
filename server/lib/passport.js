@@ -29,25 +29,35 @@ passport.deserializeUser((user, done) => {
 });
 
 passport.use(new LocalStrategy(function(username, password, done) {
-
-  User.findOne({ where : { username : username }})
-    .then(user => {      
-      if (user === null) {
-        return done(null, false, { message : 'bad username or password' });
-      }
-      else {        
-        bcrypt.compare(password, user.password)
-          .then(res => {
-            // res 'basically' tells you TRUE or FALSE
-            if (res) {
-             return done(null, user); }
-            else {
-              return done(null, false, { message : 'bad username or password'});
-            }
+  User.findOne({ 
+    where : { 
+      $or : [
+        { username : username }, 
+        { email : username }
+      ] 
+    }
+  })
+  .then(user => {      
+    if (user === null) {
+      return done(null, false, { message : 'bad username or password' });
+    }
+    else {        
+      bcrypt.compare(password, user.password)
+      .then(res => {
+        // res 'basically' tells you TRUE or FALSE
+        if (res) {
+         return done(null, user);
+        } else {
+          return done(null, false, { 
+            message : 'bad username or password'
           });
-      }
-    })
-    .catch(err => { console.log('error : ', err); });
+        }
+      });
+    }
+  })
+  .catch(err => { 
+    console.log('error : ', err); 
+  });
 }));
 
 module.exports = passport;

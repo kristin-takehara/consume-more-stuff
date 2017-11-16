@@ -10,24 +10,28 @@ class Register extends Component {
     this.state = {
       username : '',
       password : '',
+      email: '',
     };
 
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.handleEmailChange = this.handleEmailChange.bind(this);
   }
 
   handleSubmit(evt) {
     evt.preventDefault();
     let registerCreds = {
       username : this.state.username,
-      password : this.state.password
+      password : this.state.password,
+      email : this.state.email
     };
 
     this.props.registerUser(registerCreds);
     this.setState(
     {
       username : '',
-      password : ''
+      password : '',
+      email : ''
     });
   }
 
@@ -43,43 +47,61 @@ class Register extends Component {
     });
   }
 
+  handleEmailChange(event) {
+    this.setState({
+      email: event.target.value
+    });
+  }
+
   render() {
     if(localStorage.getItem('registered')) {
       return <Redirect to="/login"/>
     }
-    
+
     return(
       <div id="register-container">
         <h2>Register</h2>
         <div className="register-form">
-          <form 
-            className="inner-form-container" 
+          <form
+            className="inner-form-container"
             onSubmit={this.handleSubmit.bind(this)}>
-
-          <div>
-            username
+          <div className="form-header">
+            EMAIL
+            <br/>
           </div>
           <div>
-            <input 
-              defaultValue={this.state.username} 
+          <input
+            defaultValue={this.state.email}
+            onChange={this.handleEmailChange}
+            placeholder="email"
+            type="text" />
+          </div>
+          <br/>
+          <div className="form-header">
+            USERNAME<br/>(3-20 characters. No spaces or special characters)
+          </div>
+          <div>
+            <input
+              defaultValue={this.state.username}
               onChange={this.handleUsernameChange}
-              placeholder="username" 
+              placeholder="username"
               type="text" />
           </div>
-          <div>
-            password
+          <br/>
+          <div className="form-header">
+            PASSWORD<br/>(minimum length - 5 characters)
           </div>
           <div>
-          <input 
-            defaultValue={this.state.password} 
+          <input
+            defaultValue={this.state.password}
             onChange={this.handlePasswordChange}
-            placeholder="password" 
+            placeholder="password"
             type="password" />
           </div>
-          
-          <input 
-            className="register-btn" 
-            type="submit" 
+          <br/>
+          <input
+            className="register-btn"
+            type="submit"
             value="Register" />
 
           </form>
