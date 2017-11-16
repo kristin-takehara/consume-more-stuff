@@ -72,8 +72,10 @@ class Login extends Component {
         </div>
 
         <div className="login-form">
-          <form onSubmit={this.handleSubmit.bind(this)}>
-            username
+          <form className="inner-form-container" onSubmit={this.handleSubmit.bind(this)}>
+            <div className="form-header">
+            USERNAME
+            </div>
 
             <div>
             <input
@@ -83,7 +85,9 @@ class Login extends Component {
               onChange={this.handleUsernameInput} />
             </div>
 
-            password
+            <div className="form-header">
+            PASSWORD
+            </div>
             <div>
             <input
               type="password"
@@ -91,7 +95,7 @@ class Login extends Component {
               defaultValue={this.state.password}
               onChange={this.handlePasswordInput} />
             </div>
-
+            <br/>
             <button
               className="login-btn"
               type="submit"
