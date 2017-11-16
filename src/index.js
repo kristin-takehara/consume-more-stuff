@@ -19,7 +19,7 @@ import LogIN from './containers/LogIN';
 import LogOUT from './containers/LogOUT';
 import SideBar from './containers/SideBar';
 import SingleItemView from './containers/SingleItemView';
-import CategoryView from './containers/CategoryView';
+import Category from './containers/CategoryView';
 import Footer from './components/footer.components';
 import Nav from './components/nav.components';
 //---------------------------------------
@@ -43,7 +43,9 @@ ReactDOM.render(
           <SideBar />
 
             <div id="logo">
-              <Link to="/"><div></div></Link>
+              <Link to="/">
+              <div></div>
+              </Link>
             </div>
 
           <Nav />
@@ -55,7 +57,8 @@ ReactDOM.render(
         <Route path="/items/:id" component={SingleItemView} />
         <Route path="/logout" component={LogOUT} />
         <Route path="/users/:id" component={User}/>
-        <Route path="/category/:id" component={CategoryView} />
+        <Route path="/Appliances" component={Category} />
+        <Route path="/Vehicles" component={Category} />
 
         <Footer />
       </div>

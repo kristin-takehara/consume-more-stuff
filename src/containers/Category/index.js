@@ -7,7 +7,7 @@ import { loadItems } from '../../actions/items.actions';
 import ItemList from '../../components/itemlist.components';
 import CategoryItemsList from '../../components/category.components';
 
-class CategoryView extends Component {
+class Category extends Component {
   componentDidMount() {
     if(this.props.match && this.props.match.params && this.props.match.params.id) {
 
@@ -22,22 +22,11 @@ class CategoryView extends Component {
       return(
         <div id="category-items-view-container">
           hello?
-          <div className="category-header">
+        <div className="category-header">
           { CategoryItemsList.categoryName }
           </div>
 
-          {
-            this.props.categories
-            .map((category, idx) => {
-              return(
-                <ItemList
-                  items={this.props.items}
-                  categoryId={category.id}
-                  categoryName={category.category}
-                  key={idx}/>
-              )
-            })
-          }
+          <CategoryItemsList />
 
         </div>
       )
@@ -54,7 +43,7 @@ class CategoryView extends Component {
 
 const mapStateToProps = state => {
   return {
-    category : state.category.id,
+    categories : state.categories.id,
     items : state.itemList
   }
 }
@@ -73,4 +62,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect (
   mapStateToProps,
   mapDispatchToProps
-)(CategoryView);
+)(Category);
