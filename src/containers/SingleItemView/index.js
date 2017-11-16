@@ -124,8 +124,7 @@ class SingleItemView extends Component {
  }
 
   render() {
-    console.log(this.props.singleItem.User.username);
-    if(localStorage.username === this.props.singleItem.User.username) {
+    if(this.props.singleItem.User && localStorage.username === this.props.singleItem.User.username) {
     return(
       <div id="single-item-view">
         { !this.props.singleItem.isEditing &&

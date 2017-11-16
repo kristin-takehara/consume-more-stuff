@@ -33,7 +33,7 @@ router.post('/register', validateForm, (req, res) => {
   const { email, username } = req.body;
   // need to check if user already exists first
   return User.findOne({
-    where: { username: username },
+    where : { $or : [ { username : username }, { email : username } ] },
     attributes: { exclude: ['password'] }
   })
   .then(response => {
@@ -41,8 +41,8 @@ router.post('/register', validateForm, (req, res) => {
     // if user does exist, user details will be returned
     if (response) {
       res.json({
-        error: 'Sorry, that username is taken!'
-      });      
+        error: 'Sorry, that username/email is already in use!'
+      });
 
     } else {
       bcrypt.genSalt(saltRounds, (err, salt) => {
