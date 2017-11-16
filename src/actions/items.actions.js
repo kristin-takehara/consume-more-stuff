@@ -1,5 +1,5 @@
 import Axios from 'axios';
-
+ 
 const listOfItems = '/api/items'; // URL to POST to
 
 export const LOAD_SINGLE_ITEM = 'LOAD_SINGLE_ITEM';
@@ -44,10 +44,10 @@ export const loadItems = () => {
 };
 
 //CREATE(POST) new item  
-export const addItem = (newItem) => {
+export const addItem = (newItem, userId) => {  
   return (dispatch) => {
     return Axios.post(listOfItems, newItem)
-    .then(newItemDetails => {      
+    .then(newItemDetails => {
       dispatch({
         type: ADD_ITEM,
         newItem: newItemDetails.data
