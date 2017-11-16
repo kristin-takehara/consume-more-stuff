@@ -57,7 +57,7 @@ router.route('/')
     price : details.price,
     user_id : req.user.id
   })
-  .then((newItem) => {    
+  .then((newItem) => {
     return newItem.reload({
       include : [
         { model : Category, as : 'Category' },
@@ -123,9 +123,9 @@ router.route('/:id')
       })
       .then((editedItem) => {
         console.log('reloading');
-                
+
         return editedItem
-        .reload({          
+        .reload({
           include : [
             { model : Category, as : 'Category' },
             { model : Condition, as : 'Condition' }
