@@ -9,7 +9,7 @@ const EditItem = ({ singleItem, categories, conditions, statuses, handleChange, 
         <input
           name="name"
           onChange={handleChange.bind(this)}
-          placeholder={`${singleItem.name}` || "name" }
+          placeholder="name"
           defaultValue={singleItem.name} />
       </div>
       <div>
@@ -17,35 +17,33 @@ const EditItem = ({ singleItem, categories, conditions, statuses, handleChange, 
           name="description"
           onChange={handleChange}
           cols="18" rows="8"
-          placeholder={`${singleItem.description}` || "description"}
+          placeholder="description"
           defaultValue={singleItem.description} />
       </div>
       <div>
         <input
           name="price"
           onChange={handleChange}
-          placeholder={`${singleItem.price}` || "price"}
-          defaultValue={"$"`${singleItem.price}`} />
-      </div>
-      <div>
+          placeholder="price"
+          defaultValue={"$" + `${singleItem.price}`} /> </div> <div>
         <input
           name="manufacturer"
           onChange={handleChange}
-          placeholder={`${singleItem.manufacturer}` || "manufacturer"}
+          placeholder="manufacturer"
           defaultValue={singleItem.manufacturer} />
       </div>
       <div>
         <input
           name="model"
           onChange={handleChange}
-          placeholder={`${singleItem.model}` || "model" }
+          placeholder="model"
           defaultValue={singleItem.model} />
       </div>
       <div>
         <input
           name="dimensions"
           onChange={handleChange}
-          placeholder={`${singleItem.dimensions}` || "dimensions"}
+          placeholder="dimensions"
           defaultValue={singleItem.dimensions} />
       </div>
       <div>
@@ -53,7 +51,7 @@ const EditItem = ({ singleItem, categories, conditions, statuses, handleChange, 
           name="notes"
           onChange={handleChange}
           cols="18" rows="8"
-          placeholder={`${singleItem.notes}` || "notes"}
+          placeholder="notes"
           defaultValue={singleItem.notes} />
       </div>
       <div>

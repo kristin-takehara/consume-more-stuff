@@ -5,8 +5,8 @@ import Item from'./item.components';
 const ItemList = ({ items, categoryId, categoryName }) => {
   return (
     <div>
-      <div className="category-header"> 
-        { categoryName } 
+      <div className="category-header">
+        { categoryName } fart
       </div>
 
       <div className="item-list" id={categoryName}>
