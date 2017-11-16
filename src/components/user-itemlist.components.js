@@ -12,7 +12,7 @@ const UserItemList = ({ items, soldValue, title }) => {
         return item.is_sold === Number(soldValue);
       })
       .filter(item => {
-          return !item.deletedAt;
+        return !item.deletedAt;
       })
       .map((itemDetails, idx) => {
         const url = /^http/;

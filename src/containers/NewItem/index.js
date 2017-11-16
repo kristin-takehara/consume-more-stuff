@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { addItem } from '../../actions/items.actions';
+import { loadSingleUser } from '../../actions/users.actions';
+import { loadConditions } from '../../actions/conditions.actions';
+import { loadCategories } from '../../actions/categories.actions';
 import Select from '../../components/select.components';
 
 class NewItem extends Component {
-  constructor() {
+  constructor(props) {
     super();
-
+    
     this.state = {
       file: '',
       name: '',
@@ -26,8 +29,7 @@ class NewItem extends Component {
     this.handleChangeImage = this.handleChangeImage.bind(this);
   }
 
-  handleSubmit(evt){
-    console.log(evt);
+  handleSubmit(evt) {
     evt.preventDefault();
 
     let formData = new FormData();
@@ -43,8 +45,12 @@ class NewItem extends Component {
     formData.append('dimensions', this.state.dimensions);
     formData.append('notes', this.state.notes);
     formData.append('user_id', localStorage.userId);
-
+    
     this.props.addItem(formData);
+
+    if(this.props.userId) {
+      this.props.loadSingleUser(this.props.userId);
+    }
 
     this.setState({
      // this will pass up to the newItem that will be submitted on SUBMIT
@@ -63,7 +69,7 @@ class NewItem extends Component {
 
   newItemDisplay(evt) {
     evt.preventDefault();
-    this.setState({showNewItemForm: !this.state.showNewItemForm})
+    this.setState({showNewItemForm: !this.state.showNewItemForm});
   }
 
   handleChangeImage(evt){
@@ -90,6 +96,11 @@ class NewItem extends Component {
     this.setState({
       [name] : value
     });
+  }
+
+  componentDidMount() {
+    this.props.loadCategories();
+    this.props.loadConditions();
   }
 
   render() {
@@ -253,6 +264,15 @@ const mapDispatchToProps = (dispatch) => {
   return {
     addItem: (item) => {
       dispatch(addItem(item))
+    },
+    loadSingleUser: (id) => {
+      dispatch(loadSingleUser(id));
+    },
+    loadCategories: () => {
+      dispatch(loadCategories());
+    },
+    loadConditions: () => {
+      dispatch(loadConditions());
     }
   }
 }

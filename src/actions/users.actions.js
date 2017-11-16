@@ -7,7 +7,7 @@ export const LOAD_USERS = 'LOAD_USERS';
 export const ERROR = 'ERROR';
 
 //GET single user for their page
-export const loadSingleUser = (id) => {
+export const loadSingleUser = (id) => {  
   return(dispatch) => {
     return Axios.get(listOfUsers + `/` + id)
     .then(user => {
