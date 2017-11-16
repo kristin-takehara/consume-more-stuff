@@ -24,8 +24,8 @@ class Login extends Component {
   handleSubmit(evt) {
     evt.preventDefault();
 
-    if(this.state.username === '' || this.state.password === ''){
-      let credsError = "You need both username and password to login";
+    if(this.state.username === '' || this.state.username.length < 20 || this.state.password === '' || this.state.password.length < 5){
+      let credsError = "You need both username (3-20 characters) and password (min 5 characters) to login";
       this.setState({
         error: credsError
       });
