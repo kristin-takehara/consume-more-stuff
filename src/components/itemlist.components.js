@@ -6,7 +6,7 @@ const ItemList = ({ items, categoryId, categoryName }) => {
   return (
     <div>
       <div className="category-header">
-        { categoryName } fart
+        { categoryName }
       </div>
 
       <div className="item-list" id={categoryName}>
