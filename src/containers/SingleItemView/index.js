@@ -189,10 +189,8 @@ class SingleItemView extends Component {
   } else {
       return(
         <div className="unauth-single-item">
-        <div>
           <Item singleItem={ this.props.singleItem } singleView={ true } />
-          </div>
-       </div>
+        </div>
       )
     }
   }
