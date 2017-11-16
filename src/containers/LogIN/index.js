@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { loginUser } from '../../actions/auth.actions';
 import { formErrors } from  '../../components/formErrors.components';
+
 class Login extends Component {
   constructor() {
     super();
@@ -68,7 +69,7 @@ class Login extends Component {
 
       case 'password':
         password = value.length >= 5;
-        fieldValidationErrors.password = password? '': ' is too short';
+        fieldValidationErrors.password = password ? '': ' is too short';
         break;
 
       default:
@@ -106,12 +107,11 @@ class Login extends Component {
 
         <div className="login-form">
           <form className="inner-form-container" onSubmit={this.handleSubmit.bind(this)}>
+           <FormErrors formErrors={this.state.formErrors} />   
             <div className="form-header">
             USERNAME
             </div>
-{/*     <FormErrors formErrors={this.state.formErrors} />
-*/}
-            <div>
+         <div>
             <input
               type="text"
               placeholder="username"
