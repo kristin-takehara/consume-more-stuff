@@ -22,13 +22,17 @@ class Register extends Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
-    
-    if(this.state.username === '' || this.state.password === '' || this.state.email === ''){
+    let userCheck = this.state.username;
+    let passCheck = this.state.password;
+    let emailCheck = this.state.email;
+
+    if(userCheck === '' || passCheck === '' || emailCheck === ''){
       let error = "you are missing information on your register form";
 
       this.setState({
         error: error
       });
+      
     } else {
 
     let registerCreds = {
