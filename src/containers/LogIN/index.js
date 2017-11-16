@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { loginUser } from '../../actions/auth.actions';
-
+import { formErrors } from  '../../components/formErrors.components';
 class Login extends Component {
   constructor() {
     super();
@@ -10,7 +10,11 @@ class Login extends Component {
     this.state = {
       username : '',
       password : '',
-      redirect : false // set initial state to false
+      redirect : false, // set initial state to false
+      formErrors: {username: '', password: ''},
+      usernameValid: false,
+      passwordValid: false,
+      formValid: false
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,8 +33,7 @@ class Login extends Component {
 
     this.props.loginUser(loginCreds);
 
-    this.setState(
-    {
+    this.setState({
       username : '',
       password : '',
     });
@@ -49,6 +52,36 @@ class Login extends Component {
     {
       password : evt.target.value
     });
+  }
+
+  validateField(fieldName, value) {
+    let fieldValidationErrors = this.state.formErrors;
+    let username = this.state.usernameValid;
+    let password= this.state.passwordValid;
+
+    switch(fieldName) {
+
+      case 'username':
+        username = value;
+        fieldValidationErrors.username = username ? '' : ' is invalid';
+        break;
+
+      case 'password':
+        password = value.length >= 5;
+        fieldValidationErrors.password = password? '': ' is too short';
+        break;
+
+      default:
+        break;
+      } 
+      this.setState({formErrors: fieldValidationErrors,
+        username: username,
+        password: password,
+    }, this.validateForm); 
+  }
+
+  validateForm(){
+    this.setState({formValid: this.state.usernameValid && this.state.passwordValid});
   }
 
   componentDidMount() {
@@ -76,12 +109,13 @@ class Login extends Component {
             <div className="form-header">
             USERNAME
             </div>
-
+{/*     <FormErrors formErrors={this.state.formErrors} />
+*/}
             <div>
             <input
               type="text"
               placeholder="username"
-              defaultValue={this.state.username}
+              defaultValue={this.state.formErrors.username}
               onChange={this.handleUsernameInput} />
             </div>
 
@@ -92,7 +126,7 @@ class Login extends Component {
             <input
               type="password"
               placeholder="password"
-              defaultValue={this.state.password}
+              defaultValue={this.state.formErrors.password}
               onChange={this.handlePasswordInput} />
             </div>
             <br/>
