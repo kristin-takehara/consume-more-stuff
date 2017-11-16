@@ -27,6 +27,7 @@ function generateFakeUsers(count, conditions) {
   const users = [];
   for (let i = 0; i < count; i++) {
     const newUser = {
+      email: faker.internet.email(),
       username: faker.internet.userName(),
       password: 'pass',
       role: 2,
