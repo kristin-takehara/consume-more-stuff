@@ -275,22 +275,31 @@ textarea {
 }
 //----------------------------
 #unaut-single-item-view {
-  display: flex;
   justify-content: center;
+  min-height: 100%;
+  position: relative;
+  padding-bottom: 40px;
+}
   .single-item {
-    // min-height: 100%;
     width: 100%;
     padding-bottom: 40px;
-    .single-item-name {
-      padding-top: 10px;
-    }
-    .item-img {
-      width: 33%;
-      padding-top: 10px;
-    }
+    margin: 10px;
+   }
+  .single-item-name {
+    padding-top: 10px;
+    font-size: 120%;
   }
-}
+  .item-img {
+    width: 80%;
+  }
+  .uploaded-img {
+    width: 60%;
+    padding-top: 10px;
+  }
+  .single-item-details {
 
+  }
+//----------------------------
 #product-listing-container {
   a {
     color: $accent-color;
