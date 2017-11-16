@@ -12,84 +12,79 @@ class Login extends Component {
       username : '',
       password : '',
       redirect : false, // set initial state to false
-      formErrors: {username: '', password: ''},
-      usernameValid: false,
-      passwordValid: false,
-      formValid: false
+      error : ''
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleUsernameInput = this.handleUsernameInput.bind(this);
     this.handlePasswordInput = this.handlePasswordInput.bind(this);
-
+    this.handleBlurValidation = this.handleBlurValidation.bind(this);
   }
 
   handleSubmit(evt) {
     evt.preventDefault();
 
-    let loginCreds = {
-      username : this.state.username,
-      password : this.state.password
-    };
+    if(this.state.username === '' || this.state.password === ''){
+      let credsError = "You need both username and password to login";
+      this.setState({
+        error: credsError
+      });
+    } else {
+      let loginCreds = {
+        username : this.state.username,
+        password : this.state.password
+      };
 
-    this.props.loginUser(loginCreds);
+      this.props.loginUser(loginCreds);
 
-    this.setState({
-      username : '',
-      password : '',
-    });
-
+      this.setState({
+        username : '',
+        password : '',
+      });
+    }
   }
 
   handleUsernameInput(evt) {
     this.setState(
     {
-      username : evt.target.value
+      username : evt.target.value,
+      error : ''
     });
   }
 
   handlePasswordInput(evt) {
     this.setState(
     {
-      password : evt.target.value
+      password : evt.target.value,
+      error : ''
     });
   }
 
-  validateField(fieldName, value) {
-    let fieldValidationErrors = this.state.formErrors;
-    let username = this.state.usernameValid;
-    let password= this.state.passwordValid;
+  handleBlurValidation(evt) {
+    console.log(evt.target.name);
+    if (evt.target.name === "username" && this.state.username.length === 0){
+      let error = "No empty spaces in username";
 
-    switch(fieldName) {
+      this.setState({
+        error: error
+      })
+    }
 
-      case 'username':
-        username = value;
-        fieldValidationErrors.username = username ? '' : ' is invalid';
-        break;
-
-      case 'password':
-        password = value.length >= 5;
-        fieldValidationErrors.password = password ? '': ' is too short';
-        break;
-
-      default:
-        break;
-      } 
-      this.setState({formErrors: fieldValidationErrors,
-        username: username,
-        password: password,
-    }, this.validateForm); 
+    if(evt.target.name === "password"){
+      let error = "no empty spaces in password";
+      this.setState({
+        error:error
+      })
+    }
   }
-
-  validateForm(){
-    this.setState({formValid: this.state.usernameValid && this.state.passwordValid});
-  }
-
+  
   componentDidMount() {
     localStorage.clear();
   }
 
   render() {
+    console.log('hellllllllllo')
+    console.log(this.state, " <---THE STATE");
     // loggedIn is a string so its basically checking if anything exists there
     if(localStorage.loggedIn) {
       return <Redirect to={`/users/${localStorage.userId}`}/>
@@ -104,30 +99,35 @@ class Login extends Component {
             .: welcome back :.
           </center>
         </div>
-
+        {(this.state.error) && 
+          <h3>{this.state.error}</h3>
+        }
         <div className="login-form">
           <form className="inner-form-container" onSubmit={this.handleSubmit.bind(this)}>
-           <FormErrors formErrors={this.state.formErrors} />   
             <div className="form-header">
             USERNAME
             </div>
          <div>
-            <input
+            <input 
+              name="username"
               type="text"
               placeholder="username"
-              defaultValue={this.state.formErrors.username}
-              onChange={this.handleUsernameInput} />
+              defaultValue={this.state.username}
+              onChange={this.handleUsernameInput}
+              onBlur={this.handleBlurValidation} />
             </div>
 
             <div className="form-header">
             PASSWORD
             </div>
             <div>
-            <input
+            <input 
+              name="password"
               type="password"
               placeholder="password"
-              defaultValue={this.state.formErrors.password}
-              onChange={this.handlePasswordInput} />
+              defaultValue={this.state.password}
+              onChange={this.handlePasswordInput} 
+              onBlur={this.handleBlurValidation}/>
             </div>
             <br/>
             <button
