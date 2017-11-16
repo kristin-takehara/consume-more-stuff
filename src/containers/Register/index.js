@@ -47,39 +47,40 @@ class Register extends Component {
     if(localStorage.getItem('registered')) {
       return <Redirect to="/login"/>
     }
-    
+
     return(
       <div id="register-container">
         <h2>Register</h2>
         <div className="register-form">
-          <form 
-            className="inner-form-container" 
+          <form
+            className="inner-form-container"
             onSubmit={this.handleSubmit.bind(this)}>
 
-          <div>
-            username
+          <div className="form-header">
+            USERNAME<br/>(3-20 characters. No spaces or special characters)
           </div>
           <div>
-            <input 
-              defaultValue={this.state.username} 
+            <input
+              defaultValue={this.state.username}
               onChange={this.handleUsernameChange}
-              placeholder="username" 
+              placeholder="username"
               type="text" />
           </div>
-          <div>
-            password
+          <br/>
+          <div className="form-header">
+            PASSWORD<br/>(minimum length - 5 characters)
           </div>
           <div>
-          <input 
-            defaultValue={this.state.password} 
+          <input
+            defaultValue={this.state.password}
             onChange={this.handlePasswordChange}
-            placeholder="password" 
+            placeholder="password"
             type="password" />
           </div>
-          
-          <input 
-            className="register-btn" 
-            type="submit" 
+          <br/>
+          <input
+            className="register-btn"
+            type="submit"
             value="Register" />
 
           </form>

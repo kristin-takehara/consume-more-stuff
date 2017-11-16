@@ -35,7 +35,7 @@ $footer-color: #a6a3a2;
 
 html {
   @include box-style(border-box);
-  font-family: 'Libre Baskerville', sans-serif;
+  font-family: 'Molengo', sans-serif;
 }
 
 *, *:before, *:after {
@@ -56,7 +56,6 @@ a {
 h2 {
   display: flex;
   justify-content: center;
-  font-family: 'Libre Baskerville', serif;
 }
 
 textarea {
@@ -173,6 +172,15 @@ textarea {
 //----------------------------
 #register-container {
   justify-content: center;
+  .inner-form-container {
+    justify-content: center;
+    padding: 10px;
+    border: 1px solid black;
+    font-size: 120%;
+    .form-header {
+      padding-bottom: 5px;
+    }
+  }
 }
 
 .register-form {
@@ -187,7 +195,6 @@ textarea {
 //----------------------------
 #login-container {
   position: relative;
-  padding-bottom: 40px;
   .login-form {
     @include flex-style(row wrap, center);
     padding-bottom: 40px;
@@ -260,16 +267,20 @@ textarea {
   }
 }
 //----------------------------
-.single-item {
-  // min-height: 100%;
-  width: 100%;
-  padding-bottom: 40px;
-  .single-item-name {
-    padding-top: 10px;
-  }
-  .item-img {
-    width: 33%;
-    padding-top: 10px;
+#unaut-single-item-view {
+  display: flex;
+  justify-content: center;
+  .single-item {
+    // min-height: 100%;
+    width: 100%;
+    padding-bottom: 40px;
+    .single-item-name {
+      padding-top: 10px;
+    }
+    .item-img {
+      width: 33%;
+      padding-top: 10px;
+    }
   }
 }
 
