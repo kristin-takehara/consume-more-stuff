@@ -62,19 +62,19 @@ class Login extends Component {
 
   handleBlurValidation(evt) {
     console.log(evt.target.name);
-    if (evt.target.name === "username" && this.state.username.length === 0){
-      let error = "No empty spaces in username";
+    if (evt.target.name === "username" && this.state.username.length < 5){
+      let error = "username must be 5 characters";
 
       this.setState({
         error: error
       })
     }
 
-    if(evt.target.name === "password"){
-      let error = "no empty spaces in password";
+    if(evt.target.name === "password" ){
+      let error = "passwords must be at least 5 charaters";
       this.setState({
         error:error
-      })
+      });
     }
   }
   
@@ -83,8 +83,6 @@ class Login extends Component {
   }
 
   render() {
-    console.log('hellllllllllo')
-    console.log(this.state, " <---THE STATE");
     // loggedIn is a string so its basically checking if anything exists there
     if(localStorage.loggedIn) {
       return <Redirect to={`/users/${localStorage.userId}`}/>
@@ -99,9 +97,13 @@ class Login extends Component {
             .: welcome back :.
           </center>
         </div>
-        {(this.state.error) && 
-          <h3>{this.state.error}</h3>
+
+        <div className="error-box">       
+           {(this.state.error) && 
+          <p className="errors">{this.state.error}</p>
         }
+        </div>
+
         <div className="login-form">
           <form className="inner-form-container" onSubmit={this.handleSubmit.bind(this)}>
             <div className="form-header">

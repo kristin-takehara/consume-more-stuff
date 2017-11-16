@@ -22,11 +22,20 @@ class Register extends Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
+    
+    if(this.state.username === '' || this.state.password === '' || this.state.email === ''){
+      let error = "you are missing information on your register form";
+
+      this.setState({
+        error: error
+      });
+    } else {
+
     let registerCreds = {
       username : this.state.username,
       password : this.state.password,
       email : this.state.email,
-      error: this.state.error
+
     };
 
     this.props.registerUser(registerCreds);
@@ -38,23 +47,27 @@ class Register extends Component {
       email : '',
       error : ''
     });
+   }
   }
 
   handleUsernameChange(event) {
     this.setState({
-      username: event.target.value
+      username: event.target.value,
+      error: ''
     });
   }
 
   handlePasswordChange(event) {
     this.setState({
-      password: event.target.value
+      password: event.target.value,
+      error: ''
     });
   }
 
   handleEmailChange(event) {
     this.setState({
-      email: event.target.value
+      email: event.target.value,
+      error: '',
     });
   }
 
@@ -62,18 +75,25 @@ class Register extends Component {
 
     console.log(evt.target.name);
     if (evt.target.name === "username" && this.state.username.length < 3 || this.state.username.length > 20){
-      let error = "Username must be 20 characters or less And at least 3 charaters";
+      let error = "Username must be max 20 characters and at min 3 charaters";
 
       this.setState({
         error: error
-      })
+      });
     }
 
-    if(evt.target.name === "password" && evt.target.name.length < 5){
-      let error = "no empty spaces in password";
+    if(evt.target.name === "password" && this.state.password < 5){
+
+      let error = "passwords must at least be 5 characters";
       this.setState({
         error:error
-      })
+      });
+    }
+    if(evt.target.name ==="email" && this.state.email.length === 0) {
+      let error = "email was not entered";
+      this.setState({
+        error: error
+      });
     }
   }
 
@@ -85,7 +105,7 @@ class Register extends Component {
     return(
       <div id="register-container">
         <h2>Register</h2>
-        <h4>{this.state.error}</h4>
+        <p className="errors">{this.state.error}</p>
         <div className="register-form">
           <form 
             className="inner-form-container"
@@ -141,6 +161,12 @@ class Register extends Component {
     );
   }
 }
+
+//  ValidateEmail(mail) => {
+// if (/^\w+([\.-]?\ w+)*@\w+([\.-]?\ w+)*(\.\w{2,3})+$/.test(this.state.email))
+//   return true
+// }
+
 
 // maps store state to local props
 const mapStateToProps = (state) => {
