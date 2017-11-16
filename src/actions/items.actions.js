@@ -44,7 +44,7 @@ export const loadItems = () => {
 };
 
 //CREATE(POST) new item  
-export const addItem = (newItem, userId) => {  
+export const addItem = (newItem) => {  
   return (dispatch) => {
     return Axios.post(listOfItems, newItem)
     .then(newItemDetails => {
