@@ -53,6 +53,7 @@ ReactDOM.render(
         <Route path="/logout" component={LogOUT} />
         <Route path="/users/:id" component={User}/>
 
+
         <Footer />
       </div>
     </Router>

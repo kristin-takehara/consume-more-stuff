@@ -13,11 +13,13 @@ const router = express.Router();
 //LogIN an authenticated user
 router.post('/login',
   passport.authenticate('local'), (req, res) => {
+    console.log(res.user);
   // if authentication is successful this will be sent
   // front end should check if returned object has a success key with true
   return res.json({
     id : req.user.id,
     username : req.user.username,
+    role : req.user.role,
     success : true
   });
 });

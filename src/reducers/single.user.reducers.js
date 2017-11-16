@@ -21,7 +21,7 @@ const singleUser = (state = initialState, action) => {
     case LOGIN_USER:
       const userDetails = action.userDetails;
       let newState = {};
-      
+      console.log(userDetails);
       if (userDetails.success) {
         newState = action.userDetails;
 
@@ -38,7 +38,7 @@ const singleUser = (state = initialState, action) => {
 
     case LOGOUT_USER:
       return Object.assign({}, state, initialState);
-     
+
     default:
       return state;
   }
