@@ -19,6 +19,7 @@ import LogIN from './containers/LogIN';
 import LogOUT from './containers/LogOUT';
 import SideBar from './containers/SideBar';
 import SingleItemView from './containers/SingleItemView';
+import CategoryView from './containers/CategoryView';
 import Footer from './components/footer.components';
 import Nav from './components/nav.components';
 //---------------------------------------
@@ -54,7 +55,7 @@ ReactDOM.render(
         <Route path="/items/:id" component={SingleItemView} />
         <Route path="/logout" component={LogOUT} />
         <Route path="/users/:id" component={User}/>
-
+        <Route path="/category/:id" component={CategoryView} />
 
         <Footer />
       </div>

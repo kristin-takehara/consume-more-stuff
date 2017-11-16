@@ -77,7 +77,7 @@ class Login extends Component {
       })
     }
   }
-  
+
   componentDidMount() {
     localStorage.clear();
   }
@@ -99,16 +99,18 @@ class Login extends Component {
             .: welcome back :.
           </center>
         </div>
-        {(this.state.error) && 
-          <h3>{this.state.error}</h3>
+
+        {(this.state.error) &&
+          <h2>{this.state.error}</h2>
         }
+
         <div className="login-form">
           <form className="inner-form-container" onSubmit={this.handleSubmit.bind(this)}>
             <div className="form-header">
             Enter USERNAME -or- EMAIL
             </div>
          <div>
-            <input 
+            <input
               name="username"
               type="text"
               placeholder="username"
@@ -121,12 +123,12 @@ class Login extends Component {
             PASSWORD
             </div>
             <div>
-            <input 
+            <input
               name="password"
               type="password"
               placeholder="password"
               defaultValue={this.state.password}
-              onChange={this.handlePasswordInput} 
+              onChange={this.handlePasswordInput}
               onBlur={this.handleBlurValidation}/>
             </div>
             <br/>
