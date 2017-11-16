@@ -59,6 +59,10 @@ h2 {
   font-family: 'Libre Baskerville', serif;
 }
 
+textarea {
+  resize: none;
+}
+
 #global-nav-header {
   background-image: url("/assets/doodles.png");
   background-repeat: repeat;
