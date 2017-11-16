@@ -58,14 +58,13 @@ class Login extends Component {
   render() {
     // loggedIn is a string so its basically checking if anything exists there
     if(localStorage.loggedIn) {
-      return <Redirect to="/"/>
+      return <Redirect to={`/users/${localStorage.userId}`}/>
     }
-
 
     return(
       <div id="login-container">
         <h2>Login</h2>
-    
+
         <div>
           <center>
             .: welcome back :.
