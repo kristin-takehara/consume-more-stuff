@@ -41,8 +41,8 @@ router.post('/register', (req, res) => {
     if (response) {
       res.json({
         success: false
-      });      
-    
+      });
+
     } else {
       bcrypt.genSalt(saltRounds, (err, salt) => {
         bcrypt.hash(req.body.password, salt, (err, hash) => {
