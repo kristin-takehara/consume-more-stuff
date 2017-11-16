@@ -39,9 +39,9 @@ ReactDOM.render(
         <header id="global-nav-header">
           <SideBar />
 
-          <Link to="/">
-            <div id="logo"></div>
-          </Link>
+            <div id="logo">
+              <Link to="/"><div></div></Link>
+            </div>
 
           <Nav />
         </header>

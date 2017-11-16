@@ -36,6 +36,7 @@ $footer-color: #a6a3a2;
 html {
   @include box-style(border-box);
   font-family: 'Molengo', sans-serif;
+  font-size: 20px;
 }
 
 *, *:before, *:after {
@@ -74,10 +75,13 @@ textarea {
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: center fixed;
-
   height: 150px;
-  display: flex;
-  justify-content: center;
+  width: 300px;
+  margin: 0 auto;
+  div {
+  height: 150px;
+  width: 300px;
+  }
 }
 
 .unauth-nav-links {
@@ -355,7 +359,7 @@ textarea {
   padding-top: 2px;
   padding-bottom: 2px;
   .footer-details {
-    font-size: 40%;
+    font-size: 60%;
     text-align: center;
     padding-top: 10px;
   }

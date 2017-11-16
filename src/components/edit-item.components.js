@@ -25,7 +25,7 @@ const EditItem = ({ singleItem, categories, conditions, statuses, handleChange, 
           name="price"
           onChange={handleChange}
           placeholder="price"
-          defaultValue={"$" + `${singleItem.price}`} /> </div> <div>
+          defaultValue={`$${singleItem.price}`} /> </div> <div>
         <input
           name="manufacturer"
           onChange={handleChange}

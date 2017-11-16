@@ -74,7 +74,7 @@ class Login extends Component {
         <div className="login-form">
           <form className="inner-form-container" onSubmit={this.handleSubmit.bind(this)}>
             <div className="form-header">
-            USERNAME
+            Enter USERNAME -or- EMAIL
             </div>
 
             <div>
