@@ -173,6 +173,17 @@ textarea {
 .single-user {
   padding-bottom: 5px;
 }
+// -------------------------
+// errors
+
+.errors {
+  color: red;
+  font-style: italic;
+  font-weight: bold;
+  word-wrap: normal;
+  text-align: center;
+
+}
 //----------------------------
 #register-container {
   justify-content: center;
