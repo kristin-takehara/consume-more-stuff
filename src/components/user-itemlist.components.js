@@ -11,6 +11,9 @@ const UserItemList = ({ items, soldValue, title }) => {
       .filter(item => {
         return item.is_sold === Number(soldValue);
       })
+      .filter(item => {
+          return !item.deletedAt;
+      })
       .map((itemDetails, idx) => {
         const url = /^http/;
         let imageUrl = itemDetails.imageUrl;

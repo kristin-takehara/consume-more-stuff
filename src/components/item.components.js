@@ -27,18 +27,19 @@ const Item = ({ singleItem, singleView }) => {
           </Link>
       }
 
-      <div className="card-price">
-        ${ singleItem.price }
-      </div>
+      <div className="single-item-details">
+        <div className="card-price">
+          ${ singleItem.price }
+        </div>
 
-      <div className="card-description">
-        { singleItem.description }
-      </div>
+        <div className="card-description">
+          { singleItem.description }
+        </div>
 
-      <div className="card-createdAt">
-        <FormattedRelative value={ singleItem.createdAt } />
+        <div className="card-createdAt">
+          <FormattedRelative value={ singleItem.createdAt } />
+        </div>
       </div>
-
 
       { singleView
         // if singleView is true render these

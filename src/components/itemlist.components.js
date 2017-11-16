@@ -1,12 +1,13 @@
 // component-container, a redux style dummy container
 import React from 'react';
 import Item from'./item.components';
+import { Link } from 'react-router-dom';
 
 const ItemList = ({ items, categoryId, categoryName }) => {
   return (
     <div>
-      <div className="category-header"> 
-        { categoryName } 
+      <div className="category-header">
+         <Link to={`/${categoryName}`}>{ categoryName }</Link>
       </div>
 
       <div className="item-list" id={categoryName}>

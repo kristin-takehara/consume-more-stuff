@@ -43,7 +43,7 @@ router.post('/register', validateForm, (req, res) => {
       res.json({
         error: 'Sorry, that username is taken!'
       });      
-    
+
     } else {
       bcrypt.genSalt(saltRounds, (err, salt) => {
         bcrypt.hash(req.body.password, salt, (err, hash) => {
