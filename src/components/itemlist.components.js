@@ -7,7 +7,7 @@ const ItemList = ({ items, categoryId, categoryName }) => {
   return (
     <div>
       <div className="category-header">
-         <Link to={`/${categoryName}`}>{ categoryName }</Link>
+         <Link to={`/${categoryId}`}>{ categoryName }</Link>
       </div>
 
       <div className="item-list" id={categoryName}>
