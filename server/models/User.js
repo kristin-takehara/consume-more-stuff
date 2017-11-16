@@ -8,10 +8,12 @@ module.exports = function(sequelize, DataType) {
     password : {
       type : DataType.STRING
     },
-    // email : {
-    //   type : DataType.STRING,
-    //   validate : {isEmail: true}
-    // },
+    email : {
+      type : DataType.STRING,
+      allowNull : false,
+      unique : true,
+      validate : { isEmail: true }
+    },
   },
   {
     tableName : 'users'

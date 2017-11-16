@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const passport = require('passport');
 const session = require('express-session');
 const db = require('../models');
+const validateForm = require('../lib/validate-form');
 const User = db.User;
 const saltRounds = 12;
 
@@ -28,8 +29,8 @@ router.get('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
-router.post('/register', (req, res) => {
-  const username = req.body.username.toLowerCase();
+router.post('/register', validateForm, (req, res) => {
+  const { email, username } = req.body;
   // need to check if user already exists first
   return User.findOne({
     where: { username: username },
@@ -40,13 +41,14 @@ router.post('/register', (req, res) => {
     // if user does exist, user details will be returned
     if (response) {
       res.json({
-        success: false
-      });
+        error: 'Sorry, that username is taken!'
+      });      
 
     } else {
       bcrypt.genSalt(saltRounds, (err, salt) => {
         bcrypt.hash(req.body.password, salt, (err, hash) => {
           User.create({
+            email: email,
             username: username,
             password: hash,
             role: 2
@@ -66,7 +68,7 @@ router.post('/register', (req, res) => {
   .catch((err) => {
     console.log("error", err);
     return res.json({
-      success : false
+      error : 'Oh no! Something went wrong!'
     });
   });
 });
