@@ -29,7 +29,6 @@ passport.deserializeUser((user, done) => {
 });
 
 passport.use(new LocalStrategy(function(username, password, done) {
-
   User.findOne({ where : { username : username }})
     .then(user => {      
       if (user === null) {
