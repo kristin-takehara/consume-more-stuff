@@ -41,9 +41,9 @@ ReactDOM.render(
         <header id="global-nav-header">
           <SideBar />
 
-          <Link to="/">
-            <div id="logo"></div>
-          </Link>
+            <div id="logo">
+              <Link to="/"><div></div></Link>
+            </div>
 
           <Nav />
         </header>
@@ -54,6 +54,7 @@ ReactDOM.render(
         <Route path="/items/:id" component={SingleItemView} />
         <Route path="/logout" component={LogOUT} />
         <Route path="/users/:id" component={User}/>
+
 
         <Footer />
       </div>

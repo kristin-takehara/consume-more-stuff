@@ -13,11 +13,13 @@ const router = express.Router();
 //LogIN an authenticated user
 router.post('/login',
   passport.authenticate('local'), (req, res) => {
+    console.log(res.user);
   // if authentication is successful this will be sent
   // front end should check if returned object has a success key with true
   return res.json({
     id : req.user.id,
     username : req.user.username,
+    role : req.user.role,
     success : true
   });
 });
@@ -33,7 +35,7 @@ router.post('/register', validateForm, (req, res) => {
   const { email, username } = req.body;
   // need to check if user already exists first
   return User.findOne({
-    where: { username: username },
+    where : { $or : [ { username : username }, { email : username } ] },
     attributes: { exclude: ['password'] }
   })
   .then(response => {
@@ -41,8 +43,8 @@ router.post('/register', validateForm, (req, res) => {
     // if user does exist, user details will be returned
     if (response) {
       res.json({
-        error: 'Sorry, that username is taken!'
-      });      
+        error: 'Sorry, that username/email is already in use!'
+      });
 
     } else {
       bcrypt.genSalt(saltRounds, (err, salt) => {
