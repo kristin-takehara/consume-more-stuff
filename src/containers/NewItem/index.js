@@ -96,20 +96,16 @@ class NewItem extends Component {
     if(localStorage.username) {
       return (
       <div id="product-listing-container">
-
-        <a onClick={this.newItemDisplay.bind(this)} href="">
-          START SELLING
-        </a>
-
+        <h2><a onClick={this.newItemDisplay.bind(this)} href="">
+        Sell A New Item
+        </a></h2>
+        { this.state.showNewItemForm &&
         <div id="listing-details">
-
         <div className="product-info">
           <h3>Product Info</h3>
           <p>Tell us about the details of your item</p>
         </div>
-
           <div id="new-item-form-container">
-          { this.state.showNewItemForm }
             <form className="new-item-form"
               onSubmit={this.handleSubmit}>
               <div id="product_row_1">

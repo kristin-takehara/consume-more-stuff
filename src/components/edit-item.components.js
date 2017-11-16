@@ -9,42 +9,49 @@ const EditItem = ({ singleItem, categories, conditions, statuses, handleChange, 
         <input
           name="name"
           onChange={handleChange.bind(this)}
+          placeholder="name"
           defaultValue={singleItem.name} />
       </div>
       <div>
-        <input
+        <textarea
           name="description"
           onChange={handleChange}
+          cols="18" rows="8"
+          placeholder="description"
           defaultValue={singleItem.description} />
       </div>
       <div>
         <input
           name="price"
           onChange={handleChange}
-          defaultValue={singleItem.price} />
-      </div>
-      <div>
+          placeholder="price"
+          defaultValue={"$" + `${singleItem.price}`} /> </div> <div>
         <input
           name="manufacturer"
           onChange={handleChange}
+          placeholder="manufacturer"
           defaultValue={singleItem.manufacturer} />
       </div>
       <div>
         <input
           name="model"
           onChange={handleChange}
+          placeholder="model"
           defaultValue={singleItem.model} />
       </div>
       <div>
         <input
           name="dimensions"
           onChange={handleChange}
+          placeholder="dimensions"
           defaultValue={singleItem.dimensions} />
       </div>
       <div>
-        <input
+        <textarea
           name="notes"
           onChange={handleChange}
+          cols="18" rows="8"
+          placeholder="notes"
           defaultValue={singleItem.notes} />
       </div>
       <div>

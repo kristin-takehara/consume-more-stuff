@@ -217,7 +217,10 @@ textarea {
   font-size: 150%;
   padding-top: 10px;
   padding-bottom: 10px;
-  color: $accent-color;
+  a{
+    color: $accent-color;
+  }
+
 }
 
 .item-list {

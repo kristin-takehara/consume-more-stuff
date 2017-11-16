@@ -133,6 +133,7 @@ class SingleItemView extends Component {
             <Item
               singleItem={ this.props.singleItem }
               singleView={ true } />
+
             <button
               className="edit-btn"
               type="button"
